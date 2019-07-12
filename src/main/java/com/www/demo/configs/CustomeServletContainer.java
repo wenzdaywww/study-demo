@@ -1,4 +1,4 @@
-package com.www.demo.config;
+package com.www.demo.configs;
 
 import org.apache.catalina.Context;
 import org.apache.catalina.connector.Connector;

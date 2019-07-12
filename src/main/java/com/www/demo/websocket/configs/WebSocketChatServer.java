@@ -1,6 +1,8 @@
-package com.www.demo.websocket;
+package com.www.demo.websocket.configs;
 
 import com.alibaba.fastjson.JSON;
+import com.www.demo.websocket.pojo.Message;
+
 import org.springframework.stereotype.Component;
 import javax.websocket.*;
 import javax.websocket.server.ServerEndpoint;

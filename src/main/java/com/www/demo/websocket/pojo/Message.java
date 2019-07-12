@@ -1,4 +1,4 @@
-package com.www.demo.websocket;
+package com.www.demo.websocket.pojo;
 
 import com.alibaba.fastjson.JSON;
 /**

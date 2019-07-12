@@ -1,4 +1,4 @@
-package com.www.demo.websocket;
+package com.www.demo.websocket.controller;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;

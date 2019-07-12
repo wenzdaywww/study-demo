@@ -1,4 +1,4 @@
-package com.www.demo.control;
+package com.www.demo.controller;
 
 import java.util.ArrayList;
 import java.util.List;
