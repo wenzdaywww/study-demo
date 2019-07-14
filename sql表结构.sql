@@ -1,3 +1,11 @@
+--创建表空间
+create tablespace boot  
+logging  
+datafile '/u01/app/oracle/oradata/XE/boot.dbf' 
+size 50m  
+autoextend on  
+next 50m maxsize 20480m  
+extent management local;  
 /**用户表*/
 create table SYSUSER
 (
@@ -26,15 +34,14 @@ alter table SYSUSER
     next 1M
     minextents 1
     maxextents unlimited
-  );
-  
+  ); 
 /**角色表*/
 create table SYSROLES
 (
   id       NUMBER not null,
   roleid   VARCHAR2(20),
   rolename VARCHAR2(50)
-)
+);
 -- Add comments to the columns 
 comment on column SYSROLES.id
   is 'ID';
@@ -50,3 +57,4 @@ alter table SYSROLES
   pctfree 10
   initrans 2
   maxtrans 255;
+create seq_sysroles_id increment by 1 start with 1 maxvalue 999999999; 

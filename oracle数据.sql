@@ -1,11 +1,11 @@
 insert into sysroles (ID, ROLEID, ROLENAME)
-values (1, 'admin', '管理员');
+values (seq_sysroles_id.nextval, 'admin', '管理员');
 
 insert into sysroles (ID, ROLEID, ROLENAME)
-values (2, 'user', '用户');
+values (seq_sysroles_id.nextval, 'user', '用户');
 
 insert into sysroles (ID, ROLEID, ROLENAME)
-values (3, 'test', '测试');
+values (seq_sysroles_id.nextval, 'test', '测试');
 
 insert into sysuser (USERID, USERNAME, PASSWD)
 values ('wenzday', '吴伟文', 'www362412');

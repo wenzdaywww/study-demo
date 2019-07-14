@@ -134,6 +134,7 @@ section {
 <body>
 	<div class="logo_box">
 		<h3>登录聊天</h3>
+		<p align="center" style="color: red;" th:text="${info}"></p>
 		<form>
 			<div class="input_outer">
 				<span class="u_user"></span> <input id="username" name="username"
@@ -154,7 +155,7 @@ section {
 		 * 登陆聊天
 		 */
 		function login() {
-			location.href = '/chat?username=' + $('#username').val();
+			location.href = '/chat?username=' + $('#username').val()+'&password=' + $('#password').val();
 		}
 		/**
 		 * 使用ENTER登陆
