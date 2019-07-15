@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.www.demo.model.entity.system.Sysuser;
-import com.www.demo.model.entity.system.SysuserRepository;
+import com.www.demo.model.bo.system.Sysuser;
+import com.www.demo.model.bo.system.SysuserRepository;
 
 @RestController
 public class WebSocketController {

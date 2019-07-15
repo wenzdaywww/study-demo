@@ -8,10 +8,10 @@ import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.www.demo.model.entity.system.Sysroles;
-import com.www.demo.model.entity.system.SysrolesRepository;
-import com.www.demo.model.entity.system.Sysuser;
-import com.www.demo.model.entity.system.SysuserRepository;
+import com.www.demo.model.bo.system.Sysroles;
+import com.www.demo.model.bo.system.SysrolesRepository;
+import com.www.demo.model.bo.system.Sysuser;
+import com.www.demo.model.bo.system.SysuserRepository;
 
 @RestController
 public class JpaController {

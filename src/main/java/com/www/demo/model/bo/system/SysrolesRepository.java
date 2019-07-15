@@ -1,4 +1,4 @@
-package com.www.demo.model.entity.system;
+package com.www.demo.model.bo.system;
 
 import java.util.List;
 import java.util.Optional;
