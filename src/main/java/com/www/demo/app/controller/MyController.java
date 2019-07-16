@@ -11,6 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.www.demo.app.service.IMyService;
 import com.www.demo.model.vo.People;
 import com.www.demo.model.vo.SysuserVO;
+/**
+ * 控制层
+ * @author www
+ *
+ */
 @Controller
 public class MyController {
 	@Autowired

@@ -2,7 +2,11 @@ package com.www.demo.model.vo;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.PropertySource;
-
+/**
+ * 作者信息对象
+ * @author www
+ *
+ */
 @ConfigurationProperties(prefix="author")
 @PropertySource("classpath:author.properties")
 public class People {

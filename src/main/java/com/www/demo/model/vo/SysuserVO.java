@@ -1,5 +1,9 @@
 package com.www.demo.model.vo;
-
+/**
+ * 
+ * @author www
+ *
+ */
 public class SysuserVO {
 	
 	private String userId;
@@ -60,7 +64,10 @@ public class SysuserVO {
 		this.oldPasswd = oldPasswd;
 		this.newPasswd = newPasswd;
 	}
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return "SysuserVO [userId=" + userId + ", userName=" + userName + ", passwd=" + passwd + ", oldPasswd="
+				+ oldPasswd + ", newPasswd=" + newPasswd + "]";
+	}
 }

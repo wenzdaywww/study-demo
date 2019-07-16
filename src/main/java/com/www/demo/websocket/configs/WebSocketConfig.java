@@ -3,7 +3,11 @@ package com.www.demo.websocket.configs;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.socket.server.standard.ServerEndpointExporter;
-
+/**
+ * websocket配置类
+ * @author www
+ *
+ */
 @Configuration
 public class WebSocketConfig {
 

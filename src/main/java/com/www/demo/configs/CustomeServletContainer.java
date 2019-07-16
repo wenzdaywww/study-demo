@@ -25,10 +25,13 @@ public class CustomeServletContainer{
 	@Bean
 	public Connector httpConnector() {
 		Connector connector = new Connector("org.apache.coyote.http11.Http11NioProtocol");
-		connector.setScheme("http");//设置协议类型，http或者https
-		connector.setPort(80);//协议类型的请求端口，这个参数必须设置
+		/*设置协议类型，http或者https*/
+		connector.setScheme("http");
+		/*协议类型的请求端口，这个参数必须设置*/
+		connector.setPort(80);
 		connector.setSecure(false);
-		connector.setRedirectPort(443);//重定向的请求端口,不一定与application.properties的配置端口一样
+		/*重定向的请求端口,不一定与application.properties的配置端口一样*/
+		connector.setRedirectPort(443);
 		return connector;
 	}
 	/**
@@ -40,6 +43,7 @@ public class CustomeServletContainer{
 	@Bean
 	public TomcatServletWebServerFactory tomcatServletWebServerFactory(Connector connector) {
 		TomcatServletWebServerFactory tomcat=new TomcatServletWebServerFactory(){
+			@Override
             protected void postProcessContext(Context context) {
                 SecurityConstraint securityConstraint=new SecurityConstraint();
                 securityConstraint.setUserConstraint("CONFIDENTIAL");

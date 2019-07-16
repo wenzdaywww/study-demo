@@ -10,7 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.www.demo.model.bo.system.Sysuser;
 import com.www.demo.model.bo.system.SysuserRepository;
-
+/**
+ * REST服务控制层
+ * @author www
+ *
+ */
 @RestController
 @RequestMapping("/rest")
 public class RestControl {

@@ -2,7 +2,11 @@ package com.www.demo.model.bo.system;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-
+/**
+ * 用户信息实体类
+ * @author www
+ *
+ */
 @Entity
 public class Sysuser {
 	@Id

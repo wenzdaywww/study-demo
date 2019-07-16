@@ -7,13 +7,16 @@ import org.springframework.transaction.annotation.Transactional;
 import com.www.demo.app.service.IMyService;
 import com.www.demo.model.bo.system.SysuserRepository;
 import com.www.demo.model.vo.SysuserVO;
+/**
+ * 服务层
+ * @author www
+ *
+ */
 @Service
 public class MyServiceImpl implements IMyService{
 	@Autowired
 	private SysuserRepository sysuserRepository;
-	/**
-	 * 数据回滚
-	 */
+	
 	@Transactional(rollbackFor=IllegalArgumentException.class)
 	@Override
 	public boolean modifyUserPawsswdWithRollBack(SysuserVO sysuserVO) {
@@ -26,9 +29,7 @@ public class MyServiceImpl implements IMyService{
 		}
 		return count>0?true:false;
 	}
-	/**
-	 * 数据不回滚
-	 */
+
 	@Transactional(noRollbackFor=IllegalArgumentException.class)
 	@Override
 	public boolean modifyUserPawsswdWithoutRollBack(SysuserVO sysuserVO) {

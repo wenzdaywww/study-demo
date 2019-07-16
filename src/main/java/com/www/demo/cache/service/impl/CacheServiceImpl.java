@@ -9,6 +9,11 @@ import org.springframework.transaction.annotation.Transactional;
 import com.www.demo.cache.service.ICacheService;
 import com.www.demo.model.bo.system.Sysroles;
 import com.www.demo.model.bo.system.SysrolesRepository;
+/**
+ * 缓存服务层
+ * @author www
+ *
+ */
 @Service
 public class CacheServiceImpl implements ICacheService{
 	@Autowired
@@ -16,17 +21,25 @@ public class CacheServiceImpl implements ICacheService{
 
 	@Override
 	@Transactional
-	@CachePut(key="sysroles",value="#sysroles.roleid")
-	public Sysroles savaRoles(Sysroles sysroles) {
+	@CachePut(key="'sysroles.roleid'",value="sysroles")
+	public Sysroles savaRoles(String roleid, String rolename) {
 		System.out.println("添加缓存。。。");
+		Sysroles sysroles = new Sysroles(roleid, rolename);
 		return sysrolesRepository.save(sysroles);
 	}
 
 	@Override
-	@Cacheable(key="sysroles",value="#sysroles.roleid")
+	@Cacheable(key="#id",value="sysroles")
 	public Sysroles findOneRoles(Long id) {
-		System.out.println("查询缓存是否存在。。。。");
+		System.out.println("id查询缓存是否存在。。。。");
 		return sysrolesRepository.findById(id).get();
+	}
+	
+	@Override
+	@Cacheable(key="#sysroles.id",value="sysroles") 
+	public Sysroles findOneRoles(Sysroles sysroles) {
+		System.out.println("对象查询缓存是否存在。。。。");
+		return sysrolesRepository.findById(sysroles.getId()).get();
 	}
 
 }

@@ -25,7 +25,11 @@ import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.util.Properties;
-
+/**
+ * 
+ * @author www
+ *
+ */
 public class MavenWrapperDownloader {
 
     /**
@@ -101,7 +105,7 @@ public class MavenWrapperDownloader {
         }
     }
 
-    private static void downloadFileFromURL(String urlString, File destination) throws Exception {
+    private static void downloadFileFromUrl(String urlString, File destination) throws Exception {
         URL website = new URL(urlString);
         ReadableByteChannel rbc;
         rbc = Channels.newChannel(website.openStream());

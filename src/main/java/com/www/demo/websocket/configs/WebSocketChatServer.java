@@ -15,8 +15,9 @@ import java.util.concurrent.ConcurrentHashMap;
  *
  * @see ServerEndpoint WebSocket服务端 需指定端点的访问路径
  * @see Session   WebSocket会话对象 通过它给客户端发送消息
+ * @author www
+ *
  */
-
 @Component
 @ServerEndpoint("/ws")
 public class WebSocketChatServer {

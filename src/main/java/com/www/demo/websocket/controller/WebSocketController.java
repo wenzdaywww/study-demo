@@ -12,7 +12,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.www.demo.model.bo.system.Sysuser;
 import com.www.demo.model.bo.system.SysuserRepository;
-
+/**
+ * websocket控制层
+ * @author www
+ *
+ */
 @RestController
 public class WebSocketController {
 	@Autowired
