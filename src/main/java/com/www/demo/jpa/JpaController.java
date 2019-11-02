@@ -6,10 +6,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.www.demo.model.bo.system.Sysroles;
-import com.www.demo.model.bo.system.SysrolesRepository;
-import com.www.demo.model.bo.system.Sysuser;
-import com.www.demo.model.bo.system.SysuserRepository;
+import com.www.demo.model.bo.system.SysRole;
+import com.www.demo.model.bo.system.SysRoleRepository;
+import com.www.demo.model.bo.system.SysUser;
+import com.www.demo.model.bo.system.SysUserRepository;
 /**
  * JPA控制层
  * @author www
@@ -18,13 +18,13 @@ import com.www.demo.model.bo.system.SysuserRepository;
 @RestController
 public class JpaController {
 	@Autowired
-	private SysrolesRepository sysrolesRepository;
+	private SysRoleRepository sysrolesRepository;
 	@Autowired()
-	private SysuserRepository sysuserRepository;
+	private SysUserRepository sysuserRepository;
 	
 	@RequestMapping("/saveroles")
-	public Sysroles saveRoles(String roleid,String rolename) {
-		Sysroles sysroles = sysrolesRepository.save(new Sysroles(roleid, rolename));
+	public SysRole saveRoles(String roleid,String rolename) {
+		SysRole sysroles = sysrolesRepository.save(new SysRole(roleid, rolename));
 		return sysroles;
 	}
 	
@@ -38,8 +38,8 @@ public class JpaController {
 	}
 	
 	@RequestMapping("/saveuser")
-	public Sysuser saveUser(String userid,String username,String passwd) {
-		Sysuser sysuser = sysuserRepository.save(new Sysuser(userid, username, passwd));
+	public SysUser saveUser(String userid,String username,String passwd) {
+		SysUser sysuser = sysuserRepository.save(new SysUser(userid, username, passwd));
 		return sysuser;
 	}
 	
@@ -50,7 +50,7 @@ public class JpaController {
 	}
 	@SuppressWarnings("deprecation")
 	@RequestMapping("/page")
-	public Page<Sysuser> page(){
+	public Page<SysUser> page(){
 		return sysuserRepository.findAll(new PageRequest(0, 3));
 	}
 }

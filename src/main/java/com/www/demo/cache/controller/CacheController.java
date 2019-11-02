@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.www.demo.cache.service.ICacheService;
-import com.www.demo.model.bo.system.Sysroles;
+import com.www.demo.model.bo.system.SysRole;
 /**
  * 缓存控制层
  * @author www
@@ -17,18 +17,18 @@ public class CacheController {
 	private ICacheService cacheService;
 	
 	@RequestMapping("/putcache")
-	public Sysroles putCache(String roleid, String rolename) {
+	public SysRole putCache(String roleid, String rolename) {
 		return cacheService.savaRoles(roleid, rolename);
 	}
 	
 	@RequestMapping("/ablecache")
-	public Sysroles ableCache(Long id) {
+	public SysRole ableCache(Long id) {
 		return cacheService.findOneRoles(id);
 	}
 	
 	@RequestMapping("/ablecaches")
-	public Sysroles ableCaches(Long id) {
-		Sysroles sysroles = new Sysroles();
+	public SysRole ableCaches(Long id) {
+		SysRole sysroles = new SysRole();
 		sysroles.setId(id);
 		return cacheService.findOneRoles(sysroles);
 	}

@@ -1,6 +1,6 @@
 package com.www.demo.cache.service;
 
-import com.www.demo.model.bo.system.Sysroles;
+import com.www.demo.model.bo.system.SysRole;
 /**
  * 缓存服务层接口
  * @author www
@@ -13,17 +13,17 @@ public interface ICacheService {
 	 * @param rolename
 	 * @return
 	 */
-	public Sysroles savaRoles(String roleid, String rolename);
+	public SysRole savaRoles(String roleid, String rolename);
 	/**
 	 * 通过id查询角色
 	 * @param id
 	 * @return
 	 */
-	public Sysroles findOneRoles(Long id);
+	public SysRole findOneRoles(Long id);
 	/**
 	 * 通过对象查询角色
 	 * @param sysroles
 	 * @return
 	 */
-	public Sysroles findOneRoles(Sysroles sysroles);
+	public SysRole findOneRoles(SysRole sysroles);
 }

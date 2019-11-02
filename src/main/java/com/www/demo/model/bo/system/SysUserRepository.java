@@ -11,33 +11,33 @@ import org.springframework.data.repository.query.Param;
  * @author www
  *
  */
-public interface SysuserRepository extends JpaRepository<Sysuser, String>{
+public interface SysUserRepository extends JpaRepository<SysUser, String>{
 	/**
 	 * 通过userId查询用户
 	 * @param userId
 	 * @return
 	 */
-	public List<Sysuser> findByUserid(String userId);
+	public List<SysUser> findByUserId(String userId);
 	/**
 	 * 通过userName查询用户
 	 * @param userName
 	 * @return
 	 */
-	public List<Sysuser> findByUsername(String userName);
+	public List<SysUser> findByUserName(String userName);
 	/**
 	 * 通过passwd查询用户
 	 * @param passwd
 	 * @return
 	 */
-	public List<Sysuser> findByPasswd(String passwd);
+	public List<SysUser> findByPassWord(String passwd);
 	/**
 	 * 通过userName和passwd查询用户
 	 * @param userName
 	 * @param passwd
 	 * @return
 	 */
-	@Query("select u from Sysuser u where u.username=:username and u.passwd=:passwd")
-	public Sysuser findWithuserNameAndPasswd(@Param("username")String userName,@Param("passwd")String passwd);
+	@Query("select u from SysUser u where u.userName=:username and u.passWord=:passwd")
+	public SysUser findWithuserNameAndPasswd(@Param("username")String userName,@Param("passwd")String passwd);
 	/**
 	 * 修改用户密码
 	 * @param userid
@@ -46,6 +46,6 @@ public interface SysuserRepository extends JpaRepository<Sysuser, String>{
 	 * @return
 	 */
 	@Modifying
-	@Query("update Sysuser u set u.passwd=:newpasswd where u.userid=:userid and u.passwd=:oldpasswd")
+	@Query("update SysUser u set u.passWord=:newpasswd where u.userId=:userid and u.passWord=:oldpasswd")
 	public int modifyPasswd(@Param("userid")String userid,@Param("oldpasswd")String oldpasswd,@Param("newpasswd")String newpasswd);
 }

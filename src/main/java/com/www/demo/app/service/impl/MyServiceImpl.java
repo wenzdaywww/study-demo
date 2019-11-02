@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.www.demo.app.service.IMyService;
-import com.www.demo.model.bo.system.SysuserRepository;
+import com.www.demo.model.bo.system.SysUserRepository;
 import com.www.demo.model.vo.SysuserVO;
 /**
  * 服务层
@@ -15,7 +15,7 @@ import com.www.demo.model.vo.SysuserVO;
 @Service
 public class MyServiceImpl implements IMyService{
 	@Autowired
-	private SysuserRepository sysuserRepository;
+	private SysUserRepository sysuserRepository;
 	
 	@Transactional(rollbackFor=IllegalArgumentException.class)
 	@Override

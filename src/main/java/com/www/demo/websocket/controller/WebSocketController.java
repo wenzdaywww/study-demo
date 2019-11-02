@@ -10,17 +10,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.www.demo.model.bo.system.Sysuser;
-import com.www.demo.model.bo.system.SysuserRepository;
+import com.www.demo.model.bo.system.SysUser;
+import com.www.demo.model.bo.system.SysUserRepository;
 /**
  * websocket控制层
  * @author www
  *
  */
-@RestController
+@RestController("/ws")
 public class WebSocketController {
 	@Autowired
-	private SysuserRepository userRepository;
+	private SysUserRepository userRepository;
 
 	@GetMapping("/login")
 	public ModelAndView login() {
@@ -28,7 +28,7 @@ public class WebSocketController {
 	}
 	@GetMapping("/chat")
 	public ModelAndView chat(String username,String password,HttpServletRequest request) throws UnknownHostException {
-		Sysuser user = userRepository.findWithuserNameAndPasswd(username, password);
+		SysUser user = userRepository.findWithuserNameAndPasswd(username, password);
 		if (user==null) {
 			ModelAndView modelAndView = new ModelAndView("/websocket/login");
 			modelAndView.addObject("info","用户名或密码错误！！！");

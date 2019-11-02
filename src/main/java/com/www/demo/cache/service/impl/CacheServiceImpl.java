@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.www.demo.cache.service.ICacheService;
-import com.www.demo.model.bo.system.Sysroles;
-import com.www.demo.model.bo.system.SysrolesRepository;
+import com.www.demo.model.bo.system.SysRole;
+import com.www.demo.model.bo.system.SysRoleRepository;
 /**
  * 缓存服务层
  * @author www
@@ -17,27 +17,27 @@ import com.www.demo.model.bo.system.SysrolesRepository;
 @Service
 public class CacheServiceImpl implements ICacheService{
 	@Autowired
-	private SysrolesRepository sysrolesRepository;
+	private SysRoleRepository sysrolesRepository;
 
 	@Override
 	@Transactional
 	@CachePut(key="'sysroles.roleid'",value="sysroles")
-	public Sysroles savaRoles(String roleid, String rolename) {
+	public SysRole savaRoles(String roleid, String rolename) {
 		System.out.println("添加缓存。。。");
-		Sysroles sysroles = new Sysroles(roleid, rolename);
+		SysRole sysroles = new SysRole(roleid, rolename);
 		return sysrolesRepository.save(sysroles);
 	}
 
 	@Override
 	@Cacheable(key="#id",value="sysroles")
-	public Sysroles findOneRoles(Long id) {
+	public SysRole findOneRoles(Long id) {
 		System.out.println("id查询缓存是否存在。。。。");
 		return sysrolesRepository.findById(id).get();
 	}
 	
 	@Override
 	@Cacheable(key="#sysroles.id",value="sysroles") 
-	public Sysroles findOneRoles(Sysroles sysroles) {
+	public SysRole findOneRoles(SysRole sysroles) {
 		System.out.println("对象查询缓存是否存在。。。。");
 		return sysrolesRepository.findById(sysroles.getId()).get();
 	}

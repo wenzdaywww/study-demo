@@ -14,15 +14,15 @@ import javax.persistence.Id;
  *
  */
 @Entity
-public class Sysroles {
+public class SysRole {
 
 	@Id
 	@GeneratedValue(generator="seq_sysroles_id")
 	private Long id;
 
-	private String roleid;
+	private String roleId;
 
-	private String rolename;
+	private String roleName;
 
 
 	public Long getId() {
@@ -33,29 +33,30 @@ public class Sysroles {
 		this.id = id;
 	}
 
-	public String getRoleid() {
-		return roleid;
-	}
-
-	public void setRoleid(String roleid) {
-		this.roleid = roleid;
-	}
-
-	public String getRolename() {
-		return rolename;
-	}
-
-	public void setRolename(String rolename) {
-		this.rolename = rolename;
-	}
-
-	public Sysroles( String roleid, String rolename) {
+	public SysRole( String roleid, String rolename) {
 		super();
-		this.roleid = roleid;
-		this.rolename = rolename;
+		this.roleId = roleid;
+		this.roleName = rolename;
 	}
 
-	public Sysroles() {
+	public SysRole() {
 		super();
 	}
+
+	public String getRoleId() {
+		return roleId;
+	}
+
+	public void setRoleId(String roleId) {
+		this.roleId = roleId;
+	}
+
+	public String getRoleName() {
+		return roleName;
+	}
+
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
+	}
+	
 }
