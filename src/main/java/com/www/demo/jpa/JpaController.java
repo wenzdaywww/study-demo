@@ -51,6 +51,6 @@ public class JpaController {
 	@SuppressWarnings("deprecation")
 	@RequestMapping("/page")
 	public Page<SysUser> page(){
-		return sysuserRepository.findAll(new PageRequest(0, 3));
+		return sysuserRepository.findAll(PageRequest.of(0, 3));
 	}
 }
