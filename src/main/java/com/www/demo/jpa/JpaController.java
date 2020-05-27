@@ -48,6 +48,7 @@ public class JpaController {
 		int count = sysuserRepository.modifyPasswd(userid, oldpasswd, newpasswd);
 		return count;
 	}
+
 	@SuppressWarnings("deprecation")
 	@RequestMapping("/page")
 	public Page<SysUser> page(){
