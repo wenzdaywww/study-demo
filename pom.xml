@@ -27,42 +27,28 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		<!-- 引入springboot内嵌Tomcat对jsp的解析依赖，必要的 -->
+<!--		<dependency>-->
+<!--			<groupId>org.apache.tomcat.embed</groupId>-->
+<!--			<artifactId>tomcat-embed-core</artifactId>-->
+<!--		</dependency>-->
+		<!-- springboot thymeleaf页面依赖 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
+		<!-- springboot websocket页面依赖 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-websocket</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-rest</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-cache</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
-		<!-- thymeleaf的spring security支持 -->
-		<dependency>
-			<groupId>org.thymeleaf.extras</groupId>
-			<artifactId>thymeleaf-extras-springsecurity4</artifactId>
-			<version>3.0.0.RELEASE</version>
-		</dependency>
-		<!-- ehcache缓存 -->
-		<dependency>
-			<groupId>net.sf.ehcache</groupId>
-			<artifactId>ehcache</artifactId>
-		</dependency>
-		
+		<!-- mybatis整合对springboot的依赖 -->
+<!--		<dependency>-->
+<!--			<groupId>org.mybatis.spring.boot</groupId>-->
+<!--			<artifactId>mybatis-spring-boot-starter</artifactId>-->
+<!--			<version>2.0.0</version>-->
+<!--		</dependency>-->
+		<!-- oracle数据库依赖 -->
 		<dependency>
 			<groupId>com.oracle</groupId>
 			<artifactId>ojdbc6</artifactId>
@@ -74,25 +60,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-configuration-processor</artifactId>
-			<optional>true</optional>
-		</dependency>
-		<dependency><!--Webjars版本定位工具-->
-            <groupId>org.webjars</groupId>
-            <artifactId>webjars-locator-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.webjars.npm</groupId>
-            <artifactId>mdui</artifactId>
-            <version>0.4.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.webjars</groupId>
-            <artifactId>jquery</artifactId>
-            <version>3.3.1</version>
-        </dependency>
+		<!--fastjson 依赖-->
 		<dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
@@ -101,6 +69,19 @@
 	</dependencies>
 	
 	<build>
+		<!-- 使用jsp必须手动指定最后的编译路径，路径是springboot规定好的位置META-INF/resources -->
+<!--		<resources>-->
+<!--			<resource>-->
+<!--				&lt;!&ndash; 源文件 &ndash;&gt;-->
+<!--				<directory>src/main/webapp</directory>-->
+<!--				&lt;!&ndash; 指定编译到META-INF/resources &ndash;&gt;-->
+<!--				<targetPath>META-INF/resources</targetPath>-->
+<!--				&lt;!&ndash; 指定源文件夹中的哪个资源要进行编译 &ndash;&gt;-->
+<!--				<includes>-->
+<!--					<include>*.*</include>-->
+<!--				</includes>-->
+<!--			</resource>-->
+<!--		</resources>-->
 		<plugins>
 			<!-- springboot项目打包编译插件 -->
 			<plugin>

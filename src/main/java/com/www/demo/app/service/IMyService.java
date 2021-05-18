@@ -1,6 +1,5 @@
 package com.www.demo.app.service;
 
-import com.www.demo.model.vo.SysuserVO;
 /**
  * 服务层
  * @author www
@@ -9,14 +8,12 @@ import com.www.demo.model.vo.SysuserVO;
 public interface IMyService {
 	/**
 	 * 数据回滚
-	 * @param sysuserVO
 	 * @return
 	 */
-	public boolean modifyUserPawsswdWithRollBack(SysuserVO sysuserVO);
+	public boolean modifyUserPawsswdWithRollBack();
 	/**
 	 *  数据不回滚
-	 * @param sysuserVO
 	 * @return
 	 */
-	public boolean modifyUserPawsswdWithoutRollBack(SysuserVO sysuserVO);
+	public boolean modifyUserPawsswdWithoutRollBack();
 }
