@@ -11,7 +11,10 @@ import org.springframework.cache.annotation.EnableCaching;
  */
 @SpringBootApplication //springboot核心注解，主要用于开启spring自动配置
 public class SpringBootDemoApplication {
-	
+	/**
+	 * springboot启动方法
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		SpringApplication.run(SpringBootDemoApplication.class, args);
 	}
