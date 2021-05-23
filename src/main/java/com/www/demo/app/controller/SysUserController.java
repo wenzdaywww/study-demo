@@ -25,6 +25,7 @@ public class SysUserController {
 		SysUser sysUser = sysUserService.selectByPrimaryKey(id);
 		return sysUser;
 	}
+
 	@RequestMapping("/add")
 	@Transactional(rollbackFor = Exception.class)
 	public @ResponseBody Object add(String id,String name,String psd){
@@ -35,6 +36,7 @@ public class SysUserController {
 		sysUserService.insertSelective(sysUser);
 		return sysUser;
 	}
+
 	@RequestMapping("/update")
 	@Transactional(rollbackFor = Exception.class)
 	public @ResponseBody Object update(String id,String name,String psd){

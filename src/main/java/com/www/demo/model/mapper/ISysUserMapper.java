@@ -9,7 +9,7 @@ import org.apache.ibatis.annotations.Mapper;
  * @Author www
  * @Date 2021/5/19 23:39
  */
-@Mapper //扫描Mapper接口
+//@Mapper //扫描Mapper接口，不使用@MapperScan时才使用
 public interface ISysUserMapper {
     /**
      * @Author www

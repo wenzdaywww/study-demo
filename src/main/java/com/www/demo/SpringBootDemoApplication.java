@@ -13,7 +13,7 @@ import org.springframework.cache.annotation.EnableCaching;
  * @Date 2021/5/20 23:22
  */
 @SpringBootApplication //springboot核心注解，主要用于开启spring自动配置
-//@MapperScan(basePackages = "com.www.demo.model.mapper")//配置mapper扫描路径。mapper接口类不使用@Mapper时使用该注解
+@MapperScan(basePackages = "com.www.demo.model.mapper")//配置mapper扫描路径。mapper接口类不使用@Mapper时使用该注解
 public class SpringBootDemoApplication {
 	/*
 	 * @Author www
