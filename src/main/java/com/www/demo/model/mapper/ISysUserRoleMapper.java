@@ -1,6 +1,6 @@
 package com.www.demo.model.mapper;
 
-import com.www.demo.model.SysUserRole;
+import com.www.demo.model.entity.SysUserRole;
 
 /**
  * @version 1.0
@@ -8,7 +8,7 @@ import com.www.demo.model.SysUserRole;
  * @Author www
  * @Date 2021/5/19 23:39
  */
-public interface SysUserRoleMapper {
+public interface ISysUserRoleMapper {
     /**
      * @Author www
      * @Date 2021/5/19 23:42

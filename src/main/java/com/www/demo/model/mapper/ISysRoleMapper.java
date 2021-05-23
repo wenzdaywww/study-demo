@@ -1,6 +1,6 @@
 package com.www.demo.model.mapper;
 
-import com.www.demo.model.SysRole;
+import com.www.demo.model.entity.SysRole;
 import java.math.BigDecimal;
 
 /**
@@ -9,7 +9,7 @@ import java.math.BigDecimal;
  * @Author www
  * @Date 2021/5/19 23:36
  */
-public interface SysRoleMapper {
+public interface ISysRoleMapper {
     /**
      * @Author www
      * @Date 2021/5/19 23:41
