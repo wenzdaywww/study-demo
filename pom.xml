@@ -71,7 +71,6 @@
 	<build>
 		<resources>
 		<!-- 使用jsp必须手动指定最后的编译路径，路径是springboot规定好的位置META-INF/resources -->
-
 <!--			<resource>-->
 <!--				&lt;!&ndash; 源文件 &ndash;&gt;-->
 <!--				<directory>src/main/webapp</directory>-->

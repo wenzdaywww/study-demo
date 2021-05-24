@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
  * @Date 2021/5/20 23:14
  */
 @Controller
+@RequestMapping("/user")
 public class SysUserController {
 	@Autowired
 	private ISysUserService sysUserService;

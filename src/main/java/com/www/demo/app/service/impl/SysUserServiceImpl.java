@@ -88,4 +88,19 @@ public class SysUserServiceImpl implements ISysUserService {
     public int updateByPrimaryKey(SysUser record) {
         return sysUserMapper.updateByPrimaryKey(record);
     }
+    /**
+     * @Author www
+     * @Date 2021/5/19 23:42
+     * @Description 根据用户信息（更新非空数据）查询用户信息
+     *
+     * @param record 用户信息
+     * @return int 用户信息
+     */
+    @Override
+    public SysUser selective(SysUser record) {
+        if (record != null){
+            return sysUserMapper.selective(record);
+        }
+        return null;
+    }
 }

@@ -5,10 +5,12 @@
     <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
     <result column="ROLE_ID" jdbcType="VARCHAR" property="roleId" />
   </resultMap>
+
   <insert id="insert" parameterType="com.www.demo.model.entity.SysUserRole">
     insert into SYS_USER_ROLE (USER_ID, ROLE_ID)
     values (#{userId,jdbcType=VARCHAR}, #{roleId,jdbcType=VARCHAR})
   </insert>
+
   <insert id="insertSelective" parameterType="com.www.demo.model.entity.SysUserRole">
     insert into SYS_USER_ROLE
     <trim prefix="(" suffix=")" suffixOverrides=",">

@@ -63,4 +63,13 @@ public interface ISysUserService {
      * @return int 插入条数
      */
     int updateByPrimaryKey(SysUser record);
+    /**
+     * @Author www
+     * @Date 2021/5/19 23:42
+     * @Description 根据用户信息（更新非空数据）查询用户信息
+     *
+     * @param record 用户信息
+     * @return int 用户信息
+     */
+    SysUser selective(SysUser record);
 }

@@ -6,25 +6,30 @@
     <result column="USER_NAME" jdbcType="VARCHAR" property="userName" />
     <result column="PASS_WORD" jdbcType="VARCHAR" property="passWord" />
   </resultMap>
+
   <sql id="Base_Column_List">
     USER_ID, USER_NAME, PASS_WORD
   </sql>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from SYS_USER
     where USER_ID = #{userId,jdbcType=VARCHAR}
   </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from SYS_USER
     where USER_ID = #{userId,jdbcType=VARCHAR}
   </delete>
+
   <insert id="insert" parameterType="com.www.demo.model.entity.SysUser">
     insert into SYS_USER (USER_ID, USER_NAME, PASS_WORD
       )
     values (#{userId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{passWord,jdbcType=VARCHAR}
       )
   </insert>
+
   <insert id="insertSelective" parameterType="com.www.demo.model.entity.SysUser">
     insert into SYS_USER
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -50,6 +55,7 @@
       </if>
     </trim>
   </insert>
+
   <update id="updateByPrimaryKeySelective" parameterType="com.www.demo.model.entity.SysUser">
     update SYS_USER
     <set>
@@ -62,10 +68,28 @@
     </set>
     where USER_ID = #{userId,jdbcType=VARCHAR}
   </update>
+
   <update id="updateByPrimaryKey" parameterType="com.www.demo.model.entity.SysUser">
     update SYS_USER
     set USER_NAME = #{userName,jdbcType=VARCHAR},
       PASS_WORD = #{passWord,jdbcType=VARCHAR}
     where USER_ID = #{userId,jdbcType=VARCHAR}
   </update>
+
+  <select id="selective" parameterType="com.www.demo.model.entity.SysUser" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from SYS_USER
+    where
+    <if test="userId != null">
+      USER_ID = #{userId,jdbcType=VARCHAR},
+    </if>
+    <if test="userName != null">
+      USER_NAME = #{userName,jdbcType=VARCHAR},
+    </if>
+    <if test="passWord != null">
+      PASS_WORD = #{passWord,jdbcType=VARCHAR},
+    </if>
+  </select>
+
 </mapper>
