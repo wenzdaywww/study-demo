@@ -5,8 +5,7 @@ import com.www.demo.model.entity.SysUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @version 1.0
@@ -44,6 +43,22 @@ public class SysUserController {
 		sysUser.setUserName(name);
 		sysUser.setPassWord(psd);
 		sysUserService.updateByPrimaryKeySelective(sysUser);
+		return sysUser;
+	}
+
+	/*
+	 * RESTful风格
+	 */
+
+	@GetMapping("/get/{id}")
+	public @ResponseBody Object get(@PathVariable("id") String userId){
+		SysUser sysUser = sysUserService.selectByPrimaryKey(userId);
+		return sysUser;
+	}
+
+	@PostMapping("/post/{id}")
+	public @ResponseBody Object post(@PathVariable("id") String userId){
+		SysUser sysUser = sysUserService.selectByPrimaryKey(userId);
 		return sysUser;
 	}
 }
