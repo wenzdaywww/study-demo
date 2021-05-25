@@ -47,19 +47,4 @@ public class SysUserController {
 		return sysUser;
 	}
 
-	/*
-	 * RESTful风格
-	 */
-
-	@GetMapping("/get/{id}")
-	public @ResponseBody Object get(@PathVariable("id") String userId){
-		SysUser sysUser = sysUserService.selectByPrimaryKey(userId);
-		return sysUser;
-	}
-
-	@PostMapping("/post/{id}")
-	public @ResponseBody Object post(@PathVariable("id") String userId){
-		SysUser sysUser = sysUserService.selectByPrimaryKey(userId);
-		return sysUser;
-	}
 }

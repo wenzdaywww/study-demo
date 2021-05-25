@@ -2,3 +2,4 @@
 2、集成mybatis框架
 3、实现RESTful风格
 4、集成websocket框架
+5、集成redis框架
