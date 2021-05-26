@@ -35,7 +35,7 @@ public class WebSocketController {
 	 */
 	@GetMapping("/login")
 	public ModelAndView login() {
-		return new ModelAndView("/websocket/chat");
+		return new ModelAndView("/websocket/login");
 	}
 	/**
 	 * @Author www
