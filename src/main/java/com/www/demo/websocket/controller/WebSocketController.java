@@ -4,8 +4,10 @@ import com.www.demo.app.service.ISysUserService;
 import com.www.demo.model.entity.SysUser;
 import com.www.demo.model.mapper.ISysUserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -19,7 +21,8 @@ import java.net.UnknownHostException;
  * @Author www
  * @Date 2021/5/24 23:53
  */
-@RestController("/ws")
+@Controller
+@RequestMapping("/ws")
 public class WebSocketController {
 	@Autowired
 	private ISysUserService sysUserService;
@@ -32,7 +35,7 @@ public class WebSocketController {
 	 */
 	@GetMapping("/login")
 	public ModelAndView login() {
-		return new ModelAndView("/websocket/login");
+		return new ModelAndView("/websocket/chat");
 	}
 	/**
 	 * @Author www
@@ -44,8 +47,8 @@ public class WebSocketController {
 	 * @param request
 	 * @return org.springframework.web.servlet.ModelAndView
 	 */
-	@GetMapping("/chat/{name}/{psd}")
-	public ModelAndView chat(@PathVariable("name") String username, @PathVariable("psd") String password, HttpServletRequest request) throws UnknownHostException {
+	@GetMapping("/chat/{name}/{password}")
+	public ModelAndView chat(@PathVariable("name") String username,@PathVariable("password") String password, HttpServletRequest request) throws UnknownHostException {
 		SysUser reqUser = new SysUser();
 		reqUser.setUserName(username);
 		reqUser.setPassWord(password);
