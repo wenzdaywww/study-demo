@@ -3,22 +3,25 @@
 <head>
     <title>登陆聊天</title>
     <script type="text/javascript" th:src="@{/js/jquery-1.9.0.min.js}"></script>
-    <script type="text/javascript" th:src="@{/js/chat.js}"></script>
     <link rel="stylesheet" th:href="@{/cs/chat.css}"/>
 </head>
 <body>
 <div class="container">
+    <p id="userId" align="center" style="display: none" th:text="${userId}"></p>
+    <p id="userName" align="center" style="display: none" th:text="${userName}"></p>
     <div class="content">
         <div class="item item-center">
             <span>昨天 12:35</span>
         </div>
-        <div class="item item-center"><span>你已添加了凡繁烦，现在可以开始聊天了。</span></div>
+        <div class="item item-center"><span>你已添加了www，现在可以开始聊天了。</span></div>
+        <!-- 接收到的消息 -->
         <div class="item item-left">
             <div class="avatar">
                 <img th:src="@{/img/img1.jpg}" />
             </div>
-            <div class="bubble bubble-left">您好,我在武汉，你可以直接送过来吗，我有时间的话，可以自己过去拿<br/>！！！<br/>123</div>
+            <div class="bubble bubble-left">hello<br/>你好呀</div>
         </div>
+        <!-- 发送的消息 -->
         <div class="item item-right">
             <div class="bubble bubble-right">hello<br/>你好呀</div>
             <div class="avatar">
@@ -29,9 +32,11 @@
     <div class="input-area">
         <textarea name="text" id="textarea"></textarea>
         <div class="button-area">
-            <button id="send-btn" onclick="send()">发 送</button>
+            <button id="send-btn" onclick="sendMsgToServer()">发 送</button>
         </div>
     </div>
 </div>
+<!-- 页面渲染顺序导致为了获取userId，所以chat.js最后加载 -->
+<script type="text/javascript" th:src="@{/js/chat.js}"></script>
 </body>
 </html>

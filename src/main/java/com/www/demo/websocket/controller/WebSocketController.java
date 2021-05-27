@@ -42,15 +42,15 @@ public class WebSocketController {
 	 * @Date 2021/5/24 23:35
 	 * @Description 聊天页面
 	 *
-	 * @param username
+	 * @param userId
 	 * @param password
 	 * @param request
 	 * @return org.springframework.web.servlet.ModelAndView
 	 */
-	@GetMapping("/chat/{name}/{password}")
-	public ModelAndView chat(@PathVariable("name") String username,@PathVariable("password") String password, HttpServletRequest request) throws UnknownHostException {
+	@GetMapping("/chat/{userId}/{password}")
+	public ModelAndView chat(@PathVariable("userId") String userId,@PathVariable("password") String password, HttpServletRequest request) throws UnknownHostException {
 		SysUser reqUser = new SysUser();
-		reqUser.setUserName(username);
+		reqUser.setUserId(userId);
 		reqUser.setPassWord(password);
 		SysUser user = sysUserService.selective(reqUser);
 		if (user==null) {
@@ -59,7 +59,8 @@ public class WebSocketController {
 			return modelAndView;
 		}else {
 			ModelAndView modelAndView = new ModelAndView("/websocket/chat");
-			modelAndView.addObject("username",user.getUserName());
+			modelAndView.addObject("userId",user.getUserId());
+			modelAndView.addObject("userName",user.getUserName());
 			/**
 			 * http下使用ws://xxx   https下使用wss://xxx
 			 */

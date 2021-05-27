@@ -1,3 +1,5 @@
+/** webSocket对象 ***/
+var webSocket = openWebSocket();
 /**
  * WebSocket客户端
  *
@@ -5,15 +7,19 @@
  * 1、WebSocket客户端通过回调函数来接收服务端消息。例如：webSocket.onmessage
  * 2、WebSocket客户端通过send方法来发送消息给服务端。例如：webSocket.send();
  */
-function getWebSocket() {
+function openWebSocket() {
     /**
      * WebSocket客户端 PS：URL开头表示WebSocket协议 中间是域名端口 结尾是服务端映射地址
      */
     /*
     * http下使用ws://xxx   https下使用wss://xxx
+    * window.document.location.host = localhost:8080
+    * ws/userId对应websocket服务的节点配置/ws/{userId}
     */
-    var protocol = document.location.protocol === 'https:' ? 'wss://localhost:443/ws' : 'ws://localhost:8080/ws';
-    var webSocket = new WebSocket(protocol);
+    var userId = $("#userId").text();
+    var socketUrl = document.location.protocol === "https:" ?
+        "wss://"+window.document.location.host+"/ws/"+userId : "ws://"+window.document.location.host+"/ws/"+userId;
+    var webSocket = new WebSocket(socketUrl);
     /**
      * 当服务端打开连接
      */
@@ -27,26 +33,9 @@ function getWebSocket() {
         console.log('WebSocket收到消息：%c' + event.data, 'color:green');
         //获取服务端消息
         var message = JSON.parse(event.data) || {};
-        var $messageContainer = $('.message-container');
         //发言
         if (message.type === 'SPEAK') {
-            $messageContainer
-                .append('<div class="mdui-card" style="margin: 10px 0;">'
-                    + '<div class="mdui-card-primary">'
-                    + '<div class="mdui-card-content message-content">'
-                    + message.username
-                    + "："
-                    + message.msg
-                    + '</div>' + '</div></div>');
-        }
-        $('.chat-num').text(message.onlineCount);
-        //防止刷屏
-        var $cards = $messageContainer.children('.mdui-card:visible')
-            .toArray();
-        if ($cards.length > 5) {
-            $cards.forEach(function(item, index) {
-                index < $cards.length - 5 && $(item).slideUp('fast');
-            });
+            receiveMsgToChatView(message.msg);
         }
     };
     /**
@@ -63,25 +52,58 @@ function getWebSocket() {
     };
     return webSocket;
 }
-var webSocket = getWebSocket();
+
 /**
  * 通过WebSocket对象发送消息给服务端
  */
 function sendMsgToServer() {
-    var $message = $('#msg');
-    if ($message.val()) {
-        webSocket.send(JSON.stringify({
-            username : $('#username').text(),
-            msg : $message.val()
-        }));
-        $message.val(null);
+    var text = document.querySelector('#textarea').value;
+    if(!text){
+        alert('请输入内容');
+        return ;
     }
+    webSocket.send(JSON.stringify({
+        userId : $('#userId').text(),
+        msg : text
+    }));
+    addMsgToChatView(text);
+}
+/**
+ * 聊天界面添加发送的消息
+ * @param msgText 消息
+ */
+function addMsgToChatView(msgText){
+    var item = document.createElement('div');
+    item.className = 'item item-right';
+    item.innerHTML = "<div class='bubble bubble-left'>"+msgText+"</div><div class='avatar'><img src='/img/img2.jpg' /></div>";
+    document.querySelector('.content').appendChild(item);
+    document.querySelector('#textarea').value = '';
+    document.querySelector('#textarea').focus();
+    //滚动条置底
+    var height = document.querySelector('.content').scrollHeight;
+    document.querySelector(".content").scrollTop = height;
+}
+
+/**
+ * 聊天界面添加接收的消息
+ * @param msgText 消息
+ */
+function receiveMsgToChatView(msgText) {
+    var item = document.createElement('div');
+    item.className = 'item item-left';
+    item.innerHTML = "<div class='avatar'><img src='/img/img1.jpg' /></div><div class='bubble bubble-left'>"+msgText+"</div>";
+    document.querySelector('.content').appendChild(item);
+    document.querySelector('#textarea').value = '';
+    document.querySelector('#textarea').focus();
+    //滚动条置底
+    var height = document.querySelector('.content').scrollHeight;
+    document.querySelector(".content").scrollTop = height;
 }
 /**
  * 清屏
  */
 function clearMsg() {
-    $(".message-container").empty();
+
 }
 /**
  * 使用ENTER发送消息
@@ -92,22 +114,3 @@ document.onkeydown = function(event) {
     e.keyCode === 13 && sendMsgToServer();
 };
 
-/**
- * 发送消息
- */
-function send(){
-    var text = document.querySelector('#textarea').value;
-    if(!text){
-        alert('请输入内容');
-        return ;
-    }
-    var item = document.createElement('div');
-    item.className = 'item item-right';
-    item.innerHTML = "<div class='bubble bubble-left'>"+text+"</div><div class='avatar'><img th:src='@{/img/img2.jpg}' /></div>";
-    document.querySelector('.content').appendChild(item);
-    document.querySelector('#textarea').value = '';
-    document.querySelector('#textarea').focus();
-    //滚动条置底
-    var height = document.querySelector('.content').scrollHeight;
-    document.querySelector(".content").scrollTop = height;
-}

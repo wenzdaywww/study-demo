@@ -11,7 +11,7 @@
 		<p align="center" style="color: red;" th:text="${info}"></p>
 		<form>
 			<div class="input_outer">
-				<span class="u_user"></span> <input id="username" name="username"
+				<span class="u_user"></span> <input id="userId" name="userId"
 					class="text" type="text" placeholder="任意中文名">
 			</div>
 			<div class="input_outer">
@@ -29,7 +29,7 @@
 		 * 登陆聊天
 		 */
 		function login() {
-			location.href = "/ws/chat/" + $('#username').val()+"/" + $('#password').val();
+			location.href = "/ws/chat/" + $('#userId').val()+"/" + $('#password').val();
 		}
 		/**
 		 * 使用ENTER登陆
