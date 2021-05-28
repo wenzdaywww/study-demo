@@ -167,6 +167,9 @@ function addMsgToChatView(msgText,receiveId,receiveName){
     if (receiveId !== $('#receiveId').val()) {
         openNewChat(receiveId,receiveName);
     }
+    if(!$('#receiveId').val()){
+        $('#receiveName').html("群发消息");
+    }
     var item = document.createElement('div');
     item.className = 'item item-right';
     item.innerHTML = "<div class='bubble bubble-left'>"+msgText+"</div><div class='avatar'><img src='/img/img2.jpg' /></div>";
