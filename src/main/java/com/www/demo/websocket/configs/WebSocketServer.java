@@ -148,13 +148,13 @@ public class WebSocketServer {
 	private void sendMessageToOne(String receiveUsrId,String msg){
 	    if (onlineSessions.containsKey(receiveUsrId)){
 	        try {
-                System.out.println("用户ID："+this.userId+"发送消息到用户ID："+receiveUsrId + ",消息内容："+msg);
+                System.out.println("用户ID："+this.userId+" 发送消息到用户ID："+receiveUsrId + ",消息内容："+msg);
                 onlineSessions.get(receiveUsrId).session.getBasicRemote().sendText(msg);
             }catch (Exception e){
                 e.printStackTrace();
             }
         }else {
-            System.out.println("用户ID："+receiveUsrId + "不在线,接收消息失败");
+            System.out.println("用户ID："+receiveUsrId + " 不在线,接收消息失败");
         }
     }
 
