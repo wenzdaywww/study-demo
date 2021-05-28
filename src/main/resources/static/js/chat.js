@@ -35,7 +35,9 @@ function openWebSocket() {
         var message = JSON.parse(event.data) || {};
         //发言
         if (message.type === 'SPEAK') {
-            receiveMsgToChatView(message.msg);
+            receiveMsgToChatView(message);
+        }else if (message.type === 'ONLINE'){
+            refreshList(message);
         }
     };
     /**
@@ -52,30 +54,26 @@ function openWebSocket() {
     };
     return webSocket;
 }
-
 /**
- * 通过WebSocket对象发送消息给服务端
+ * 聊天界面添加接收的消息
+ * @param message 消息对象
  */
-function sendMsgToServer() {
-    var text = document.querySelector('#textarea').value;
-    if(!text){
-        alert('请输入内容');
-        return ;
+function receiveMsgToChatView(message) {
+    //显示发送人名称
+    if(!message.receiveId){
+        if($('#receiveId').val()){
+            clearMsg();
+        }
+        $('#receiveId').val("");
+        $('#receiveName').html("群发消息");
     }
-    webSocket.send(JSON.stringify({
-        userId : $('#userId').text(),
-        msg : text
-    }));
-    addMsgToChatView(text);
-}
-/**
- * 聊天界面添加发送的消息
- * @param msgText 消息
- */
-function addMsgToChatView(msgText){
+    else if(message.userId !== $('#receiveId').val()){
+        openNewChat(message.userId,message.userName);
+    }
+    //显示消息
     var item = document.createElement('div');
-    item.className = 'item item-right';
-    item.innerHTML = "<div class='bubble bubble-left'>"+msgText+"</div><div class='avatar'><img src='/img/img2.jpg' /></div>";
+    item.className = 'item item-left';
+    item.innerHTML = "<div class='avatar'><img src='/img/img1.jpg' /></div><div class='bubble bubble-left'>"+message.msg+"</div>";
     document.querySelector('.content').appendChild(item);
     document.querySelector('#textarea').value = '';
     document.querySelector('#textarea').focus();
@@ -83,15 +81,95 @@ function addMsgToChatView(msgText){
     var height = document.querySelector('.content').scrollHeight;
     document.querySelector(".content").scrollTop = height;
 }
-
 /**
- * 聊天界面添加接收的消息
- * @param msgText 消息
+ * 刷新好友列表
+ * @param msgJson
  */
-function receiveMsgToChatView(msgText) {
+function refreshList(msgJson) {
+    $('.friendList').empty();//清空列表
+    $('#online').html(msgJson.userList.length - 1);//刷新在线人数
+    for (var i=0; msgJson && msgJson.userList && i< msgJson.userList.length;i++) {
+        var user = msgJson.userList[i];
+        if(user.userId !== $("#userId").text()){
+            var item = document.createElement('div');
+            item.className = 'friendPhoto';
+            item.innerHTML = "<div class='avatar'><img src='/img/img1.jpg' /></div> <div class='receiveId'>"+user.userId+"</div><div class='receiveName'>"+user.userName+"</div>";
+            document.querySelector('.friendList').appendChild(item);
+            //添加点击事件
+            $('.friendPhoto').on("click",function () {
+                var receiveId = $(this).children('.receiveId').text();
+                var receiveName = $(this).children('.receiveName').text();
+                openNewChat(receiveId,receiveName);
+            });
+        }
+    }
+}
+/**
+ * 打开新的聊天窗口
+ * @param receiveId 接收人ID
+ * @param receiveName 接收人名称
+ */
+function openNewChat(receiveId,receiveName) {
+    $('#receiveId').val(receiveId);
+    $('#receiveName').html(receiveName);
+    clearMsg();
+}
+/**
+ * 通过WebSocket对象发送消息给服务端
+ * @param userId 发送人ID
+ * @param userName 发送人名称
+ * @param receiveId 接收人ID
+ * @param receiveName 接收人名称
+ */
+function sendMsgToServer(userId,userName,receiveId,receiveName) {
+    var text = document.querySelector('#textarea').value;
+    if(!text){
+        alert('请输入内容');
+        return ;
+    }
+    webSocket.send(JSON.stringify({
+        userId: userId,
+        userName: userName,
+        receiveId : receiveId,
+        receiveName : receiveName,
+        msg : text
+    }));
+    addMsgToChatView(text,receiveId,receiveName);
+}
+/**
+ * 单独发送消息到指定人
+ */
+function sendMsgToOne(){
+   var userId = $("#userId").text();
+   var userName = $("#userName").text();
+   var receiveId = $('#receiveId').val();
+   var receiveName = $('#receiveName').html();
+   sendMsgToServer(userId,userName,receiveId,receiveName);
+}
+/**
+ * 群发消息
+ */
+function sendMsgToAll(){
+    var userId = $("#userId").text();
+    var userName = $("#userName").text();
+    var receiveId = "";
+    var receiveName = "群发消息";
+    sendMsgToServer(userId,userName,receiveId,receiveName);
+}
+/**
+ * 聊天界面添加发送的消息
+ * @param msgText 消息
+ * @param receiveId 接收人ID
+ * @param receiveName 接收人名称
+ */
+function addMsgToChatView(msgText,receiveId,receiveName){
+    //接收人ID不变则不清屏
+    if (receiveId !== $('#receiveId').val()) {
+        openNewChat(receiveId,receiveName);
+    }
     var item = document.createElement('div');
-    item.className = 'item item-left';
-    item.innerHTML = "<div class='avatar'><img src='/img/img1.jpg' /></div><div class='bubble bubble-left'>"+msgText+"</div>";
+    item.className = 'item item-right';
+    item.innerHTML = "<div class='bubble bubble-left'>"+msgText+"</div><div class='avatar'><img src='/img/img2.jpg' /></div>";
     document.querySelector('.content').appendChild(item);
     document.querySelector('#textarea').value = '';
     document.querySelector('#textarea').focus();
@@ -103,7 +181,7 @@ function receiveMsgToChatView(msgText) {
  * 清屏
  */
 function clearMsg() {
-
+    $('.content').empty();
 }
 /**
  * 使用ENTER发送消息
@@ -111,6 +189,6 @@ function clearMsg() {
 document.onkeydown = function(event) {
     var e = event || window.event
         || arguments.callee.caller.arguments[0];
-    e.keyCode === 13 && sendMsgToServer();
+    e.keyCode === 13 && sendMsgToOne();
 };
 

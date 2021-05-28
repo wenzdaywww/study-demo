@@ -1,6 +1,9 @@
 package com.www.demo.websocket.pojo;
 
 import com.alibaba.fastjson.JSON;
+import com.www.demo.model.entity.SysUser;
+
+import java.util.List;
 
 /**
  * @version 1.0
@@ -11,6 +14,8 @@ import com.alibaba.fastjson.JSON;
 public class Message {
     /** 发言 **/
     public static final String SPEAK = "SPEAK";
+    /** 在线人数 **/
+    public static final String ONLINE = "ONLINE";
     /** 进入 **/
     public static final String QUIT = "QUIT";
     /** 离开 **/
@@ -21,17 +26,33 @@ public class Message {
     /**发送人ID**/
     private String userId;
 
+    /**发送人名称**/
+    private String userName;
+
     /**接收人ID**/
     private String receiveId;
+
+    /**接收人名称**/
+    private String receiveName;
 
     /**发送消息**/
     private String msg; 
 
     /**在线用户数**/
-    private int onlineCount; 
+    private int onlineCount;
+    /** 在线用户信息 **/
+    private List<SysUser> userList;
 
     public static String jsonStr(String type, String userId,String receiveId, String msg, int onlineTotal) {
         return JSON.toJSONString(new Message(type, userId,receiveId, msg, onlineTotal));
+    }
+
+    public static String jsonStr(Message message) {
+        return JSON.toJSONString(message);
+    }
+
+    public Message(){
+
     }
 
     public Message(String type, String userId, String receiveId,String msg, int onlineCount) {
@@ -40,6 +61,14 @@ public class Message {
         this.receiveId = receiveId;
         this.msg = msg;
         this.onlineCount = onlineCount;
+    }
+
+    public List<SysUser> getUserList() {
+        return userList;
+    }
+
+    public void setUserList(List<SysUser> userList) {
+        this.userList = userList;
     }
 
     public String getReceiveId() {
@@ -80,5 +109,21 @@ public class Message {
 
     public void setOnlineCount(int onlineCount) {
         this.onlineCount = onlineCount;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getReceiveName() {
+        return receiveName;
+    }
+
+    public void setReceiveName(String receiveName) {
+        this.receiveName = receiveName;
     }
 }

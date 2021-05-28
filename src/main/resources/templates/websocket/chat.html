@@ -9,30 +9,64 @@
 <div class="container">
     <p id="userId" align="center" style="display: none" th:text="${userId}"></p>
     <p id="userName" align="center" style="display: none" th:text="${userName}"></p>
-    <div class="content">
-        <div class="item item-center">
-            <span>昨天 12:35</span>
-        </div>
-        <div class="item item-center"><span>你已添加了www，现在可以开始聊天了。</span></div>
-        <!-- 接收到的消息 -->
-        <div class="item item-left">
-            <div class="avatar">
-                <img th:src="@{/img/img1.jpg}" />
+    <!-- 左侧列表 -->
+    <div class="list">
+        <!-- 我的头像 -->
+        <div class="myPhoto">
+            <div class="photo">
+                <div class="avatar">
+                   <img th:src="@{/img/img2.jpg}" />
+                </div>
+                <div style="padding-left: 5px;padding-top: 10px;" >[[${userName}]]</div>
             </div>
-            <div class="bubble bubble-left">hello<br/>你好呀</div>
         </div>
-        <!-- 发送的消息 -->
-        <div class="item item-right">
-            <div class="bubble bubble-right">hello<br/>你好呀</div>
-            <div class="avatar">
-                <img th:src="@{/img/img2.jpg}" />
-            </div>
+        <!-- 好友列表 -->
+        <div class="online">
+            <span>在线好友：<label id="online"></label></span>
+        </div>
+        <div class="friendList">
+<!--            <div class="friendPhoto">-->
+<!--                <div class="avatar">-->
+<!--                    <img th:src="@{/img/img1.jpg}" />-->
+<!--                </div>-->
+<!--                <div class="receiveId"></div>-->
+<!--                <div class="receiveName" style="padding-left: 5px;padding-top: 10px;"></div>-->
+<!--            </div>-->
         </div>
     </div>
-    <div class="input-area">
-        <textarea name="text" id="textarea"></textarea>
-        <div class="button-area">
-            <button id="send-btn" onclick="sendMsgToServer()">发 送</button>
+    <!--  聊天页面 -->
+    <div class="chat">
+        <div class="title">
+            <input type="hidden" id="receiveId"/>
+            <span id="receiveName"></span>
+        </div>
+        <div class="content">
+<!--            <div class="item item-center">-->
+<!--                <span>昨天 12:35</span>-->
+<!--            </div>-->
+<!--            <div class="item item-center"><span>你已添加了www，现在可以开始聊天了。</span></div>-->
+            <!-- 接收到的消息 -->
+<!--            <div class="item item-left">-->
+<!--                <div class="avatar">-->
+<!--                    <img th:src="@{/img/img1.jpg}" />-->
+<!--                </div>-->
+<!--                <div class="bubble bubble-left">hello<br/>你好呀</div>-->
+<!--            </div>-->
+            <!-- 发送的消息 -->
+<!--            <div class="item item-right">-->
+<!--                <div class="bubble bubble-right">hello<br/>你好呀</div>-->
+<!--                <div class="avatar">-->
+<!--                    <img th:src="@{/img/img2.jpg}" />-->
+<!--                </div>-->
+<!--            </div>-->
+        </div>
+        <div class="input-area">
+            <textarea name="text" id="textarea"></textarea>
+            <div class="button-area">
+                <button class="btn" onclick="sendMsgToAll()">群 发</button>
+                <button class="btn" onclick="sendMsgToOne()">发 送</button>
+                <button class="btn" onclick="clearMsg()">清 屏</button>
+            </div>
         </div>
     </div>
 </div>

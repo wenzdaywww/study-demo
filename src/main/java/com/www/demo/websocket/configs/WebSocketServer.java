@@ -1,15 +1,21 @@
 package com.www.demo.websocket.configs;
 
 import com.alibaba.fastjson.JSON;
+import com.www.demo.app.service.ISysUserService;
+import com.www.demo.model.entity.SysUser;
 import com.www.demo.websocket.pojo.Message;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import javax.websocket.*;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -31,6 +37,8 @@ public class WebSocketServer {
 	/** 当前用户 **/
 	private String userId;
 
+	private static ISysUserService sysUserService;
+
 	/**
 	 * @Author www
 	 * @Date 2021/5/27 22:59
@@ -45,6 +53,21 @@ public class WebSocketServer {
 		this.session = session;
 		this.userId = userId;
 		onlineSessions.put(userId, this);
+		Message message = new Message();
+		message.setType(Message.ONLINE);
+		message.setUserId(userId);
+		//查询当前所有在线用户信息
+		List<SysUser> userList = new ArrayList<>();
+		onlineSessions.forEach((userIdTemp, webSocketServer) -> {
+			SysUser reqUser = new SysUser();
+			reqUser.setUserId(userIdTemp);
+			SysUser user = sysUserService.selective(reqUser);
+			user.setPassWord(null);
+			userList.add(user);
+		});
+		message.setUserList(userList);
+		String msg = Message.jsonStr(message);
+		sendMessageToAll(null,msg);
 	}
 	/**
 	 * @Author www
@@ -59,11 +82,12 @@ public class WebSocketServer {
 	public void onMessage(Session session, String jsonStr) {
 		System.out.println("userId="+this.userId+" 发送消息："+jsonStr);
 		Message message = JSON.parseObject(jsonStr, Message.class);
+		message.setType(Message.SPEAK);
 		//接收人ID不为空，单独发送消息
 		if (StringUtils.isNotBlank(message.getReceiveId())){
-            sendMessageToOne(message.getReceiveId(),Message.jsonStr(Message.SPEAK, message.getUserId(),message.getReceiveId(), message.getMsg(), onlineSessions.size()));
+            sendMessageToOne(message.getReceiveId(),Message.jsonStr(message));
         }else {//接收人ID为空，群发消息
-            sendMessageToAll(this.userId,Message.jsonStr(Message.SPEAK, message.getUserId(),message.getReceiveId(), message.getMsg(), onlineSessions.size()));
+            sendMessageToAll(this.userId,Message.jsonStr(message));
         }
 	}
 	/**
@@ -102,10 +126,10 @@ public class WebSocketServer {
 	 * @return void
 	 */
 	private static void sendMessageToAll(String userId,String msg) {
-		onlineSessions.forEach((userIdTemp, sessionTemp) -> {
+		onlineSessions.forEach((userIdTemp, webSocketServer) -> {
 			try {
 				if(!userIdTemp.equals(userId)){
-					sessionTemp.session.getBasicRemote().sendText(msg);
+					webSocketServer.session.getBasicRemote().sendText(msg);
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -133,4 +157,9 @@ public class WebSocketServer {
             System.out.println("用户ID："+receiveUsrId + "不在线,接收消息失败");
         }
     }
+
+    @Autowired
+	public void setSysUserService(ISysUserService sysUserService) {
+		WebSocketServer.sysUserService = sysUserService;
+	}
 }
