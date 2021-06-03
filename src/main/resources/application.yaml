@@ -3,14 +3,40 @@
 # application.properties、application.yml、application.yaml三选一
 # 优先级：application.properties>application.yml=application.yaml
 ########################
-#设置tomcat端口号
-#server.port=8080
-
-#访问路径设置
-server.servlet.context-path=/
-
-#配置环境文件
-spring.profiles.active=dev
+server:
+  port: 8080
+  servlet:
+    #访问路径设置
+    context-path: /
+#spring配置
+spring:
+  #设置tomcat端口号
+  profiles:
+    #配置环境文件
+    active: dev
+  #thymelea模板配置
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML5
+    encoding: UTF-8
+    #热部署文件，页面不产生缓存，及时更新
+    cache: false
+  #数据库配置
+  datasource:
+    driver-class-name: oracle.jdbc.OracleDriver
+    url: jdbc:oracle:thin:@192.168.19.128:1521:xe
+    username: boot
+    password: www362412
+  #redis配置
+  redis:
+    host: 192.168.19.128
+    port: 6379
+    password:
+#Mybatis配置
+#mapper.xml在resource文件夹下的配置
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
 
 #配置JSP视图解析器
 #spring.mvc.view.prefix=/
@@ -20,16 +46,6 @@ spring.profiles.active=dev
 #logging.file=D:/log/log.log
 #logging.level.org.org.springframework.web=info
 
-#thymelea模板配置
-spring.thymeleaf.prefix=classpath:/templates/
-spring.thymeleaf.suffix=.html
-spring.thymeleaf.mode=HTML5
-spring.thymeleaf.encoding=UTF-8
-
-#热部署文件，页面不产生缓存，及时更新
-spring.thymeleaf.cache=false
-spring.resources.chain.strategy.content.enabled=true
-spring.resources.chain.strategy.content.paths=/**
 
 #https的SSL配置
 #server.ssl.key-store=./StudyDemo/tomcat.keystore
@@ -43,16 +59,6 @@ spring.resources.chain.strategy.content.paths=/**
 ##设置控制器输出的json字符串更美观
 #spring.jackson.serialization.indent-output=true
 
-#数据库配置
-spring.datasource.driver-class-name=oracle.jdbc.OracleDriver
-spring.datasource.url=jdbc:oracle:thin:@192.168.19.128:1521:xe
-spring.datasource.username=boot
-spring.datasource.password=www362412
-
-#Mybatis配置
-#mapper.xml在resource文件夹下的配置
-mybatis.mapper-locations=classpath:mapper/*.xml
-
 #JPA配置
 #提供根据实体类自动维护数据库表结构的功能，如：update、create、create-drop、validate、none
 #spring.jpa.hibernate.ddl-auto=none
@@ -62,7 +68,4 @@ mybatis.mapper-locations=classpath:mapper/*.xml
 #缓存类型，有：generic、ehcache、hazelcast、infinispan、jcache、redis、guava、simple、none
 #spring.cache.type=ehcache
 
-#redis配置
-spring.redis.host=192.168.19.128
-spring.redis.port=6379
-spring.redis.password=
+
