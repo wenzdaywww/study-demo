@@ -1,6 +1,6 @@
-package com.www.demo.app.controller;
+package com.www.demo.redis.controller;
 
-import com.www.demo.app.service.IRedisService;
+import com.www.demo.redis.service.IRedisService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

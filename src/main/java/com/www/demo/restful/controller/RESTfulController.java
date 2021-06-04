@@ -1,4 +1,4 @@
-package com.www.demo.app.controller;
+package com.www.demo.restful.controller;
 
 import com.www.demo.app.service.ISysUserService;
 import com.www.demo.model.entity.SysUser;

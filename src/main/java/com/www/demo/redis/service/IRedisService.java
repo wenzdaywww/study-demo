@@ -1,4 +1,4 @@
-package com.www.demo.app.service;
+package com.www.demo.redis.service;
 
 /**
  * @version 1.0
