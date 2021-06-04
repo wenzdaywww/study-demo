@@ -68,4 +68,9 @@ mybatis:
 #缓存类型，有：generic、ehcache、hazelcast、infinispan、jcache、redis、guava、simple、none
 #spring.cache.type=ehcache
 
-
+#“---”可分开配置多环境文件，等效application-test.yaml
+---
+spring:
+  profiles: test
+server:
+  port: 8082
