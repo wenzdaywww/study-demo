@@ -2,8 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>登陆聊天</title>
-    <script type="text/javascript" th:src="@{/js/jquery-1.9.0.min.js}"></script>
-    <link rel="stylesheet" th:href="@{/cs/chat.css}"/>
+    <script type="text/javascript" th:src="@{/js/jquery-1.8.3.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/websocket/chat.css}"/>
 </head>
 <body>
 <div class="container">
@@ -71,6 +71,6 @@
     </div>
 </div>
 <!-- 页面渲染顺序导致为了获取userId，所以chat.js最后加载 -->
-<script type="text/javascript" th:src="@{/js/chat.js}"></script>
+<script type="text/javascript" th:src="@{/js/websocket/chat.js}"></script>
 </body>
 </html>

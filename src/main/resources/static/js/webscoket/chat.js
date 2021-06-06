@@ -73,7 +73,7 @@ function receiveMsgToChatView(message) {
     //显示消息
     var item = document.createElement('div');
     item.className = 'item item-left';
-    item.innerHTML = "<div class='avatar'><img src='/img/img1.jpg' /></div><div class='bubble bubble-left'>"+message.msg+"</div>";
+    item.innerHTML = "<div class='avatar'><img src='/img/websocket/img1.jpg' /></div><div class='bubble bubble-left'>"+message.msg+"</div>";
     document.querySelector('.content').appendChild(item);
     document.querySelector('#textarea').value = '';
     document.querySelector('#textarea').focus();
@@ -93,7 +93,7 @@ function refreshList(msgJson) {
         if(user.userId !== $("#userId").text()){
             var item = document.createElement('div');
             item.className = 'friendPhoto';
-            item.innerHTML = "<div class='avatar'><img src='/img/img1.jpg' /></div> <div class='receiveId'>"+user.userId+"</div><div class='receiveName'>"+user.userName+"</div>";
+            item.innerHTML = "<div class='avatar'><img src='/img/websocket/img1.jpg' /></div> <div class='receiveId'>"+user.userId+"</div><div class='receiveName'>"+user.userName+"</div>";
             document.querySelector('.friendList').appendChild(item);
             //添加点击事件
             $('.friendPhoto').on("click",function () {
@@ -172,7 +172,7 @@ function addMsgToChatView(msgText,receiveId,receiveName){
     }
     var item = document.createElement('div');
     item.className = 'item item-right';
-    item.innerHTML = "<div class='bubble bubble-left'>"+msgText+"</div><div class='avatar'><img src='/img/img2.jpg' /></div>";
+    item.innerHTML = "<div class='bubble bubble-left'>"+msgText+"</div><div class='avatar'><img src='/img/websocket/img2.jpg' /></div>";
     document.querySelector('.content').appendChild(item);
     document.querySelector('#textarea').value = '';
     document.querySelector('#textarea').focus();
