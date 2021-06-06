@@ -4,11 +4,11 @@ import com.www.demo.app.service.ISysUserService;
 import com.www.demo.model.entity.SysUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
 import java.net.InetAddress;
 
 /**
@@ -18,8 +18,7 @@ import java.net.InetAddress;
  * @Date 2021/6/6 16:30
  */
 @Controller
-@RequestMapping("/")
-public class QAdminLoginController {
+public class LoginController {
     @Autowired
     private ISysUserService sysUserService;
     /**
@@ -29,7 +28,7 @@ public class QAdminLoginController {
      *
      * @return org.springframework.web.servlet.ModelAndView
      */
-    @RequestMapping("/")
+    @RequestMapping("/qadmin")
     public ModelAndView index(){
         return new ModelAndView("/qadmin/login");
     }
@@ -42,21 +41,33 @@ public class QAdminLoginController {
      * @param password 用户密码
      * @return org.springframework.web.servlet.ModelAndView
      */
-    @RequestMapping("/login/{userId}/{password}")
-    public ModelAndView login(@PathVariable("userId") String userId,@PathVariable("password") String password){
+    @RequestMapping("/qadmin/login")
+    public String login(@RequestParam("user") String userId, @RequestParam("pwd") String password, HttpSession session,Model model){
         SysUser reqUser = new SysUser();
         reqUser.setUserId(userId);
         reqUser.setPassWord(password);
         SysUser user = sysUserService.selective(reqUser);
-        if (user==null) {
-            ModelAndView modelAndView = new ModelAndView("/qadmin/login");
-            modelAndView.addObject("info","用户名或密码错误！！！");
-            return modelAndView;
+        if (user == null) {
+            model.addAttribute("info","用户名或密码错误！！！");
+            return "/qadmin/login";
         }else {
-            ModelAndView modelAndView = new ModelAndView("/qadmin/index");
-            modelAndView.addObject("userId",user.getUserId());
-            modelAndView.addObject("userName",user.getUserName());
-            return modelAndView;
+            session.setAttribute("user",user);
+            model.addAttribute("userId",user.getUserId());
+            model.addAttribute("userName",user.getUserName());
+            return "redirect:/qadmin/main";
         }
+    }
+    /**
+     * @Author www
+     * @Date 2021/6/6 23:15
+     * @Description 退出登录
+     *
+     * @param session
+     * @return java.lang.String
+     */
+    @RequestMapping("/qadmin/logout")
+    public String logout(HttpSession session){
+        session.setAttribute("user",null);
+        return "/qadmin/login";
     }
 }

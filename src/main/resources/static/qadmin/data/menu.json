@@ -64,7 +64,7 @@
 }, {
     "name": "退出登录",
     "icon": "&#xe65c;",
-    "url": "out.html",
+    "url": "logout",
     "list": []
 }, {
     "name": "开发者官网",

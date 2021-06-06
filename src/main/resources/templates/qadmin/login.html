@@ -12,43 +12,45 @@
 
 <body id="login">
 <div class="login">
-    <h2>QAdmin后台模板</h2>
-    <p align="center" style="color: red;" th:text="${info}"></p>
-    <form class="layui-form" method="post" target="_blank" action="/login">
+    <h2>[[#{login.title}]]</h2>
+    <p align="center" style="color: red;margin-bottom: 30px;" th:text="${info}"></p>
+    <form class="layui-form" method="post" th:action="@{/qadmin/login}">
         <div class="layui-form-item">
-            <input type="username" name="user" placeholder="用户名(随意输入)" required lay-verify="required"  class="layui-input">
+            <input type="username" name="user" th:placeholder="#{login.username}" required lay-verify="required"  class="layui-input">
             <i class="layui-icon input-icon">&#xe66f;</i>
         </div>
         <div class="layui-form-item">
-            <input type="password" name="pwd" placeholder="密码(随意输入)" required lay-verify="required"  class="layui-input">
+            <input type="password" name="pwd" th:placeholder="#{login.password}" required lay-verify="required"  class="layui-input">
             <i class="layui-icon input-icon">&#xe673;</i>
         </div>
         <div class="layui-form-item">
-            <input type="checkbox" name="box" lay-skin="primary" title="记住密码" checked=""> <a class="back" href="javascript:;"  style="margin-top: 10px">忘记密码</a>
+            <input type="checkbox" name="box" lay-skin="primary" th:title="#{login.remember}" checked="">
+            <a class="back" href="javascript:;"  style="margin-top: 10px">[[#{login.forget}]]</a>
         </div>
         <div class="layui-form-item">
-            <button style="width: 100%" class="layui-btn" lay-submit lay-filter="login">立即登录</button>
+            <button style="width: 100%" class="layui-btn" lay-submit lay-filter="login" type="submit" th:text="#{login.sign}"></button>
+        </div>
+        <div class="layui-form-item" style="text-align: center;">
+            <a th:href="@{/(l='zh_CN')}">中文</a>
+            <a th:href="@{/(l='en_US')}">English</a>
         </div>
     </form>
-    <script>
-        layui.use('form', function () {
-            var form = layui.form,
-                layer = layui.layer,
-                $ = layui.jquery;
-
-            form.on('submit(login)', function (data) {
-
-                sessionStorage.isLgoin = 1; //模拟登录状态,实际使用时请删除掉
-
-                layer.load({
-                    shade: 0.5,
-                    time: 0,
-                });
-                // window.location.href = 'index.html';
-                return false;
-            });
-        });
-    </script>
+<!--    <script>-->
+<!--        layui.use('form', function () {-->
+<!--            var form = layui.form,-->
+<!--                layer = layui.layer,-->
+<!--                $ = layui.jquery;-->
+<!--            form.on('submit(login)', function (data) {-->
+<!--                sessionStorage.isLgoin = 1; //模拟登录状态,实际使用时请删除掉-->
+<!--                layer.load({-->
+<!--                    shade: 0.5,-->
+<!--                    time: 0,-->
+<!--                });-->
+<!--                // window.location.href = 'index.html';-->
+<!--                return false;-->
+<!--            });-->
+<!--        });-->
+<!--    </script>-->
 </div>
 </body>
 

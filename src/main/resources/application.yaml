@@ -10,6 +10,9 @@ server:
     context-path: /
 #spring配置
 spring:
+  messages:
+    # i18n国际化文件路径
+    basename: i18n.login
   #设置tomcat端口号
   profiles:
     #配置环境文件
@@ -18,6 +21,8 @@ spring:
   thymeleaf:
     #热部署文件，页面不产生缓存，及时更新
     cache: false
+    suffix: .html
+    mode: HTML5
   #数据库配置
   datasource:
     driver-class-name: oracle.jdbc.OracleDriver
