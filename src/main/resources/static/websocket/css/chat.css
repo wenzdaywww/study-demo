@@ -1,0 +1,213 @@
+body{
+    background: #383a3c url('/websocket/img/login-bg.jpg');
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.container{
+    margin-top: 100px;
+    height: 650px;
+    width: 750px;
+    border-radius: 4px;
+    border: 0.5px solid #e0e0e0;
+    background-color: #f5f5f5;
+    display: flex;
+    overflow: hidden;
+}
+.list{
+    float: left;
+    height: 98%;
+    width: 20%;
+    padding: 10px;
+    background-color: rgb(231,231,231);
+}
+.chat{
+    float: left;
+    height: 100%;
+    width: 80%;
+}
+.title{
+    width : 100%;
+    height: 20px;
+    text-align: center;
+    background-color: rgb(220,220,220);
+}
+.content{
+    width: calc(100% - 10px);
+    height: calc(77% - 20px);
+    padding: 10px;
+    overflow-y: scroll;
+    flex: 1;
+    background-color: rgb(245,245,245);
+}
+.input-area{
+    border-top:0.5px solid #e0e0e0;
+    height: 20%;
+    display: flex;
+    flex-flow: column;
+    background-color: #fff;
+}
+textarea{
+    flex: 1;
+    padding: 5px;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+    overflow-y: auto;
+    overflow-x: hidden;
+    outline:none;
+    resize:none;
+}
+.button-area{
+    display: flex;
+    height: 20px;
+    margin-right: 10px;
+    margin-bottom: 3px;
+    line-height: 40px;
+    padding: 5px;
+    justify-content: flex-end;
+}
+.myPhoto{
+    height: 60px;
+}
+.photo{
+    margin-top: 10px;
+    display: flex;
+    width: 100%;
+}
+.friendPhoto{
+     margin-top: 10px;
+     display: flex;
+     width: 100%;
+ }
+.friendList{
+    width: 100%;
+    height: calc(100% - 60px);
+    overflow-y: scroll;
+}
+.friendList::-webkit-scrollbar {
+    width:10px;
+}
+.receiveId{
+    display: none;
+}
+.receiveName{
+    padding-left: 5px;
+    padding-top: 10px;
+}
+.online{
+    display: flex;
+    width: 100%;
+}
+.online span{
+    font-size: 12px;
+    padding: 2px 4px;
+    color: #fff;
+    background-color: #dadada;
+    border-radius: 3px;
+    -moz-user-select:none; /*火狐*/
+    -webkit-user-select:none; /*webkit浏览器*/
+    -ms-user-select:none; /*IE10*/
+    -khtml-user-select:none; /*早期浏览器*/
+    user-select:none;
+}
+.btn{
+    margin-right: 10px;
+}
+.content:hover::-webkit-scrollbar-thumb{
+    background:rgba(0,0,0,0.1);
+}
+.bubble{
+    max-width: 300px;
+    padding: 5px;
+    border-radius: 5px;
+    position: relative;
+    font-size: 10px;
+    color: #000;
+    word-wrap:break-word;
+    word-break:normal;
+}
+.item-left .bubble{
+    margin-left: 15px;
+    background-color: #fff;
+}
+.item-left .bubble:before{
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-top: 10px solid transparent;
+    border-right: 10px solid #fff;
+    border-bottom: 10px solid transparent;
+    left: -20px;
+}
+.item-right .bubble{
+    margin-right: 15px;
+    background-color: #9eea6a;
+}
+.item-right .bubble:before{
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 10px solid #9eea6a;
+    border-top: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    right: -20px;
+}
+.item{
+    margin-top: 15px;
+    display: flex;
+    width: 100%;
+}
+.item.item-right{
+    justify-content: flex-end;
+}
+.item.item-center{
+    justify-content: center;
+}
+.item.item-center span{
+    font-size: 12px;
+    padding: 2px 4px;
+    color: #fff;
+    background-color: #dadada;
+    border-radius: 3px;
+    -moz-user-select:none; /*火狐*/
+    -webkit-user-select:none; /*webkit浏览器*/
+    -ms-user-select:none; /*IE10*/
+    -khtml-user-select:none; /*早期浏览器*/
+    user-select:none;
+}
+
+.avatar img{
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+}
+
+.button-area button{
+    width: 80px;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+    float: right;
+    cursor: pointer;
+}
+
+/* 设置滚动条的样式 */
+::-webkit-scrollbar {
+    width:10px;
+}
+/* 滚动槽 */
+::-webkit-scrollbar-track {
+    -webkit-box-shadow:inset006pxrgba(0,0,0,0.3);
+    border-radius:8px;
+}
+/* 滚动条滑块 */
+::-webkit-scrollbar-thumb {
+    border-radius:10px;
+    background:rgba(0,0,0,0);
+    -webkit-box-shadow:inset006pxrgba(0,0,0,0.5);
+}
