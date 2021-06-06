@@ -1,6 +1,7 @@
 package com.www.demo.model.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * @version 1.0
@@ -21,6 +22,14 @@ public class SysUser implements Serializable {
      * 用户密码
      **/
     private String passWord;
+    /**
+     * 更新时间
+     **/
+    private Date sysUpdateDate;
+    /**
+     * 创建时间
+     **/
+    private Date sysCreateDate;
 
     private static final long serialVersionUID = 1L;
 
@@ -46,5 +55,21 @@ public class SysUser implements Serializable {
 
     public void setPassWord(String passWord) {
         this.passWord = passWord;
+    }
+
+    public Date getSysUpdateDate() {
+        return sysUpdateDate;
+    }
+
+    public void setSysUpdateDate(Date sysUpdateDate) {
+        this.sysUpdateDate = sysUpdateDate;
+    }
+
+    public Date getSysCreateDate() {
+        return sysCreateDate;
+    }
+
+    public void setSysCreateDate(Date sysCreateDate) {
+        this.sysCreateDate = sysCreateDate;
     }
 }

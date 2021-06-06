@@ -2,6 +2,7 @@ package com.www.demo.model.entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * @version 1.0
@@ -22,6 +23,14 @@ public class SysRole implements Serializable {
      * 角色名称
      **/
     private String roleName;
+    /**
+     * 更新时间
+     **/
+    private Date sysUpdateDate;
+    /**
+     * 创建时间
+     **/
+    private Date sysCreateDate;
 
     private static final long serialVersionUID = 1L;
 
@@ -47,5 +56,21 @@ public class SysRole implements Serializable {
 
     public void setRoleName(String roleName) {
         this.roleName = roleName;
+    }
+
+    public Date getSysUpdateDate() {
+        return sysUpdateDate;
+    }
+
+    public void setSysUpdateDate(Date sysUpdateDate) {
+        this.sysUpdateDate = sysUpdateDate;
+    }
+
+    public Date getSysCreateDate() {
+        return sysCreateDate;
+    }
+
+    public void setSysCreateDate(Date sysCreateDate) {
+        this.sysCreateDate = sysCreateDate;
     }
 }

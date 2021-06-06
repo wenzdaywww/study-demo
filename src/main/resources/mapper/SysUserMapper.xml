@@ -5,14 +5,16 @@
     <id column="USER_ID" jdbcType="VARCHAR" property="userId" />
     <result column="USER_NAME" jdbcType="VARCHAR" property="userName" />
     <result column="PASS_WORD" jdbcType="VARCHAR" property="passWord" />
+    <result column="SYS_UPDATE_DATE" jdbcType="TIMESTAMP" property="sysUpdateDate" />
+    <result column="SYS_CREATE_DATE" jdbcType="TIMESTAMP" property="sysCreateDate" />
   </resultMap>
 
   <sql id="Base_Column_List">
-    USER_ID, USER_NAME, PASS_WORD
+    USER_ID, USER_NAME, PASS_WORD, SYS_UPDATE_DATE, SYS_CREATE_DATE
   </sql>
 
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from SYS_USER
     where USER_ID = #{userId,jdbcType=VARCHAR}
@@ -24,10 +26,10 @@
   </delete>
 
   <insert id="insert" parameterType="com.www.demo.model.entity.SysUser">
-    insert into SYS_USER (USER_ID, USER_NAME, PASS_WORD
-      )
-    values (#{userId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{passWord,jdbcType=VARCHAR}
-      )
+    insert into SYS_USER (USER_ID, USER_NAME, PASS_WORD,
+      SYS_UPDATE_DATE, SYS_CREATE_DATE)
+    values (#{userId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{passWord,jdbcType=VARCHAR},
+      #{sysUpdateDate,jdbcType=TIMESTAMP}, #{sysCreateDate,jdbcType=TIMESTAMP})
   </insert>
 
   <insert id="insertSelective" parameterType="com.www.demo.model.entity.SysUser">
@@ -42,6 +44,12 @@
       <if test="passWord != null">
         PASS_WORD,
       </if>
+      <if test="sysUpdateDate != null">
+        SYS_UPDATE_DATE,
+      </if>
+      <if test="sysCreateDate != null">
+        SYS_CREATE_DATE,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="userId != null">
@@ -52,6 +60,12 @@
       </if>
       <if test="passWord != null">
         #{passWord,jdbcType=VARCHAR},
+      </if>
+      <if test="sysUpdateDate != null">
+        #{sysUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sysCreateDate != null">
+        #{sysCreateDate,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -65,6 +79,12 @@
       <if test="passWord != null">
         PASS_WORD = #{passWord,jdbcType=VARCHAR},
       </if>
+      <if test="sysUpdateDate != null">
+        SYS_UPDATE_DATE = #{sysUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sysCreateDate != null">
+        SYS_CREATE_DATE = #{sysCreateDate,jdbcType=TIMESTAMP},
+      </if>
     </set>
     where USER_ID = #{userId,jdbcType=VARCHAR}
   </update>
@@ -72,7 +92,9 @@
   <update id="updateByPrimaryKey" parameterType="com.www.demo.model.entity.SysUser">
     update SYS_USER
     set USER_NAME = #{userName,jdbcType=VARCHAR},
-      PASS_WORD = #{passWord,jdbcType=VARCHAR}
+      PASS_WORD = #{passWord,jdbcType=VARCHAR},
+      SYS_UPDATE_DATE = #{sysUpdateDate,jdbcType=TIMESTAMP},
+      SYS_CREATE_DATE = #{sysCreateDate,jdbcType=TIMESTAMP}
     where USER_ID = #{userId,jdbcType=VARCHAR}
   </update>
 
@@ -82,14 +104,13 @@
     from SYS_USER
     where 1=1
     <if test="userId != null">
-     AND USER_ID = #{userId,jdbcType=VARCHAR}
+      AND USER_ID = #{userId,jdbcType=VARCHAR}
     </if>
     <if test="userName != null">
-     AND USER_NAME = #{userName,jdbcType=VARCHAR}
+      AND USER_NAME = #{userName,jdbcType=VARCHAR}
     </if>
     <if test="passWord != null">
-     AND PASS_WORD = #{passWord,jdbcType=VARCHAR}
+      AND PASS_WORD = #{passWord,jdbcType=VARCHAR}
     </if>
   </select>
-
 </mapper>

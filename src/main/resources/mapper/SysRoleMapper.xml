@@ -5,14 +5,16 @@
     <id column="ID" jdbcType="DECIMAL" property="id" />
     <result column="ROLE_ID" jdbcType="VARCHAR" property="roleId" />
     <result column="ROLE_NAME" jdbcType="VARCHAR" property="roleName" />
+    <result column="SYS_UPDATE_DATE" jdbcType="TIMESTAMP" property="sysUpdateDate" />
+    <result column="SYS_CREATE_DATE" jdbcType="TIMESTAMP" property="sysCreateDate" />
   </resultMap>
 
   <sql id="Base_Column_List">
-    ID, ROLE_ID, ROLE_NAME
+    ID, ROLE_ID, ROLE_NAME, SYS_UPDATE_DATE, SYS_CREATE_DATE
   </sql>
 
   <select id="selectByPrimaryKey" parameterType="java.math.BigDecimal" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from SYS_ROLE
     where ID = #{id,jdbcType=DECIMAL}
@@ -24,10 +26,10 @@
   </delete>
 
   <insert id="insert" parameterType="com.www.demo.model.entity.SysRole">
-    insert into SYS_ROLE (ID, ROLE_ID, ROLE_NAME
-      )
-    values (#{id,jdbcType=DECIMAL}, #{roleId,jdbcType=VARCHAR}, #{roleName,jdbcType=VARCHAR}
-      )
+    insert into SYS_ROLE (ID, ROLE_ID, ROLE_NAME,
+      SYS_UPDATE_DATE, SYS_CREATE_DATE)
+    values (#{id,jdbcType=DECIMAL}, #{roleId,jdbcType=VARCHAR}, #{roleName,jdbcType=VARCHAR},
+      #{sysUpdateDate,jdbcType=TIMESTAMP}, #{sysCreateDate,jdbcType=TIMESTAMP})
   </insert>
 
   <insert id="insertSelective" parameterType="com.www.demo.model.entity.SysRole">
@@ -42,6 +44,12 @@
       <if test="roleName != null">
         ROLE_NAME,
       </if>
+      <if test="sysUpdateDate != null">
+        SYS_UPDATE_DATE,
+      </if>
+      <if test="sysCreateDate != null">
+        SYS_CREATE_DATE,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -52,6 +60,12 @@
       </if>
       <if test="roleName != null">
         #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="sysUpdateDate != null">
+        #{sysUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sysCreateDate != null">
+        #{sysCreateDate,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -65,6 +79,12 @@
       <if test="roleName != null">
         ROLE_NAME = #{roleName,jdbcType=VARCHAR},
       </if>
+      <if test="sysUpdateDate != null">
+        SYS_UPDATE_DATE = #{sysUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sysCreateDate != null">
+        SYS_CREATE_DATE = #{sysCreateDate,jdbcType=TIMESTAMP},
+      </if>
     </set>
     where ID = #{id,jdbcType=DECIMAL}
   </update>
@@ -72,8 +92,9 @@
   <update id="updateByPrimaryKey" parameterType="com.www.demo.model.entity.SysRole">
     update SYS_ROLE
     set ROLE_ID = #{roleId,jdbcType=VARCHAR},
-      ROLE_NAME = #{roleName,jdbcType=VARCHAR}
+      ROLE_NAME = #{roleName,jdbcType=VARCHAR},
+      SYS_UPDATE_DATE = #{sysUpdateDate,jdbcType=TIMESTAMP},
+      SYS_CREATE_DATE = #{sysCreateDate,jdbcType=TIMESTAMP}
     where ID = #{id,jdbcType=DECIMAL}
   </update>
-
 </mapper>

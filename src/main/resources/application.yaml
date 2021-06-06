@@ -16,10 +16,6 @@ spring:
     active: dev
   #thymelea模板配置
   thymeleaf:
-    prefix: classpath:/templates/
-    suffix: .html
-    mode: HTML5
-    encoding: UTF-8
     #热部署文件，页面不产生缓存，及时更新
     cache: false
   #数据库配置
@@ -43,7 +39,9 @@ mybatis:
 #spring.mvc.view.suffix=.jsp
 
 #日志设置
-#logging.file=D:/log/log.log
+logging:
+  file:
+    path: D:/log/log.log
 #logging.level.org.org.springframework.web=info
 
 
@@ -69,6 +67,7 @@ mybatis:
 #spring.cache.type=ehcache
 
 #“---”可分开配置多环境文件，等效application-test.yaml
+
 ---
 spring:
   profiles: test

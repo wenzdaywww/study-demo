@@ -4,11 +4,15 @@
   <resultMap id="BaseResultMap" type="com.www.demo.model.entity.SysUserRole">
     <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
     <result column="ROLE_ID" jdbcType="VARCHAR" property="roleId" />
+    <result column="SYS_UPDATE_DATE" jdbcType="TIMESTAMP" property="sysUpdateDate" />
+    <result column="SYS_CREATE_DATE" jdbcType="TIMESTAMP" property="sysCreateDate" />
   </resultMap>
 
   <insert id="insert" parameterType="com.www.demo.model.entity.SysUserRole">
-    insert into SYS_USER_ROLE (USER_ID, ROLE_ID)
-    values (#{userId,jdbcType=VARCHAR}, #{roleId,jdbcType=VARCHAR})
+    insert into SYS_USER_ROLE (USER_ID, ROLE_ID, SYS_UPDATE_DATE,
+      SYS_CREATE_DATE)
+    values (#{userId,jdbcType=VARCHAR}, #{roleId,jdbcType=VARCHAR}, #{sysUpdateDate,jdbcType=TIMESTAMP},
+      #{sysCreateDate,jdbcType=TIMESTAMP})
   </insert>
 
   <insert id="insertSelective" parameterType="com.www.demo.model.entity.SysUserRole">
@@ -20,6 +24,12 @@
       <if test="roleId != null">
         ROLE_ID,
       </if>
+      <if test="sysUpdateDate != null">
+        SYS_UPDATE_DATE,
+      </if>
+      <if test="sysCreateDate != null">
+        SYS_CREATE_DATE,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="userId != null">
@@ -27,6 +37,12 @@
       </if>
       <if test="roleId != null">
         #{roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="sysUpdateDate != null">
+        #{sysUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sysCreateDate != null">
+        #{sysCreateDate,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
