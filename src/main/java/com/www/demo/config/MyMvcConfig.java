@@ -1,6 +1,7 @@
 package com.www.demo.config;
 
 import com.www.demo.i18n.I18nLocaleResolver;
+import com.www.demo.qadmin.config.QAdminLoginHandlerInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.LocaleResolver;
@@ -52,7 +53,7 @@ public class MyMvcConfig implements WebMvcConfigurer {
      */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/qadmin/**")
+        registry.addInterceptor(new QAdminLoginHandlerInterceptor()).addPathPatterns("/qadmin/**")
                 .excludePathPatterns("/qadmin","/qadmin/login","/qadmin/admin/**","/qadmin/common/**","/qadmin/data/**");
     }
 }

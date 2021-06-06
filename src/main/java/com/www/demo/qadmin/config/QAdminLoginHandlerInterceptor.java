@@ -1,4 +1,4 @@
-package com.www.demo.config;
+package com.www.demo.qadmin.config;
 
 import org.springframework.web.servlet.HandlerInterceptor;
 
@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
  * @Author www
  * @Date 2021/6/6 21:47
  */
-public class LoginHandlerInterceptor implements HandlerInterceptor {
+public class QAdminLoginHandlerInterceptor implements HandlerInterceptor {
     /**
      * @Author www
      * @Date 2021/6/6 21:51
