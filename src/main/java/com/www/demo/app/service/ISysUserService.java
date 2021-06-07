@@ -2,6 +2,8 @@ package com.www.demo.app.service;
 
 import com.www.demo.model.entity.SysUser;
 
+import java.util.List;
+
 /**
  * @version 1.0
  * @Description 用户信息服务接口
@@ -9,6 +11,15 @@ import com.www.demo.model.entity.SysUser;
  * @Date 2021/5/20 23:14
  */
 public interface ISysUserService {
+    /**
+     * @Author www
+     * @Date 2021/6/7 22:56
+     * @Description 查询用户信息
+     *
+     * @param user 查询条件
+     * @return java.util.List<com.www.demo.model.entity.SysUser>
+     */
+    List<SysUser> findUserList(SysUser user);
     /**
      * @Author www
      * @Date 2021/5/19 23:41

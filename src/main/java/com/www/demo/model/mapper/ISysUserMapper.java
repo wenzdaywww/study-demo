@@ -3,6 +3,8 @@ package com.www.demo.model.mapper;
 import com.www.demo.model.entity.SysUser;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 /**
  * @version 1.0
  * @Description SysUserMapper接口
@@ -11,6 +13,15 @@ import org.apache.ibatis.annotations.Mapper;
  */
 //@Mapper //扫描Mapper接口，不使用@MapperScan时才使用
 public interface ISysUserMapper {
+    /**
+     * @Author www
+     * @Date 2021/6/7 22:56
+     * @Description 查询用户信息
+     *
+     * @param user 查询条件
+     * @return java.util.List<com.www.demo.model.entity.SysUser>
+     */
+    List<SysUser> findUserList(SysUser user);
     /**
      * @Author www
      * @Date 2021/5/19 23:41

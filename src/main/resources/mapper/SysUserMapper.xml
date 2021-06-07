@@ -113,4 +113,20 @@
       AND PASS_WORD = #{passWord,jdbcType=VARCHAR}
     </if>
   </select>
+
+  <select id="findUserList" parameterType="com.www.demo.model.entity.SysUser" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from SYS_USER
+    where 1=1
+    <if test="userId != null">
+      AND USER_ID = #{userId,jdbcType=VARCHAR}
+    </if>
+    <if test="userName != null">
+      AND USER_NAME = #{userName,jdbcType=VARCHAR}
+    </if>
+    <if test="passWord != null">
+      AND PASS_WORD = #{passWord,jdbcType=VARCHAR}
+    </if>
+  </select>
 </mapper>

@@ -6,6 +6,8 @@ import com.www.demo.model.mapper.ISysUserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @version 1.0
  * @Description 用户信息服务层
@@ -16,6 +18,19 @@ import org.springframework.stereotype.Service;
 public class SysUserServiceImpl implements ISysUserService {
     @Autowired
     private ISysUserMapper sysUserMapper;
+    /**
+     * @Author www
+     * @Date 2021/6/7 22:56
+     * @Description 查询用户信息
+     *
+     * @param user 查询条件
+     * @return java.util.List<com.www.demo.model.entity.SysUser>
+     */
+    @Override
+    public List<SysUser> findUserList(SysUser user) {
+        return sysUserMapper.findUserList(user);
+    }
+
     /**
      * @Author www
      * @Date 2021/5/19 23:41

@@ -1,7 +1,7 @@
 [{
     "name": "首页",
     "icon": "&#xe68e;",
-    "url": "index.html",
+    "url": "main",
     "hidden": false,
     "list": []
 }, {
@@ -11,10 +11,10 @@
     "hidden": false,
     "list": [{
         "name": "用户列表",
-        "url": "user_index.html"
+        "url": "userList"
     }, {
         "name": "添加用户",
-        "url": "user_add.html"
+        "url": "addUser"
     }]
 }, {
     "name": "文章管理",
