@@ -13,9 +13,9 @@
 
 ```html
 
-<link rel="stylesheet" href="/qadmin/common/layui/css/layui.css">
+<link rel="stylesheet" href="/layui/css/layui.css">
 <link rel="stylesheet" href="/qadmin/admin/css/style.css">
-<script src="/qadmin/common/layui/layui.js"></script>
+<script src="/layui/layui.js"></script>
 <script src="/qadmin/common/jquery-3.3.1.min.js"></script>
 <script src="/qadmin/common/vue.min.js"></script>
 
