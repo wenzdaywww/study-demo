@@ -11,10 +11,10 @@
     "hidden": false,
     "list": [{
         "name": "用户列表",
-        "url": "userList"
+        "url": "/qadmin/userList"
     }, {
         "name": "添加用户",
-        "url": "addUser"
+        "url": "/qadmin/addUser"
     }]
 }, {
     "name": "文章管理",

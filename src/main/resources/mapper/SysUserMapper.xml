@@ -5,12 +5,13 @@
     <id column="USER_ID" jdbcType="VARCHAR" property="userId" />
     <result column="USER_NAME" jdbcType="VARCHAR" property="userName" />
     <result column="PASS_WORD" jdbcType="VARCHAR" property="passWord" />
+    <result column="IS_DELETE" jdbcType="CHAR" property="isDelete" />
     <result column="SYS_UPDATE_DATE" jdbcType="TIMESTAMP" property="sysUpdateDate" />
     <result column="SYS_CREATE_DATE" jdbcType="TIMESTAMP" property="sysCreateDate" />
   </resultMap>
 
   <sql id="Base_Column_List">
-    USER_ID, USER_NAME, PASS_WORD, SYS_UPDATE_DATE, SYS_CREATE_DATE
+    USER_ID, USER_NAME, PASS_WORD, IS_DELETE,SYS_UPDATE_DATE, SYS_CREATE_DATE
   </sql>
 
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -26,9 +27,9 @@
   </delete>
 
   <insert id="insert" parameterType="com.www.demo.model.entity.SysUser">
-    insert into SYS_USER (USER_ID, USER_NAME, PASS_WORD,
+    insert into SYS_USER (USER_ID, USER_NAME, PASS_WORD,IS_DELETE,
       SYS_UPDATE_DATE, SYS_CREATE_DATE)
-    values (#{userId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{passWord,jdbcType=VARCHAR},
+    values (#{userId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{passWord,jdbcType=VARCHAR},#{isDelete,jdbcType=CHAR},
       #{sysUpdateDate,jdbcType=TIMESTAMP}, #{sysCreateDate,jdbcType=TIMESTAMP})
   </insert>
 
@@ -40,6 +41,9 @@
       </if>
       <if test="userName != null">
         USER_NAME,
+      </if>
+      <if test="isDelete != null">
+        IS_DELETE,
       </if>
       <if test="passWord != null">
         PASS_WORD,
@@ -57,6 +61,9 @@
       </if>
       <if test="userName != null">
         #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=CHAR},
       </if>
       <if test="passWord != null">
         #{passWord,jdbcType=VARCHAR},
@@ -79,6 +86,9 @@
       <if test="passWord != null">
         PASS_WORD = #{passWord,jdbcType=VARCHAR},
       </if>
+      <if test="isDelete != null">
+        IS_DELETE = #{isDelete,jdbcType=CHAR},
+      </if>
       <if test="sysUpdateDate != null">
         SYS_UPDATE_DATE = #{sysUpdateDate,jdbcType=TIMESTAMP},
       </if>
@@ -93,6 +103,7 @@
     update SYS_USER
     set USER_NAME = #{userName,jdbcType=VARCHAR},
       PASS_WORD = #{passWord,jdbcType=VARCHAR},
+      IS_DELETE = #{isDelete,jdbcType=CHAR},
       SYS_UPDATE_DATE = #{sysUpdateDate,jdbcType=TIMESTAMP},
       SYS_CREATE_DATE = #{sysCreateDate,jdbcType=TIMESTAMP}
     where USER_ID = #{userId,jdbcType=VARCHAR}

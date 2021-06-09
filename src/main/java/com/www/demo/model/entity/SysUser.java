@@ -23,6 +23,10 @@ public class SysUser implements Serializable {
      **/
     private String passWord;
     /**
+     * 是否删除
+     **/
+    private String isDelete;
+    /**
      * 更新时间
      **/
     private Date sysUpdateDate;
@@ -30,6 +34,14 @@ public class SysUser implements Serializable {
      * 创建时间
      **/
     private Date sysCreateDate;
+
+    public String getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(String isDelete) {
+        this.isDelete = isDelete;
+    }
 
     private static final long serialVersionUID = 1L;
 

@@ -65,11 +65,11 @@
                     <td th:text="${#dates.format(user.sysUpdateDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
                     <td></td>
                     <td>
-                        <input type="checkbox" lay-filter="state" data-uid="36567" lay-text="正常|封禁" name="switch" checked  lay-skin="switch">
+                        <input type="checkbox" th:checked="${user.isDelete=='0'}" th:disabled="${user.isDelete=='1'}" lay-filter="state" data-uid="36567" lay-text="正常|封禁" name="switch" lay-skin="switch">
                     </td>
                     <td></td>
                     <td></td>
-                    <td><a href="">修改</a></td>
+                    <td><a th:href="@{/qadmin/deleteUser/}+${user.userId}" th:text="${user.isDelete=='1' ? '恢复' : '封禁'}"></a></td>
                 </tr>
                 </tbody>
             </table>

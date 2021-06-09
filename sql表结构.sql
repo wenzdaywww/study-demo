@@ -11,6 +11,7 @@ create table SYS_USER(
     user_id   VARCHAR2(50) primary key,
     user_name VARCHAR2(50),
     pass_word   VARCHAR2(50),
+    is_delete   char(1),
     sys_update_date date,
     sys_create_date date
 );
@@ -22,6 +23,8 @@ comment on column SYS_USER.user_name
   is '用户名';
 comment on column SYS_USER.pass_word
   is '密码';
+comment on column SYS_USER.is_delete
+    is '删除';
 comment on column SYS_USER.sys_update_date
     is '更新时间';
 comment on column SYS_USER.sys_create_date
