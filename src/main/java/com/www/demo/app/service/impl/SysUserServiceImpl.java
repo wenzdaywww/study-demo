@@ -1,8 +1,12 @@
 package com.www.demo.app.service.impl;
 
 import com.www.demo.app.service.ISysUserService;
+import com.www.demo.model.dto.SysUserDTO;
 import com.www.demo.model.entity.SysUser;
+import com.www.demo.model.entity.SysUserRole;
 import com.www.demo.model.mapper.ISysUserMapper;
+import com.www.demo.model.mapper.ISysUserRoleMapper;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +22,8 @@ import java.util.List;
 public class SysUserServiceImpl implements ISysUserService {
     @Autowired
     private ISysUserMapper sysUserMapper;
+    @Autowired
+    private ISysUserRoleMapper sysUserRoleMapper;
     /**
      * @Author www
      * @Date 2021/6/7 22:56
@@ -117,5 +123,24 @@ public class SysUserServiceImpl implements ISysUserService {
             return sysUserMapper.selective(record);
         }
         return null;
+    }
+    /**
+     * @Author www
+     * @Date 2021/6/15 23:15
+     * @Description 查询用户信息，包含角色信息
+     *
+     * @param req 查询条件
+     * @return com.www.demo.model.dto.SysUserDTO
+     */
+    @Override
+    public SysUserDTO findUserInfo(SysUser req) {
+        SysUser user = selective(req);
+        SysUserDTO dto = new SysUserDTO();
+        BeanUtils.copyProperties(user,dto);
+        SysUserRole role = new SysUserRole();
+        role.setUserId(req.getUserId());
+        List<SysUserRole> roleList = sysUserRoleMapper.selective(role);
+        dto.setRoleList(roleList);
+        return dto;
     }
 }

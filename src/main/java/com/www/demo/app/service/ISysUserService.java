@@ -1,5 +1,6 @@
 package com.www.demo.app.service;
 
+import com.www.demo.model.dto.SysUserDTO;
 import com.www.demo.model.entity.SysUser;
 
 import java.util.List;
@@ -11,6 +12,15 @@ import java.util.List;
  * @Date 2021/5/20 23:14
  */
 public interface ISysUserService {
+    /**
+     * @Author www
+     * @Date 2021/6/15 23:15
+     * @Description 查询用户信息，包含角色信息
+     *
+     * @param req 查询条件
+     * @return com.www.demo.model.dto.SysUserDTO
+     */
+    SysUserDTO findUserInfo(SysUser req);
     /**
      * @Author www
      * @Date 2021/6/7 22:56

@@ -2,6 +2,8 @@ package com.www.demo.model.mapper;
 
 import com.www.demo.model.entity.SysUserRole;
 
+import java.util.List;
+
 /**
  * @version 1.0
  * @Description SysUserRoleMapper接口
@@ -27,4 +29,14 @@ public interface ISysUserRoleMapper {
      * @return int 插入条数
      */
     int insertSelective(SysUserRole record);
+
+    /**
+     * @Author www
+     * @Date 2021/6/15 23:20
+     * @Description 查询用户的角色信息
+     *
+     * @param record 查询条件
+     * @return java.util.List<com.www.demo.model.entity.SysUserRole>
+     */
+    List<SysUserRole> selective(SysUserRole record);
 }

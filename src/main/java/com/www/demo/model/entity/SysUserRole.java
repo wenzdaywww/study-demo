@@ -1,6 +1,7 @@
 package com.www.demo.model.entity;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -17,7 +18,7 @@ public class SysUserRole implements Serializable {
     /**
      * 角色ID
      **/
-    private String roleId;
+    private BigDecimal roleId;
     /**
      * 更新时间
      **/
@@ -37,11 +38,11 @@ public class SysUserRole implements Serializable {
         this.userId = userId;
     }
 
-    public String getRoleId() {
+    public BigDecimal getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(String roleId) {
+    public void setRoleId(BigDecimal roleId) {
         this.roleId = roleId;
     }
 
