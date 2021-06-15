@@ -1,12 +1,13 @@
 --创建表空间
-create tablespace boot
+/**create tablespace boot
     logging
     datafile '/u01/app/oracle/oradata/XE/boot.dbf'
     size 50m
     autoextend on
     next 50m maxsize 20480m
-    extent management local;
+    extent management local;**/
 /**用户表*/
+drop table SYS_USER;
 create table SYS_USER(
     user_id   VARCHAR2(50) primary key,
     user_name VARCHAR2(50),
@@ -31,32 +32,35 @@ comment on column SYS_USER.sys_create_date
     is '创建时间';
 
 /**角色表*/
+drop table SYS_ROLE;
 create table SYS_ROLE
 (
-  id       NUMBER primary key,
-  role_id   VARCHAR2(20),
+  role_id   NUMBER primary key,
   role_name VARCHAR2(50),
+  description VARCHAR2(50),
   sys_update_date date,
   sys_create_date date
 );
--- Add comments to the columns 
-comment on column SYS_ROLE.id
-  is 'ID';
+-- Add comments to the columns
 comment on column SYS_ROLE.role_id
   is '角色ID';
 comment on column SYS_ROLE.role_name
   is '角色名称';
+comment on column SYS_ROLE.description
+    is '角色描述';
 comment on column SYS_ROLE.sys_update_date
     is '更新时间';
 comment on column SYS_ROLE.sys_create_date
     is '创建时间';
 -- Create/Recreate primary, unique and foreign key constraints
+drop sequence seq_sys_role_id;
 create sequence seq_sys_role_id increment by 1 start with 1 maxvalue 999999999; 
 /**用户角色表*/
+drop table SYS_USER_ROLE;
 create table SYS_USER_ROLE
 (
   user_id   VARCHAR2(50),
-  role_id   VARCHAR2(20),
+  role_id   NUMBER,
   sys_update_date date,
   sys_create_date date
 );

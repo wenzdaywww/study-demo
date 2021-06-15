@@ -32,6 +32,11 @@
 <!--			<groupId>org.apache.tomcat.embed</groupId>-->
 <!--			<artifactId>tomcat-embed-core</artifactId>-->
 <!--		</dependency>-->
+		<!-- security权限认证 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
 		<!-- druid数据连接池 -->
 		<dependency>
 			<groupId>com.alibaba</groupId>

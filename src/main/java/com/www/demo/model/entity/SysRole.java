@@ -12,17 +12,17 @@ import java.util.Date;
  */
 public class SysRole implements Serializable {
     /**
-     * 主键
-     **/
-    private BigDecimal id;
-    /**
      * 角色ID
      **/
-    private String roleId;
+    private BigDecimal roleId;
     /**
      * 角色名称
      **/
     private String roleName;
+    /**
+     * 角色描述
+     **/
+    private String description;
     /**
      * 更新时间
      **/
@@ -34,19 +34,11 @@ public class SysRole implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public BigDecimal getId() {
-        return id;
-    }
-
-    public void setId(BigDecimal id) {
-        this.id = id;
-    }
-
-    public String getRoleId() {
+    public BigDecimal getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(String roleId) {
+    public void setRoleId(BigDecimal roleId) {
         this.roleId = roleId;
     }
 
@@ -72,5 +64,13 @@ public class SysRole implements Serializable {
 
     public void setSysCreateDate(Date sysCreateDate) {
         this.sysCreateDate = sysCreateDate;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
