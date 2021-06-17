@@ -20,7 +20,7 @@ public class MyMvcConfig implements WebMvcConfigurer {
     /**
      * @Author www
      * @Date 2021/6/6 22:45
-     * @Description 设置试图控制器
+     * @Description 设置视图控制器
      *
      * @param registry
      * @return void
@@ -48,12 +48,13 @@ public class MyMvcConfig implements WebMvcConfigurer {
      * @Author www
      * @Date 2021/6/6 21:56
      * @Description 添加拦截器
+     * 注：使用spring security时，需要关闭该拦截器
      * @param registry
      * @return void
      */
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new QAdminLoginHandlerInterceptor()).addPathPatterns("/qadmin/**")
-                .excludePathPatterns("/qadmin","/qadmin/login","/qadmin/admin/**","/qadmin/common/**","/qadmin/data/**");
-    }
+//    @Override
+//    public void addInterceptors(InterceptorRegistry registry) {
+//        registry.addInterceptor(new QAdminLoginHandlerInterceptor()).addPathPatterns("/qadmin/**")
+//                .excludePathPatterns("/qadmin","/qadmin/login","/qadmin/admin/**","/qadmin/common/**","/qadmin/data/**");
+//    }
 }

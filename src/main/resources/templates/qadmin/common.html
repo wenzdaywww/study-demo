@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <!--顶栏-->
 <header th:fragment="headerBar">
-    <h1 v-text="webname"></h1>
+    <h1 th:text="${session.user != null ? session.user.userName : ''}"></h1>
     <div class="breadcrumb">
         <i class="layui-icon">&#xe715;</i>
         <ul>

@@ -4,3 +4,4 @@
 4、集成websocket框架
 5、集成redis框架
 6、集成druid数据源
+6、集成security权限认证
