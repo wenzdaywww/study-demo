@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>登陆聊天</title>
-    <script type="text/javascript" th:src="@{/js/jquery-1.8.3.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery-3.3.1.min.js}"></script>
     <link rel="stylesheet" th:href="@{/websocket/css/chat.css}"/>
 </head>
 <body>
@@ -15,7 +15,7 @@
         <div class="myPhoto">
             <div class="photo">
                 <div class="avatar">
-                   <img th:src="@{/img/img2.jpg}" />
+                   <img th:src="@{/websocket/img/img2.jpg}" />
                 </div>
                 <div style="padding-left: 5px;padding-top: 10px;" >[[${userName}]]</div>
             </div>
@@ -27,7 +27,7 @@
         <div class="friendList">
 <!--            <div class="friendPhoto">-->
 <!--                <div class="avatar">-->
-<!--                    <img th:src="@{/img/img1.jpg}" />-->
+<!--                    <img th:src="@{/websocket/img/img1.jpg}" />-->
 <!--                </div>-->
 <!--                <div class="receiveId"></div>-->
 <!--                <div class="receiveName" style="padding-left: 5px;padding-top: 10px;"></div>-->
@@ -48,7 +48,7 @@
             <!-- 接收到的消息 -->
 <!--            <div class="item item-left">-->
 <!--                <div class="avatar">-->
-<!--                    <img th:src="@{/img/img1.jpg}" />-->
+<!--                    <img th:src="@{/websocket/img/img1.jpg}" />-->
 <!--                </div>-->
 <!--                <div class="bubble bubble-left">hello<br/>你好呀</div>-->
 <!--            </div>-->
@@ -56,7 +56,7 @@
 <!--            <div class="item item-right">-->
 <!--                <div class="bubble bubble-right">hello<br/>你好呀</div>-->
 <!--                <div class="avatar">-->
-<!--                    <img th:src="@{/img/img2.jpg}" />-->
+<!--                    <img th:src="@{/websocket/img/img2.jpg}" />-->
 <!--                </div>-->
 <!--            </div>-->
         </div>
