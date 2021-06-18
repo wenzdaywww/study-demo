@@ -1,7 +1,6 @@
 package com.www.demo.model.mapper;
 
-import com.www.demo.model.entity.SysUser;
-import org.apache.ibatis.annotations.Mapper;
+import com.www.demo.model.entity.SysUserEntity;
 
 import java.util.List;
 
@@ -19,9 +18,9 @@ public interface ISysUserMapper {
      * @Description 查询用户信息
      *
      * @param user 查询条件
-     * @return java.util.List<com.www.demo.model.entity.SysUser>
+     * @return java.util.List<com.www.demo.model.entity.SysUserEntity>
      */
-    List<SysUser> findUserList(SysUser user);
+    List<SysUserEntity> findUserList(SysUserEntity user);
     /**
      * @Author www
      * @Date 2021/5/19 23:41
@@ -39,7 +38,7 @@ public interface ISysUserMapper {
      * @param record 用户信息
      * @return int 插入条数
      */
-    int insert(SysUser record);
+    int insert(SysUserEntity record);
     /**
      * @Author www
      * @Date 2021/5/19 23:41
@@ -48,16 +47,16 @@ public interface ISysUserMapper {
      * @param record 用户信息
      * @return int 插入条数
      */
-    int insertSelective(SysUser record);
+    int insertSelective(SysUserEntity record);
     /**
      * @Author www
      * @Date 2021/5/19 23:41
      * @Description 根据用户ID查询用户信息
      *
      * @param userId 用户ID
-     * @return com.www.demo.model.SysUser 用户信息
+     * @return com.www.demo.model.SysUserEntity 用户信息
      */
-    SysUser selectByPrimaryKey(String userId);
+    SysUserEntity selectByPrimaryKey(String userId);
     /**
      * @Author www
      * @Date 2021/5/19 23:42
@@ -66,7 +65,7 @@ public interface ISysUserMapper {
      * @param record 用户信息
      * @return int 插入条数
      */
-    int updateByPrimaryKeySelective(SysUser record);
+    int updateByPrimaryKeySelective(SysUserEntity record);
     /**
      * @Author www
      * @Date 2021/5/19 23:42
@@ -75,7 +74,7 @@ public interface ISysUserMapper {
      * @param record 用户信息
      * @return int 插入条数
      */
-    int updateByPrimaryKey(SysUser record);
+    int updateByPrimaryKey(SysUserEntity record);
     /**
      * @Author www
      * @Date 2021/5/19 23:42
@@ -84,5 +83,5 @@ public interface ISysUserMapper {
      * @param record 用户信息
      * @return int 用户信息
      */
-    SysUser selective(SysUser record);
+    SysUserEntity selective(SysUserEntity record);
 }

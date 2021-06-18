@@ -1,7 +1,8 @@
 package com.www.demo.qadmin.controller.login;
 
 import com.www.demo.app.service.ISysUserService;
-import com.www.demo.model.entity.SysUser;
+import com.www.demo.model.dto.SysUserDTO;
+import com.www.demo.model.entity.SysUserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
-import java.net.InetAddress;
 
 /**
  * @version 1.0
@@ -43,17 +43,15 @@ public class LoginController {
      */
     @RequestMapping("/qadmin/login")
     public String login(@RequestParam("user") String userId, @RequestParam("pwd") String password, HttpSession session,Model model){
-        SysUser reqUser = new SysUser();
+        SysUserEntity reqUser = new SysUserEntity();
         reqUser.setUserId(userId);
         reqUser.setPassWord(password);
-        SysUser user = sysUserService.selective(reqUser);
-        if (user == null) {
+        SysUserDTO userDTO = sysUserService.findUserInfo(reqUser);
+        if (userDTO == null) {
             model.addAttribute("info","用户名或密码错误！！！");
             return "/qadmin/login";
         }else {
-            session.setAttribute("user",user);
-            model.addAttribute("userId",user.getUserId());
-            model.addAttribute("userName",user.getUserName());
+            session.setAttribute("user",userDTO);
             return "redirect:/qadmin/main";
         }
     }

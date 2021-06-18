@@ -1,6 +1,7 @@
 package com.www.demo.model.mapper;
 
-import com.www.demo.model.entity.SysRole;
+import com.www.demo.model.entity.SysRoleEntity;
+
 import java.math.BigDecimal;
 
 /**
@@ -27,7 +28,7 @@ public interface ISysRoleMapper {
      * @param record 角色信息
      * @return int 插入条数
      */
-    int insert(SysRole record);
+    int insert(SysRoleEntity record);
     /**
      * @Author www
      * @Date 2021/5/19 23:41
@@ -36,16 +37,16 @@ public interface ISysRoleMapper {
      * @param record 角色信息
      * @return int 插入条数
      */
-    int insertSelective(SysRole record);
+    int insertSelective(SysRoleEntity record);
     /**
      * @Author www
      * @Date 2021/5/19 23:41
      * @Description 根据主键ID查询角色信息
      *
      * @param id 主键ID
-     * @return com.www.demo.model.SysRole 角色信息
+     * @return com.www.demo.model.SysRoleEntity 角色信息
      */
-    SysRole selectByPrimaryKey(BigDecimal id);
+    SysRoleEntity selectByPrimaryKey(BigDecimal id);
     /**
      * @Author www
      * @Date 2021/5/19 23:41
@@ -54,7 +55,7 @@ public interface ISysRoleMapper {
      * @param record 角色信息
      * @return int 更新条数
      */
-    int updateByPrimaryKeySelective(SysRole record);
+    int updateByPrimaryKeySelective(SysRoleEntity record);
     /**
      * @Author www
      * @Date 2021/5/19 23:48
@@ -63,5 +64,5 @@ public interface ISysRoleMapper {
      * @param record 角色信息
      * @return int 更新条数
      */
-    int updateByPrimaryKey(SysRole record);
+    int updateByPrimaryKey(SysRoleEntity record);
 }

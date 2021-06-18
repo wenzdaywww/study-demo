@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.www.demo.model.mapper.ISysUserMapper">
-  <resultMap id="BaseResultMap" type="com.www.demo.model.entity.SysUser">
+  <resultMap id="BaseResultMap" type="com.www.demo.model.entity.SysUserEntity">
     <id column="USER_ID" jdbcType="VARCHAR" property="userId" />
     <result column="USER_NAME" jdbcType="VARCHAR" property="userName" />
     <result column="PASS_WORD" jdbcType="VARCHAR" property="passWord" />
@@ -26,14 +26,14 @@
     where USER_ID = #{userId,jdbcType=VARCHAR}
   </delete>
 
-  <insert id="insert" parameterType="com.www.demo.model.entity.SysUser">
+  <insert id="insert" parameterType="com.www.demo.model.entity.SysUserEntity">
     insert into SYS_USER (USER_ID, USER_NAME, PASS_WORD,IS_DELETE,
       SYS_UPDATE_DATE, SYS_CREATE_DATE)
     values (#{userId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{passWord,jdbcType=VARCHAR},#{isDelete,jdbcType=CHAR},
-      #{sysUpdateDate,jdbcType=TIMESTAMP}, #{sysCreateDate,jdbcType=TIMESTAMP})
+      sysdate, sysdate)
   </insert>
 
-  <insert id="insertSelective" parameterType="com.www.demo.model.entity.SysUser">
+  <insert id="insertSelective" parameterType="com.www.demo.model.entity.SysUserEntity">
     insert into SYS_USER
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="userId != null">
@@ -48,12 +48,8 @@
       <if test="passWord != null">
         PASS_WORD,
       </if>
-      <if test="sysUpdateDate != null">
         SYS_UPDATE_DATE,
-      </if>
-      <if test="sysCreateDate != null">
         SYS_CREATE_DATE,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="userId != null">
@@ -68,16 +64,12 @@
       <if test="passWord != null">
         #{passWord,jdbcType=VARCHAR},
       </if>
-      <if test="sysUpdateDate != null">
-        #{sysUpdateDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="sysCreateDate != null">
-        #{sysCreateDate,jdbcType=TIMESTAMP},
-      </if>
+        sysdate,
+        sysdate,
     </trim>
   </insert>
 
-  <update id="updateByPrimaryKeySelective" parameterType="com.www.demo.model.entity.SysUser">
+  <update id="updateByPrimaryKeySelective" parameterType="com.www.demo.model.entity.SysUserEntity">
     update SYS_USER
     <set>
       <if test="userName != null">
@@ -89,27 +81,21 @@
       <if test="isDelete != null">
         IS_DELETE = #{isDelete,jdbcType=CHAR},
       </if>
-      <if test="sysUpdateDate != null">
-        SYS_UPDATE_DATE = #{sysUpdateDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="sysCreateDate != null">
-        SYS_CREATE_DATE = #{sysCreateDate,jdbcType=TIMESTAMP},
-      </if>
+        SYS_UPDATE_DATE = sysdate,
     </set>
     where USER_ID = #{userId,jdbcType=VARCHAR}
   </update>
 
-  <update id="updateByPrimaryKey" parameterType="com.www.demo.model.entity.SysUser">
+  <update id="updateByPrimaryKey" parameterType="com.www.demo.model.entity.SysUserEntity">
     update SYS_USER
     set USER_NAME = #{userName,jdbcType=VARCHAR},
       PASS_WORD = #{passWord,jdbcType=VARCHAR},
       IS_DELETE = #{isDelete,jdbcType=CHAR},
-      SYS_UPDATE_DATE = #{sysUpdateDate,jdbcType=TIMESTAMP},
-      SYS_CREATE_DATE = #{sysCreateDate,jdbcType=TIMESTAMP}
+      SYS_UPDATE_DATE = sysdate
     where USER_ID = #{userId,jdbcType=VARCHAR}
   </update>
 
-  <select id="selective" parameterType="com.www.demo.model.entity.SysUser" resultMap="BaseResultMap">
+  <select id="selective" parameterType="com.www.demo.model.entity.SysUserEntity" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from SYS_USER
@@ -125,7 +111,7 @@
     </if>
   </select>
 
-  <select id="findUserList" parameterType="com.www.demo.model.entity.SysUser" resultMap="BaseResultMap">
+  <select id="findUserList" parameterType="com.www.demo.model.entity.SysUserEntity" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from SYS_USER

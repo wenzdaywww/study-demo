@@ -1,7 +1,7 @@
 package com.www.demo.qadmin.controller.user;
 
 import com.www.demo.app.service.ISysUserService;
-import com.www.demo.model.entity.SysUser;
+import com.www.demo.model.entity.SysUserEntity;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,7 +33,7 @@ public class UserController {
      */
     @GetMapping("/qadmin/userList")
     public String findUserList(Model model){
-        List<SysUser> list = sysUserService.findUserList(null);
+        List<SysUserEntity> list = sysUserService.findUserList(null);
         model.addAttribute("userList",list);
         return "/qadmin/user_index";
     }
@@ -63,21 +63,21 @@ public class UserController {
     @PostMapping("/qadmin/addUser")
     @Transactional(rollbackForClassName = "Exception")
     public String saveUser(@RequestParam("id")String userId, @RequestParam("name")String userName, @RequestParam("password")String password, Model model){
-        SysUser sysUser = sysUserService.selectByPrimaryKey(userId);
-        if (sysUser == null){
-            sysUser = new SysUser();
-            sysUser.setUserId(userId);
-            sysUser.setUserName(userName);
-            sysUser.setPassWord(password);
-            sysUser.setIsDelete("0");
-            sysUser.setSysCreateDate(new Date());
-            sysUser.setSysUpdateDate(new Date());
-            sysUserService.insertSelective(sysUser);
+        SysUserEntity sysUserEntity = sysUserService.selectByPrimaryKey(userId);
+        if (sysUserEntity == null){
+            sysUserEntity = new SysUserEntity();
+            sysUserEntity.setUserId(userId);
+            sysUserEntity.setUserName(userName);
+            sysUserEntity.setPassWord(password);
+            sysUserEntity.setIsDelete("0");
+            sysUserEntity.setSysCreateDate(new Date());
+            sysUserEntity.setSysUpdateDate(new Date());
+            sysUserService.insertSelective(sysUserEntity);
         }else {
-            sysUser.setUserName(userName);
-            sysUser.setPassWord(password);
-            sysUser.setSysUpdateDate(new Date());
-            sysUserService.updateByPrimaryKeySelective(sysUser);
+            sysUserEntity.setUserName(userName);
+            sysUserEntity.setPassWord(password);
+            sysUserEntity.setSysUpdateDate(new Date());
+            sysUserService.updateByPrimaryKeySelective(sysUserEntity);
         }
         return findUserList(model);
     }
@@ -93,10 +93,10 @@ public class UserController {
     @GetMapping("/qadmin/deleteUser/{id}")
     @Transactional(rollbackForClassName = "Exception")
     public String deleteUser(@PathVariable("id")String userId, Model model){
-        SysUser sysUser = sysUserService.selectByPrimaryKey(userId);
-        if (sysUser != null){
-            sysUser.setIsDelete(StringUtils.equals("1",sysUser.getIsDelete()) ? "0" : "1");
-            sysUserService.updateByPrimaryKeySelective(sysUser);
+        SysUserEntity sysUserEntity = sysUserService.selectByPrimaryKey(userId);
+        if (sysUserEntity != null){
+            sysUserEntity.setIsDelete(StringUtils.equals("1", sysUserEntity.getIsDelete()) ? "0" : "1");
+            sysUserService.updateByPrimaryKeySelective(sysUserEntity);
         }
         return findUserList(model);
     }

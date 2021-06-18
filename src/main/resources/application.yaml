@@ -13,6 +13,8 @@ server:
 logging:
   file:
     path: D:/log/StudyDemo
+  level:
+    com.www.demo.model.mapper: debug
 #spring配置
 spring:
   messages:
@@ -68,6 +70,9 @@ spring:
 #mapper.xml在resource文件夹下的配置
 mybatis:
   mapper-locations: classpath:mapper/*.xml
+  #实现数据库下划线字段到POJO类驼峰形式的自动映射
+  configuration:
+    map-underscore-to-camel-case: true
 
 #配置JSP视图解析器
 #spring.mvc.view.prefix=/

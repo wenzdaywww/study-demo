@@ -6,23 +6,19 @@ import java.util.Date;
 
 /**
  * @version 1.0
- * @Description 角色表对象
+ * @Description 用户角色表对象
  * @Author www
- * @Date 2021/5/19 23:38
+ * @Date 2021/5/19 23:36
  */
-public class SysRole implements Serializable {
+public class SysUserRoleEntity implements Serializable {
+    /**
+     * 用户ID
+     **/
+    private String userId;
     /**
      * 角色ID
      **/
     private BigDecimal roleId;
-    /**
-     * 角色名称
-     **/
-    private String roleName;
-    /**
-     * 角色描述
-     **/
-    private String description;
     /**
      * 更新时间
      **/
@@ -34,20 +30,20 @@ public class SysRole implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
     public BigDecimal getRoleId() {
         return roleId;
     }
 
     public void setRoleId(BigDecimal roleId) {
         this.roleId = roleId;
-    }
-
-    public String getRoleName() {
-        return roleName;
-    }
-
-    public void setRoleName(String roleName) {
-        this.roleName = roleName;
     }
 
     public Date getSysUpdateDate() {
@@ -64,13 +60,5 @@ public class SysRole implements Serializable {
 
     public void setSysCreateDate(Date sysCreateDate) {
         this.sysCreateDate = sysCreateDate;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 }

@@ -9,7 +9,7 @@ import java.util.Date;
  * @Author www
  * @Date 2021/5/19 23:37
  */
-public class SysUser implements Serializable {
+public class SysUserEntity implements Serializable {
     /**
      * 用户ID
      */

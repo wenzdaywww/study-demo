@@ -1,7 +1,8 @@
 package com.www.demo.app.controller;
 
 import com.www.demo.app.service.ISysUserService;
-import com.www.demo.model.entity.SysUser;
+import com.www.demo.model.dto.SysUserDTO;
+import com.www.demo.model.entity.SysUserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,32 +20,34 @@ public class SysUserController {
 	@Autowired
 	private ISysUserService sysUserService;
 	
-	@RequestMapping("/find")
+	@RequestMapping("/find/{id}")
 	@ResponseBody
-	public Object index(String id) {
-		SysUser sysUser = sysUserService.selectByPrimaryKey(id);
+	public Object index(@PathVariable("id") String id) {
+		SysUserEntity reqUser = new SysUserEntity();
+		reqUser.setUserId(id);
+		SysUserDTO sysUser = sysUserService.findUserInfo(reqUser);
 		return sysUser;
 	}
 
-	@RequestMapping("/add")
+	@RequestMapping("/add/{id}/{name}/{psd}")
 	@Transactional(rollbackFor = Exception.class)
-	public @ResponseBody Object add(String id,String name,String psd){
-		SysUser sysUser = new SysUser();
-		sysUser.setUserId(id);
-		sysUser.setUserName(name);
-		sysUser.setPassWord(psd);
-		sysUserService.insertSelective(sysUser);
-		return sysUser;
+	public @ResponseBody Object add(@PathVariable("id")String id,@PathVariable("name")String name,@PathVariable("psd")String psd){
+		SysUserEntity sysUserEntity = new SysUserEntity();
+		sysUserEntity.setUserId(id);
+		sysUserEntity.setUserName(name);
+		sysUserEntity.setPassWord(psd);
+		sysUserService.insertSelective(sysUserEntity);
+		return sysUserEntity;
 	}
 
-	@RequestMapping("/update")
+	@RequestMapping("/update/{id}/{name}/{psd}")
 	@Transactional(rollbackFor = Exception.class)
-	public @ResponseBody Object update(String id,String name,String psd){
-		SysUser sysUser = sysUserService.selectByPrimaryKey(id);
-		sysUser.setUserName(name);
-		sysUser.setPassWord(psd);
-		sysUserService.updateByPrimaryKeySelective(sysUser);
-		return sysUser;
+	public @ResponseBody Object update(@PathVariable("id")String id,@PathVariable("name")String name,@PathVariable("psd")String psd){
+		SysUserEntity sysUserEntity = sysUserService.selectByPrimaryKey(id);
+		sysUserEntity.setUserName(name);
+		sysUserEntity.setPassWord(psd);
+		sysUserService.updateByPrimaryKeySelective(sysUserEntity);
+		return sysUserEntity;
 	}
 
 }

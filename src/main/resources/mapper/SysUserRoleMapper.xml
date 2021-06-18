@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.www.demo.model.mapper.ISysUserRoleMapper">
-  <resultMap id="BaseResultMap" type="com.www.demo.model.entity.SysUserRole">
+  <resultMap id="BaseResultMap" type="com.www.demo.model.entity.SysUserRoleEntity">
     <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
     <result column="ROLE_ID" jdbcType="DECIMAL" property="roleId" />
     <result column="SYS_UPDATE_DATE" jdbcType="TIMESTAMP" property="sysUpdateDate" />
@@ -12,14 +12,13 @@
     USER_ID, ROLE_ID, SYS_UPDATE_DATE, SYS_CREATE_DATE
   </sql>
 
-  <insert id="insert" parameterType="com.www.demo.model.entity.SysUserRole">
+  <insert id="insert" parameterType="com.www.demo.model.entity.SysUserRoleEntity">
     insert into SYS_USER_ROLE (USER_ID, ROLE_ID, SYS_UPDATE_DATE,
       SYS_CREATE_DATE)
-    values (#{userId,jdbcType=VARCHAR}, #{roleId,jdbcType=DECIMAL}, #{sysUpdateDate,jdbcType=TIMESTAMP},
-      #{sysCreateDate,jdbcType=TIMESTAMP})
+    values (#{userId,jdbcType=VARCHAR}, #{roleId,jdbcType=DECIMAL}, sysdate,sysdate)
   </insert>
 
-  <insert id="insertSelective" parameterType="com.www.demo.model.entity.SysUserRole">
+  <insert id="insertSelective" parameterType="com.www.demo.model.entity.SysUserRoleEntity">
     insert into SYS_USER_ROLE
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="userId != null">
@@ -28,12 +27,8 @@
       <if test="roleId != null">
         ROLE_ID,
       </if>
-      <if test="sysUpdateDate != null">
         SYS_UPDATE_DATE,
-      </if>
-      <if test="sysCreateDate != null">
         SYS_CREATE_DATE,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="userId != null">
@@ -42,25 +37,21 @@
       <if test="roleId != null">
         #{roleId,jdbcType=DECIMAL},
       </if>
-      <if test="sysUpdateDate != null">
-        #{sysUpdateDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="sysCreateDate != null">
-        #{sysCreateDate,jdbcType=TIMESTAMP},
-      </if>
+        sysdate,
+        sysdate,
     </trim>
   </insert>
 
-  <select id="selective" parameterType="com.www.demo.model.entity.SysUserRole" resultMap="BaseResultMap">
+  <select id="selective" parameterType="com.www.demo.model.entity.SysUserRoleEntity" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from SYS_USER_ROLE
     where 1=1
-    <if test="userName != null">
-      AND USER_NAME = #{userName,jdbcType=VARCHAR}
+    <if test="userId != null">
+      AND USER_ID = #{userId,jdbcType=VARCHAR}
     </if>
     <if test="roleId != null">
-      AND roleId = #{roleId,jdbcType=DECIMAL}
+      AND ROLE_ID = #{roleId,jdbcType=DECIMAL}
     </if>
   </select>
 </mapper>

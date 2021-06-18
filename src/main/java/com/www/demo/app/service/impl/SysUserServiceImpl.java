@@ -2,8 +2,10 @@ package com.www.demo.app.service.impl;
 
 import com.www.demo.app.service.ISysUserService;
 import com.www.demo.model.dto.SysUserDTO;
-import com.www.demo.model.entity.SysUser;
-import com.www.demo.model.entity.SysUserRole;
+import com.www.demo.model.entity.SysMenuEntity;
+import com.www.demo.model.entity.SysUserEntity;
+import com.www.demo.model.entity.SysUserRoleEntity;
+import com.www.demo.model.mapper.ISysRoleMenuMapper;
 import com.www.demo.model.mapper.ISysUserMapper;
 import com.www.demo.model.mapper.ISysUserRoleMapper;
 import org.springframework.beans.BeanUtils;
@@ -24,16 +26,18 @@ public class SysUserServiceImpl implements ISysUserService {
     private ISysUserMapper sysUserMapper;
     @Autowired
     private ISysUserRoleMapper sysUserRoleMapper;
+    @Autowired
+    private ISysRoleMenuMapper sysRoleMenuMapper;
     /**
      * @Author www
      * @Date 2021/6/7 22:56
      * @Description 查询用户信息
      *
      * @param user 查询条件
-     * @return java.util.List<com.www.demo.model.entity.SysUser>
+     * @return java.util.List<com.www.demo.model.entity.SysUserEntity>
      */
     @Override
-    public List<SysUser> findUserList(SysUser user) {
+    public List<SysUserEntity> findUserList(SysUserEntity user) {
         return sysUserMapper.findUserList(user);
     }
 
@@ -43,10 +47,10 @@ public class SysUserServiceImpl implements ISysUserService {
      * @Description 根据用户ID查询用户信息
      *
      * @param userId 用户ID
-     * @return com.www.demo.model.SysUser 用户信息
+     * @return com.www.demo.model.SysUserEntity 用户信息
      */
     @Override
-    public SysUser selectByPrimaryKey(String userId) {
+    public SysUserEntity selectByPrimaryKey(String userId) {
         return sysUserMapper.selectByPrimaryKey(userId);
     }
     /**
@@ -58,32 +62,8 @@ public class SysUserServiceImpl implements ISysUserService {
      * @return int 插入条数
      */
     @Override
-    public int insertSelective(SysUser record) {
+    public int insertSelective(SysUserEntity record) {
         return sysUserMapper.insertSelective(record);
-    }
-    /**
-     * @Author www
-     * @Date 2021/5/19 23:41
-     * @Description 根据主键删除用户信息
-     *
-     * @param userId 用户ID
-     * @return int 删除条数
-     */
-    @Override
-    public int deleteByPrimaryKey(String userId) {
-        return sysUserMapper.deleteByPrimaryKey(userId);
-    }
-    /**
-     * @Author www
-     * @Date 2021/5/19 23:41
-     * @Description 插入用户信息
-     *
-     * @param record 用户信息
-     * @return int 插入条数
-     */
-    @Override
-    public int insert(SysUser record) {
-        return sysUserMapper.insert(record);
     }
     /**
      * @Author www
@@ -94,20 +74,8 @@ public class SysUserServiceImpl implements ISysUserService {
      * @return int 插入条数
      */
     @Override
-    public int updateByPrimaryKeySelective(SysUser record) {
+    public int updateByPrimaryKeySelective(SysUserEntity record) {
         return sysUserMapper.updateByPrimaryKeySelective(record);
-    }
-    /**
-     * @Author www
-     * @Date 2021/5/19 23:42
-     * @Description 根据主键更新用户信息
-     *
-     * @param record 用户信息
-     * @return int 插入条数
-     */
-    @Override
-    public int updateByPrimaryKey(SysUser record) {
-        return sysUserMapper.updateByPrimaryKey(record);
     }
     /**
      * @Author www
@@ -118,7 +86,7 @@ public class SysUserServiceImpl implements ISysUserService {
      * @return int 用户信息
      */
     @Override
-    public SysUser selective(SysUser record) {
+    public SysUserEntity selective(SysUserEntity record) {
         if (record != null){
             return sysUserMapper.selective(record);
         }
@@ -129,18 +97,21 @@ public class SysUserServiceImpl implements ISysUserService {
      * @Date 2021/6/15 23:15
      * @Description 查询用户信息，包含角色信息
      *
-     * @param req 查询条件
+     * @param reqUser 查询条件
      * @return com.www.demo.model.dto.SysUserDTO
      */
     @Override
-    public SysUserDTO findUserInfo(SysUser req) {
-        SysUser user = selective(req);
+    public SysUserDTO findUserInfo(SysUserEntity reqUser) {
+        SysUserEntity user = selective(reqUser);
         SysUserDTO dto = new SysUserDTO();
         BeanUtils.copyProperties(user,dto);
-        SysUserRole role = new SysUserRole();
-        role.setUserId(req.getUserId());
-        List<SysUserRole> roleList = sysUserRoleMapper.selective(role);
+        SysUserRoleEntity role = new SysUserRoleEntity();
+        role.setUserId(reqUser.getUserId());
+        List<SysUserRoleEntity> roleList = sysUserRoleMapper.selective(role);
         dto.setRoleList(roleList);
+        List<SysMenuEntity> menuList = sysRoleMenuMapper.findMenuList(roleList);
+        dto.setMenuList(menuList);
         return dto;
     }
+
 }

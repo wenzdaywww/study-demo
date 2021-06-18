@@ -1,6 +1,6 @@
 package com.www.demo.model.mapper;
 
-import com.www.demo.model.entity.SysUserRole;
+import com.www.demo.model.entity.SysUserRoleEntity;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ public interface ISysUserRoleMapper {
      * @param record 用户角色信息
      * @return int 插入条数
      */
-    int insert(SysUserRole record);
+    int insert(SysUserRoleEntity record);
     /**
      * @Author www
      * @Date 2021/5/19 23:42
@@ -28,7 +28,7 @@ public interface ISysUserRoleMapper {
      * @param record 用户角色信息
      * @return int 插入条数
      */
-    int insertSelective(SysUserRole record);
+    int insertSelective(SysUserRoleEntity record);
 
     /**
      * @Author www
@@ -36,7 +36,7 @@ public interface ISysUserRoleMapper {
      * @Description 查询用户的角色信息
      *
      * @param record 查询条件
-     * @return java.util.List<com.www.demo.model.entity.SysUserRole>
+     * @return java.util.List<com.www.demo.model.entity.SysUserRoleEntity>
      */
-    List<SysUserRole> selective(SysUserRole record);
+    List<SysUserRoleEntity> selective(SysUserRoleEntity record);
 }

@@ -1,14 +1,12 @@
 package com.www.demo.websocket.controller;
 
 import com.www.demo.app.service.ISysUserService;
-import com.www.demo.model.entity.SysUser;
-import com.www.demo.model.mapper.ISysUserMapper;
+import com.www.demo.model.entity.SysUserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -49,10 +47,10 @@ public class WebSocketController {
 	 */
 	@GetMapping("/chat/{userId}/{password}")
 	public ModelAndView chat(@PathVariable("userId") String userId,@PathVariable("password") String password, HttpServletRequest request) throws UnknownHostException {
-		SysUser reqUser = new SysUser();
+		SysUserEntity reqUser = new SysUserEntity();
 		reqUser.setUserId(userId);
 		reqUser.setPassWord(password);
-		SysUser user = sysUserService.selective(reqUser);
+		SysUserEntity user = sysUserService.selective(reqUser);
 		if (user==null) {
 			ModelAndView modelAndView = new ModelAndView("/websocket/login");
 			modelAndView.addObject("info","用户名或密码错误！！！");
