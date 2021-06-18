@@ -11,7 +11,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
  * @version 1.0
- * @Description 扩展MVC配置
+ * @Description 扩展MVC配置，用于自定义配置MVC
  * @Author www
  * @Date 2021/6/6 18:09
  */

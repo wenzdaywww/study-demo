@@ -19,7 +19,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class RedisController {
     @Autowired
     private IRedisService redisService;
-
+    /**
+     * @Author www
+     * @Date 2021/6/18 23:43
+     * @Description 保存数据
+     *
+     * @param type 数据类型
+     * @param key key值
+     * @param value value值
+     * @return java.lang.Object
+     */
     @RequestMapping("/put/{type}/{key}/{value}")
     public @ResponseBody Object put(@PathVariable("type") String type,@PathVariable("key") String key,@PathVariable("value") String value){
         if (StringUtils.equals(type,"str")){
@@ -35,7 +44,15 @@ public class RedisController {
         }
         return value;
     }
-
+    /**
+     * @Author www
+     * @Date 2021/6/18 23:43
+     * @Description 获取数据
+     *
+     * @param type 数据类型
+     * @param key key值
+     * @return java.lang.Object
+     */
     @RequestMapping("/get/{type}/{key}")
     public @ResponseBody Object get(@PathVariable("type") String type, @PathVariable("key") String key){
         if (StringUtils.equals(type,"hash")){

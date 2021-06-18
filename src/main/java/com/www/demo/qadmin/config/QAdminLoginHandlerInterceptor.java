@@ -8,7 +8,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  * @version 1.0
- * @Description 登录拦截器
+ * @Description 登录拦截器，用于自定义Spring MVC的拦截器
  * @Author www
  * @Date 2021/6/6 21:47
  */
