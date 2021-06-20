@@ -7,8 +7,8 @@
 </head>
 <body>
 <div class="container">
-    <p id="userId" align="center" style="display: none" th:text="${userId}"></p>
-    <p id="userName" align="center" style="display: none" th:text="${userName}"></p>
+    <p id="userId" align="center" style="display: none" th:text="${session.user != null ? session.user.userId : ''}"></p>
+    <p id="userName" align="center" style="display: none" th:text="${session.user != null ? session.user.userName : ''}"></p>
     <!-- 左侧列表 -->
     <div class="list">
         <!-- 我的头像 -->
@@ -17,7 +17,7 @@
                 <div class="avatar">
                    <img th:src="@{/websocket/img/img2.jpg}" />
                 </div>
-                <div style="padding-left: 5px;padding-top: 10px;" >[[${userName}]]</div>
+                <div style="padding-left: 5px;padding-top: 10px;" >[[${session.user != null ? session.user.userName : ''}]]</div>
             </div>
         </div>
         <!-- 好友列表 -->

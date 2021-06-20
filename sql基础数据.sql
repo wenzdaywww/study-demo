@@ -61,8 +61,10 @@ insert into SYS_MENU (menu_id, menu_code,menu_name,parent_id,menu_icon,menu_url,
 values (seq_sys_menu_id.nextval,'webSet','网站设置',(select menu_id from SYS_MENU where menu_code='sysManage'),null,null,9,'0',sysdate,sysdate);
 
 insert into SYS_MENU (menu_id, menu_code,menu_name,parent_id,menu_icon,menu_url,order_num,is_delete,SYS_UPDATE_DATE,SYS_CREATE_DATE)
-values (seq_sys_menu_id.nextval,'/qadmin/logout','退出登录',null,'&#xe65c;','logout',10,'0',sysdate,sysdate);
+values (seq_sys_menu_id.nextval,'logout','退出登录',null,'&#xe65c;','/qadmin/logout',10,'0',sysdate,sysdate);
 
+insert into SYS_MENU (menu_id, menu_code,menu_name,parent_id,menu_icon,menu_url,order_num,is_delete,SYS_UPDATE_DATE,SYS_CREATE_DATE)
+values (seq_sys_menu_id.nextval,'contact','联系我们',null,'&#xe63a;','/ws/login',11,'0',sysdate,sysdate);
 --5、插入角色菜单信息
 delete from sys_role_menu where 1=1;
 insert into sys_role_menu (sys_role_menu_id, role_id,menu_id,SYS_UPDATE_DATE,SYS_CREATE_DATE)
@@ -98,6 +100,9 @@ values (seq_sys_role_menu_id.nextval,(select c.ROLE_ID from sys_role c where c.R
 insert into sys_role_menu (sys_role_menu_id, role_id,menu_id,SYS_UPDATE_DATE,SYS_CREATE_DATE)
 values (seq_sys_role_menu_id.nextval,(select c.ROLE_ID from sys_role c where c.ROLE_NAME='admin'),
         (select menu_id from SYS_MENU where menu_code='logout'),sysdate,sysdate);
+insert into sys_role_menu (sys_role_menu_id, role_id,menu_id,SYS_UPDATE_DATE,SYS_CREATE_DATE)
+values (seq_sys_role_menu_id.nextval,(select c.ROLE_ID from sys_role c where c.ROLE_NAME='admin'),
+        (select menu_id from SYS_MENU where menu_code='contact'),sysdate,sysdate);
 
 insert into sys_role_menu (sys_role_menu_id, role_id,menu_id,SYS_UPDATE_DATE,SYS_CREATE_DATE)
 values (seq_sys_role_menu_id.nextval,(select c.ROLE_ID from sys_role c where c.ROLE_NAME='user'),
@@ -111,6 +116,9 @@ values (seq_sys_role_menu_id.nextval,(select c.ROLE_ID from sys_role c where c.R
 insert into sys_role_menu (sys_role_menu_id, role_id,menu_id,SYS_UPDATE_DATE,SYS_CREATE_DATE)
 values (seq_sys_role_menu_id.nextval,(select c.ROLE_ID from sys_role c where c.ROLE_NAME='user'),
         (select menu_id from SYS_MENU where menu_code='logout'),sysdate,sysdate);
+insert into sys_role_menu (sys_role_menu_id, role_id,menu_id,SYS_UPDATE_DATE,SYS_CREATE_DATE)
+values (seq_sys_role_menu_id.nextval,(select c.ROLE_ID from sys_role c where c.ROLE_NAME='user'),
+        (select menu_id from SYS_MENU where menu_code='contact'),sysdate,sysdate);
 
 insert into sys_role_menu (sys_role_menu_id, role_id,menu_id,SYS_UPDATE_DATE,SYS_CREATE_DATE)
 values (seq_sys_role_menu_id.nextval,(select c.ROLE_ID from sys_role c where c.ROLE_NAME='test'),
@@ -127,6 +135,9 @@ values (seq_sys_role_menu_id.nextval,(select c.ROLE_ID from sys_role c where c.R
 insert into sys_role_menu (sys_role_menu_id, role_id,menu_id,SYS_UPDATE_DATE,SYS_CREATE_DATE)
 values (seq_sys_role_menu_id.nextval,(select c.ROLE_ID from sys_role c where c.ROLE_NAME='test'),
         (select menu_id from SYS_MENU where menu_code='logout'),sysdate,sysdate);
+insert into sys_role_menu (sys_role_menu_id, role_id,menu_id,SYS_UPDATE_DATE,SYS_CREATE_DATE)
+values (seq_sys_role_menu_id.nextval,(select c.ROLE_ID from sys_role c where c.ROLE_NAME='test'),
+        (select menu_id from SYS_MENU where menu_code='contact'),sysdate,sysdate);
 
 insert into sys_role_menu (sys_role_menu_id, role_id,menu_id,SYS_UPDATE_DATE,SYS_CREATE_DATE)
 values (seq_sys_role_menu_id.nextval,(select c.ROLE_ID from sys_role c where c.ROLE_NAME='guest'),

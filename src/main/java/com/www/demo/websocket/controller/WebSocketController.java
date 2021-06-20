@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.websocket.server.PathParam;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -63,10 +64,10 @@ public class WebSocketController {
 			reqUser.setUserId(userId);
 			SysUserEntity user = sysUserService.selective(reqUser);
 			if (user != null){
-				model.addAttribute("userId",user.getUserId());
-				model.addAttribute("userName",user.getUserName());
+				HttpSession session = request.getSession();
+				session.setAttribute("user",user);
 			}else {
-				throw new UnknownAccountException();
+				model.addAttribute("info","用户名不存在！！！");
 			}
 			/** http下使用ws://xxx   https下使用wss://xxx */
 			model.addAttribute("webSocketUrl","wss://"+ InetAddress.getLocalHost().getHostAddress()+":"+request.getServerPort()+request.getContextPath()+"/ws");
