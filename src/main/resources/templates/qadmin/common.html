@@ -18,7 +18,7 @@
         <li th:each="menu : ${session.user.menuList}">
             <!--父级分类-->
             <a th:if="${menu.parentId == null}" th:href="${menu.menuUrl != null ? menu.menuUrl : 'javascript:;'}">
-                <i class="layui-icon"></i>
+                <i class="layui-icon">[[${menu.menuIco}]]</i>
                 <span th:text="${menu.menuName}"></span>
                 <i class="layui-icon arrow">&#xe61a;</i>
                 <i class="layui-icon active">&#xe623;</i>

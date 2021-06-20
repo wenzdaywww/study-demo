@@ -16,8 +16,8 @@
 <link rel="stylesheet" href="/layui/css/layui.css">
 <link rel="stylesheet" href="/qadmin/admin/css/style.css">
 <script src="/layui/layui.js"></script>
-<script src="/qadmin/common/jquery-3.3.1.min.js"></script>
-<script src="/qadmin/common/vue.min.js"></script>
+<script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/js/vue.min.js"></script>
 
 ```
 
@@ -105,7 +105,7 @@ var menuUrl = '/qadmin/data/menu.json';
 
 [{
     "name": "顶级菜单",
-    "icon": "&#xe68e;", //layui内置图标
+    "icon": "&#xe68e;", /layui内置图标
     "url": "index.html", //地址
     "hidden": false, 
     "list": []

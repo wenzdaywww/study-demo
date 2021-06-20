@@ -7,8 +7,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import javax.servlet.http.HttpSession;
-
 /**
  * @version 1.0
  * @Description Security配置类
@@ -49,6 +47,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/qadmin")
                 .clearAuthentication(true)//清除身份认证信息，默认为true
                 .invalidateHttpSession(true);//是否使session失效，默认为true
+        //记住我功能
+        http.rememberMe().rememberMeParameter("rmb");//配置记住我的参数
     }
     /**
      * @Author www
@@ -60,7 +60,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        //从内存获取登录信息
+        //使用xml配置用户信息需要使用该方法
+//        super.configure(auth);
+        //从内存获取用户信息，需要设置密码加密方式
         auth.inMemoryAuthentication().passwordEncoder(new BCryptPasswordEncoder())
                 .withUser("admin").password(new BCryptPasswordEncoder().encode("www362412")).roles("admin");
     }
@@ -74,6 +76,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     public void configure(WebSecurity web) throws Exception {
-        super.configure(web);
+        //忽略静态资源的拦截
+        web.ignoring().antMatchers("/qadmin/admin/**","/qadmin/common/**","/qadmin/data/**");
     }
 }

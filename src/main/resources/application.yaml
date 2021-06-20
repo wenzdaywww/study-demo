@@ -17,6 +17,12 @@ logging:
     com.www.demo.model.mapper: debug
 #spring配置
 spring:
+  #security配置用户
+#  security:
+#    user:
+#      name: www
+#      password: www362412
+#      roles: admin
   messages:
     # i18n国际化文件路径
     basename: i18n.login
