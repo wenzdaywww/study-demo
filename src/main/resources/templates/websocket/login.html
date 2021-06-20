@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>登陆聊天</title>
-<script type="text/javascript" th:src="@{/js/jquery-3.3.1.min.js}"></script>
-<link rel="stylesheet" th:href="@{/websocket/css/login.css}"/>
+	<title>登陆聊天</title>
+	<script type="text/javascript" th:src="@{/js/jquery-3.3.1.min.js}"></script>
+	<link rel="stylesheet" th:href="@{/websocket/css/login.css}"/>
 </head>
 <body>
 	<div class="logo_box">
@@ -11,19 +11,19 @@
 		<p align="center" style="color: red;" th:text="${info}"></p>
 		<form>
 			<div class="input_outer">
-				<span class="u_user"></span> <input id="userId" name="userId"
-					class="text" type="text" placeholder="任意中文名">
+				<span class="u_user"></span>
+				<input id="userId" name="userId" class="text" type="text" placeholder="任意中文名">
 			</div>
 			<div class="input_outer">
-				<span class="us_uer"></span> <input id="password" name="password"
-					class="text" type="password" placeholder="任意密码">
+				<span class="us_uer"></span>
+				<input id="password" name="password" class="text" type="password" placeholder="任意密码">
 			</div>
 			<div class="mb2">
-				<a class="act-but submit" onclick="login()">登录</a>
+<!--				<input style="width: 100%" class="act-but submit" type="submit" value="登录"/>-->
+                <a class="act-but submit" onclick="login()">登录</a>
 			</div>
 		</form>
 	</div>
-
 	<script>
 		/**
 		 * 登陆聊天
@@ -40,7 +40,5 @@
 			e.keyCode === 13 && login();
 		};
 	</script>
-
-
 </body>
 </html>

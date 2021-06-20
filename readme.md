@@ -4,4 +4,6 @@
 4、集成websocket框架
 5、集成redis框架
 6、集成druid数据源
-6、集成security权限认证
+(shiro和security二选一)
+7、集成security权限认证：在QAdmin管理后台集成security
+8、集成shiro权限认证 ：在websocket聊天页面中集成shiro

@@ -30,7 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.authorizeRequests()
                 //设置允许访问的路径
-                .antMatchers("/","/ws","/qadmin","/qadmin/login").permitAll()
+                .antMatchers("/","/ws/**","/qadmin","/qadmin/login").permitAll()
                 //设置运行角色的路径
                 .antMatchers("/qadmin/**").hasRole("admin")
                 .and()
@@ -60,11 +60,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        //使用xml配置用户信息需要使用该方法
+        //1、使用xml配置用户信息需要使用该方法
 //        super.configure(auth);
-        //从内存获取用户信息，需要设置密码加密方式
+        //2、从内存获取用户信息，需要设置密码加密方式
         auth.inMemoryAuthentication().passwordEncoder(new BCryptPasswordEncoder())
                 .withUser("admin").password(new BCryptPasswordEncoder().encode("www362412")).roles("admin");
+        //3、从数据库查询用户信息
     }
     /**
      * @Author www
