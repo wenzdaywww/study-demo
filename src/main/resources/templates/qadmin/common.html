@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <!--顶栏-->
 <header th:fragment="headerBar">
-    <h1 th:text="${session.user != null ? session.user.userName : ''}"></h1>
+    <h1 th:text="${session.adminUser != null ? session.adminUser.userName : ''}"></h1>
     <div class="breadcrumb">
         <i class="layui-icon">&#xe715;</i>
         <ul>
@@ -14,8 +14,8 @@
 </header>
 <!--左栏-->
 <div class="left" th:fragment="menu">
-    <ul class="cl" th:if="${session.user != null && session.user.menuList != null}">
-        <li th:each="menu : ${session.user.menuList}">
+    <ul class="cl" th:if="${session.adminUser != null && session.adminUser.menuList != null}">
+        <li th:each="menu : ${session.adminUser.menuList}">
             <!--父级分类-->
             <a th:if="${menu.parentId == null}" th:href="${menu.menuUrl != null ? menu.menuUrl : 'javascript:;'}">
                 <i class="layui-icon">[[${menu.menuIco}]]</i>

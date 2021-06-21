@@ -25,7 +25,7 @@ public class QAdminLoginHandlerInterceptor implements HandlerInterceptor {
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        Object user = request.getSession().getAttribute("user");
+        Object user = request.getSession().getAttribute("adminUser");
         if (user == null){
             request.setAttribute("info","没有权限，请先登录！");
             System.out.println("-------没有权限，请先登录！-------");

@@ -3,8 +3,11 @@ package com.www.demo.shiro.config;
 import com.www.demo.app.service.ISysUserService;
 import com.www.demo.model.entity.SysUserEntity;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @Date 2021/6/20 16:16
  */
 public class UserRealm extends AuthorizingRealm {
+    private static Log LOG = LogFactory.getLog(UserRealm.class);
     @Autowired
     private ISysUserService sysUserService;
     /**
@@ -27,9 +31,9 @@ public class UserRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-        System.out.println("-----shiro授权-----");
-
-        return null;
+        LOG.info("-----> shiro授权");
+        SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
+        return authorizationInfo;
     }
 
     /**
@@ -41,7 +45,7 @@ public class UserRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
-        System.out.println("-----shiro认证-----");
+        LOG.info("-----> shiro认证");
         //获取用户信息
         UsernamePasswordToken token = (UsernamePasswordToken)authenticationToken;
         //查询用户

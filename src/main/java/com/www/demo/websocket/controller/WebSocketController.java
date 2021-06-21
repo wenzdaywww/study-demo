@@ -3,18 +3,19 @@ package com.www.demo.websocket.controller;
 import com.www.demo.app.service.ISysUserService;
 import com.www.demo.model.entity.SysUserEntity;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.websocket.server.PathParam;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
@@ -26,6 +27,8 @@ import java.net.UnknownHostException;
  */
 @Controller
 public class WebSocketController {
+    private static Logger LOG = LoggerFactory.getLogger(WebSocketController.class);
+
 	@Autowired
 	private ISysUserService sysUserService;
 	/**
@@ -35,9 +38,10 @@ public class WebSocketController {
 	 *
 	 * @return org.springframework.web.servlet.ModelAndView
 	 */
-	@GetMapping("/ws/login")
+	@GetMapping("/ws")
 	public ModelAndView login() {
-		return new ModelAndView("/websocket/login");
+        LOG.info("-----> websocket登录页面");
+	    return new ModelAndView("/websocket/login");
 	}
 	/**
 	 * @Author www
@@ -49,9 +53,9 @@ public class WebSocketController {
 	 * @param request
 	 * @return org.springframework.web.servlet.ModelAndView
 	 */
-	@RequestMapping("/ws/chat/{userId}/{password}")
-	public String chat(@PathVariable("userId") String userId, @PathVariable("password") String password, HttpServletRequest request, Model model) throws UnknownHostException {
-		System.out.println("-----websocket登录-----");
+	@PostMapping("/ws/login")
+	public String chat(String userId, String password, HttpServletRequest request,Model model) throws UnknownHostException {
+        LOG.info("-----> websocket登录认证");
 		//获取当前用户
 		Subject subject = SecurityUtils.getSubject();
 		//封装用户的登录信息
@@ -71,10 +75,10 @@ public class WebSocketController {
 			}
 			/** http下使用ws://xxx   https下使用wss://xxx */
 			model.addAttribute("webSocketUrl","wss://"+ InetAddress.getLocalHost().getHostAddress()+":"+request.getServerPort()+request.getContextPath()+"/ws");
-			return "/websocket/chat";
+			return "redirect:/ws/index";
 		}catch (Exception e){
 			model.addAttribute("info","用户名或密码错误！！！");
-			return "/websocket/login";
+			return "/ws/login";
 		}
 	}
 }

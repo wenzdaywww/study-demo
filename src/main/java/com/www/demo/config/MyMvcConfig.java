@@ -30,6 +30,7 @@ public class MyMvcConfig implements WebMvcConfigurer {
         registry.addViewController("/qadmin").setViewName("login");
         registry.addViewController("/qadmin/index").setViewName("/qadmin/login");
         registry.addViewController("/qadmin/main").setViewName("/qadmin/index");
+        registry.addViewController("/ws/index").setViewName("/websocket/index");
     }
 
     /**

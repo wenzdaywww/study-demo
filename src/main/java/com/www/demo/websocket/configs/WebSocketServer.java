@@ -6,6 +6,10 @@ import com.www.demo.model.entity.SysUserEntity;
 import com.www.demo.websocket.pojo.Message;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -29,6 +33,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Component
 @ServerEndpoint("/ws/{userId}") //配置websocket的连接路径
 public class WebSocketServer {
+	private static Logger LOG = LoggerFactory.getLogger(WebSocketServer.class);
 	/** 全部在线会话  PS: 基于场景考虑 这里使用线程安全的Map存储会话对象。**/
 	private static Map<String, WebSocketServer> onlineSessions = new ConcurrentHashMap<>();
 	/**  当前会话对象 ***/
@@ -47,7 +52,7 @@ public class WebSocketServer {
 	 */
 	@OnOpen
 	public void onOpen(Session session, @PathParam("userId") String userId) {
-		System.out.println("userId="+userId+" 打开连接。。。");
+		LOG.info("-----> userId="+userId+" 打开连接。。。");
 		this.session = session;
 		this.userId = userId;
 		onlineSessions.put(userId, this);
@@ -77,7 +82,7 @@ public class WebSocketServer {
 	 */
 	@OnMessage
 	public void onMessage(Session session, String jsonStr) {
-		System.out.println("userId="+this.userId+" 发送消息："+jsonStr);
+		LOG.info("-----> userId={} 发送消息：{}",this.userId,jsonStr);
 		Message message = JSON.parseObject(jsonStr, Message.class);
 		message.setType(Message.SPEAK);
 		//接收人ID不为空，单独发送消息
@@ -95,7 +100,7 @@ public class WebSocketServer {
 	 */
 	@OnClose
 	public void onClose() {
-		System.out.println("userId="+userId+" 关闭连接。。。");
+		LOG.info("-----> userId={} 关闭连接。。。",this.userId);
 		onlineSessions.remove(userId);
 	}
 	/**
@@ -108,7 +113,7 @@ public class WebSocketServer {
 	 */
 	@OnError
 	public void onError(Session session, Throwable error) {
-		System.out.println("userId="+userId+" 发送异常。。。");
+		LOG.info("-----> userId={} 发送异常。。。",this.userId);
 		error.printStackTrace();
 	}
 	/**
@@ -126,7 +131,7 @@ public class WebSocketServer {
 					webSocketServer.session.getBasicRemote().sendText(msg);
 				}
 			} catch (IOException e) {
-				e.printStackTrace();
+				LOG.error(e.getMessage());
 			}
 		});
 	}
@@ -141,13 +146,13 @@ public class WebSocketServer {
 	private void sendMessageToOne(String receiveUsrId,String msg){
 	    if (onlineSessions.containsKey(receiveUsrId)){
 	        try {
-                System.out.println("用户ID："+this.userId+" 发送消息到用户ID："+receiveUsrId + ",消息内容："+msg);
+                LOG.info("-----> 用户ID：{} 发送消息到用户ID：{},消息内容：{}",this.userId,receiveUsrId,msg);
                 onlineSessions.get(receiveUsrId).session.getBasicRemote().sendText(msg);
             }catch (Exception e){
-                e.printStackTrace();
+				LOG.error(e.getMessage());
             }
         }else {
-            System.out.println("用户ID："+receiveUsrId + " 不在线,接收消息失败");
+			LOG.info("-----> 用户ID：{} 不在线,接收消息失败",receiveUsrId);
         }
     }
 

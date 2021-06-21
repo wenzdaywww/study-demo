@@ -9,7 +9,7 @@
 	<div class="logo_box">
 		<h3>登录聊天</h3>
 		<p align="center" style="color: red;" th:text="${info}"></p>
-		<form>
+		<form method="post" th:action="@{/ws/login}">
 			<div class="input_outer">
 				<span class="u_user"></span>
 				<input id="userId" name="userId" class="text" type="text" placeholder="任意中文名">
@@ -19,18 +19,11 @@
 				<input id="password" name="password" class="text" type="password" placeholder="任意密码">
 			</div>
 			<div class="mb2">
-<!--				<input style="width: 100%" class="act-but submit" type="submit" value="登录"/>-->
-                <a class="act-but submit" onclick="login()">登录</a>
+				<input style="width: 100%" class="act-but submit" type="submit" value="登录"/>
 			</div>
 		</form>
 	</div>
 	<script>
-		/**
-		 * 登陆聊天
-		 */
-		function login() {
-			location.href = "/ws/chat/" + $('#userId').val()+"/" + $('#password').val();
-		}
 		/**
 		 * 使用ENTER登陆
 		 */

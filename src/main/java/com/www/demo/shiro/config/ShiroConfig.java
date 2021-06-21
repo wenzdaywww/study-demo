@@ -62,11 +62,19 @@ public class ShiroConfig {
          * role 用于某个角色权限才能访问
          */
         Map<String,String> filterMap = new LinkedHashMap<>();
-        filterMap.put("/ws/login","anon");//无需认证即可访问
-        filterMap.put("/ws/chat","authc");//必须认证才能访问
+        // 过滤链定义，从上向下顺序执行，一般将/**放在最为下边  这是一个坑呢，一不小心代码就不好使了;
+        filterMap.put("/ws/login","anon");//无需认证即可访问,如静态资源
+        filterMap.put("/ws/index","authc");//必须认证才能访问
+        filterMap.put("/ws/**","authc");//必须认证才能访问
+        //配置退出 过滤器,其中的具体的退出代码Shiro已经替我们实现了
+//        filterMap.put("/logout", "logout");
         factoryBean.setFilterChainDefinitionMap(filterMap);
         //设置登录页面
-        factoryBean.setLoginUrl("/ws/login");
+        factoryBean.setLoginUrl("/ws");
+        // 登录成功后要跳转的链接
+//        factoryBean.setSuccessUrl("/ws/login");
+        //设置未授权页面
+//        factoryBean.setUnauthorizedUrl("/ws/login");
         return factoryBean;
     }
 }
