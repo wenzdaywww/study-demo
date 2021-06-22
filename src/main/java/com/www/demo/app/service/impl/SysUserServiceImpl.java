@@ -3,6 +3,7 @@ package com.www.demo.app.service.impl;
 import com.www.demo.app.service.ISysUserService;
 import com.www.demo.model.dto.SysUserDTO;
 import com.www.demo.model.entity.SysMenuEntity;
+import com.www.demo.model.entity.SysRoleEntity;
 import com.www.demo.model.entity.SysUserEntity;
 import com.www.demo.model.entity.SysUserRoleEntity;
 import com.www.demo.model.mapper.ISysRoleMenuMapper;
@@ -105,9 +106,7 @@ public class SysUserServiceImpl implements ISysUserService {
         SysUserEntity user = selective(reqUser);
         SysUserDTO dto = new SysUserDTO();
         BeanUtils.copyProperties(user,dto);
-        SysUserRoleEntity role = new SysUserRoleEntity();
-        role.setUserId(reqUser.getUserId());
-        List<SysUserRoleEntity> roleList = sysUserRoleMapper.selective(role);
+        List<SysRoleEntity> roleList = sysUserRoleMapper.findUserRoles(reqUser.getUserId());
         dto.setRoleList(roleList);
         List<SysMenuEntity> menuList = sysRoleMenuMapper.findMenuList(roleList);
         dto.setMenuList(menuList);

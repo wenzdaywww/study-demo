@@ -54,4 +54,11 @@
       AND ROLE_ID = #{roleId,jdbcType=DECIMAL}
     </if>
   </select>
+
+  <select id="findUserRoles" parameterType="java.lang.String" resultType="com.www.demo.model.entity.SysRoleEntity">
+    select distinct r.* from SYS_USER_ROLE u,SYS_ROLE R where r.ROLE_ID=u.ROLE_ID
+    <if test="userId != null">
+      AND USER_ID = #{userId,jdbcType=VARCHAR}
+    </if>
+  </select>
 </mapper>

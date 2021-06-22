@@ -1,16 +1,24 @@
 package com.www.demo.shiro.config;
 
 import com.www.demo.app.service.ISysUserService;
+import com.www.demo.model.dto.SysUserDTO;
+import com.www.demo.model.entity.SysRoleEntity;
 import com.www.demo.model.entity.SysUserEntity;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @version 1.0
@@ -33,6 +41,19 @@ public class UserRealm extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         LOG.info("-----> shiro授权");
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
+        //查询当前用户
+        Subject subject = SecurityUtils.getSubject();
+        SysUserEntity user = (SysUserEntity)subject.getPrincipal();
+        SysUserEntity reqUser = new SysUserEntity();
+        reqUser.setUserId(user.getUserId());
+        SysUserDTO userDTO = sysUserService.findUserInfo(reqUser);
+        if (CollectionUtils.isNotEmpty(userDTO.getRoleList())){
+            List<String> roleList = new ArrayList<>();
+            for (SysRoleEntity roleEntity : userDTO.getRoleList()){
+                roleList.add(roleEntity.getRoleName());
+            }
+            authorizationInfo.addRoles(roleList);
+        }
         return authorizationInfo;
     }
 
@@ -56,6 +77,6 @@ public class UserRealm extends AuthorizingRealm {
             return null;
         }
         //密码验证 shiro实现
-        return new SimpleAuthenticationInfo("",user.getPassWord(),"");
+        return new SimpleAuthenticationInfo(user,user.getPassWord(),"");
     }
 }

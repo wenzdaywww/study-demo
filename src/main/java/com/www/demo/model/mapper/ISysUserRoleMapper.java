@@ -1,6 +1,8 @@
 package com.www.demo.model.mapper;
 
+import com.www.demo.model.entity.SysRoleEntity;
 import com.www.demo.model.entity.SysUserRoleEntity;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -11,6 +13,14 @@ import java.util.List;
  * @Date 2021/5/19 23:39
  */
 public interface ISysUserRoleMapper {
+    /**
+     * @Author www
+     * @Date 2021/6/22 22:00
+     * @Description 根据用户ID查询用户拥有角色
+     * @param userId 用户ID
+     * @return java.util.List<com.www.demo.model.entity.SysRoleEntity> 角色集合
+     */
+    List<SysRoleEntity> findUserRoles(@Param("userId") String userId);
     /**
      * @Author www
      * @Date 2021/5/19 23:42

@@ -1,6 +1,7 @@
 package com.www.demo.model.mapper;
 
 import com.www.demo.model.entity.SysMenuEntity;
+import com.www.demo.model.entity.SysRoleEntity;
 import com.www.demo.model.entity.SysRoleMenuEntity;
 import com.www.demo.model.entity.SysUserRoleEntity;
 import org.apache.ibatis.annotations.Param;
@@ -23,7 +24,7 @@ public interface ISysRoleMenuMapper {
      * @param roleList 角色ID集合
      * @return java.util.List<com.www.demo.model.entity.SysMenuEntity>
      */
-    List<SysMenuEntity> findMenuList(@Param("roleList") List<SysUserRoleEntity> roleList);
+    List<SysMenuEntity> findMenuList(@Param("roleList") List<SysRoleEntity> roleList);
     /**
      * @Author www
      * @Date 2021/6/18 21:08

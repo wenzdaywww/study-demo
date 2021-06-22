@@ -2,6 +2,8 @@ package com.www.demo.config;
 
 import com.www.demo.i18n.I18nLocaleResolver;
 import com.www.demo.qadmin.config.QAdminLoginHandlerInterceptor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.LocaleResolver;
@@ -17,6 +19,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  */
 @Configuration
 public class MyMvcConfig implements WebMvcConfigurer {
+    private static Logger LOG = LoggerFactory.getLogger(MyMvcConfig.class);
     /**
      * @Author www
      * @Date 2021/6/6 22:45
@@ -27,6 +30,7 @@ public class MyMvcConfig implements WebMvcConfigurer {
      */
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
+        LOG.info("-----> 加载视图控制器");
         registry.addViewController("/qadmin").setViewName("login");
         registry.addViewController("/qadmin/index").setViewName("/qadmin/login");
         registry.addViewController("/qadmin/main").setViewName("/qadmin/index");

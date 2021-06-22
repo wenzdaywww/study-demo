@@ -59,12 +59,12 @@ public class ShiroConfig {
          * authc 必须认证才能访问
          * user 必须用于【记住我】功能才能使用
          * perms 用于对某个资源的权限才能访问
-         * role 用于某个角色权限才能访问
+         * roles 用于某个角色权限才能访问
          */
         Map<String,String> filterMap = new LinkedHashMap<>();
         // 过滤链定义，从上向下顺序执行，一般将/**放在最为下边  这是一个坑呢，一不小心代码就不好使了;
         filterMap.put("/ws/login","anon");//无需认证即可访问,如静态资源
-        filterMap.put("/ws/index","authc");//必须认证才能访问
+        filterMap.put("/ws/index","roles[user]");//必须认证才能访问
         filterMap.put("/ws/**","authc");//必须认证才能访问
         //配置退出 过滤器,其中的具体的退出代码Shiro已经替我们实现了
 //        filterMap.put("/logout", "logout");

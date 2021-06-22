@@ -84,7 +84,7 @@
     where SYS_ROLE_MENU_ID = #{sysRoleMenuId,jdbcType=DECIMAL}
   </update>
 
-  <select id="findMenuList" parameterType="com.www.demo.model.entity.SysUserRoleEntity" resultType="com.www.demo.model.entity.SysMenuEntity">
+  <select id="findMenuList" parameterType="com.www.demo.model.entity.SysRoleEntity" resultType="com.www.demo.model.entity.SysMenuEntity">
     select distinct m.* from SYS_ROLE_MENU r
      left join SYS_MENU m on m.MENU_ID=r.MENU_ID
     where r.ROLE_ID in
