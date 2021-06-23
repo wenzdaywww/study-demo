@@ -1,7 +1,7 @@
 package com.www.demo.model.entity;
 
-import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @version 1.0
@@ -9,7 +9,7 @@ import java.util.Date;
  * @Author www
  * @Date 2021/5/19 23:37
  */
-public class SysUserEntity implements Serializable {
+public class SysUserEntity {
     /**
      * 用户ID
      */
@@ -34,6 +34,30 @@ public class SysUserEntity implements Serializable {
      * 创建时间
      **/
     private Date sysCreateDate;
+    /**
+     *用户角色信息
+     **/
+    private List<SysRoleEntity> roleList;
+    /**
+     * 用户权限菜单
+     **/
+    private List<SysMenuEntity> menuList;
+
+    public List<SysRoleEntity> getRoleList() {
+        return roleList;
+    }
+
+    public void setRoleList(List<SysRoleEntity> roleList) {
+        this.roleList = roleList;
+    }
+
+    public List<SysMenuEntity> getMenuList() {
+        return menuList;
+    }
+
+    public void setMenuList(List<SysMenuEntity> menuList) {
+        this.menuList = menuList;
+    }
 
     public String getIsDelete() {
         return isDelete;

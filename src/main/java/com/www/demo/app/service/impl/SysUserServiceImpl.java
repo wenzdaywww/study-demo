@@ -1,15 +1,12 @@
 package com.www.demo.app.service.impl;
 
 import com.www.demo.app.service.ISysUserService;
-import com.www.demo.model.dto.SysUserDTO;
 import com.www.demo.model.entity.SysMenuEntity;
 import com.www.demo.model.entity.SysRoleEntity;
 import com.www.demo.model.entity.SysUserEntity;
-import com.www.demo.model.entity.SysUserRoleEntity;
 import com.www.demo.model.mapper.ISysRoleMenuMapper;
 import com.www.demo.model.mapper.ISysUserMapper;
 import com.www.demo.model.mapper.ISysUserRoleMapper;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -99,18 +96,34 @@ public class SysUserServiceImpl implements ISysUserService {
      * @Description 查询用户信息，包含角色信息
      *
      * @param reqUser 查询条件
-     * @return com.www.demo.model.dto.SysUserDTO
+     * @return com.www.demo.model.entity.SysUserEntity
      */
     @Override
-    public SysUserDTO findUserInfo(SysUserEntity reqUser) {
+    public SysUserEntity findUserAllInfo(SysUserEntity reqUser) {
         SysUserEntity user = selective(reqUser);
-        SysUserDTO dto = new SysUserDTO();
-        BeanUtils.copyProperties(user,dto);
         List<SysRoleEntity> roleList = sysUserRoleMapper.findUserRoles(reqUser.getUserId());
-        dto.setRoleList(roleList);
+        user.setRoleList(roleList);
         List<SysMenuEntity> menuList = sysRoleMenuMapper.findMenuList(roleList);
-        dto.setMenuList(menuList);
-        return dto;
+        user.setMenuList(menuList);
+        return user;
     }
-
+    /**
+     * @Author www
+     * @Date 2021/6/15 23:15
+     * @Description 查询用户信息，包含角色信息
+     * @param userId 用户id
+     * @return com.www.demo.model.entity.SysUserEntity
+     */
+    @Override
+    public SysUserEntity findUserAllInfo(String userId) {
+        SysUserEntity user = selectByPrimaryKey(userId);
+        if (user == null){
+            return null;
+        }
+        List<SysRoleEntity> roleList = sysUserRoleMapper.findUserRoles(userId);
+        user.setRoleList(roleList);
+        List<SysMenuEntity> menuList = sysRoleMenuMapper.findMenuList(roleList);
+        user.setMenuList(menuList);
+        return user;
+    }
 }

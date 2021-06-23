@@ -1,12 +1,13 @@
 package com.www.demo.app.controller;
 
 import com.www.demo.app.service.ISysUserService;
-import com.www.demo.model.dto.SysUserDTO;
 import com.www.demo.model.entity.SysUserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @version 1.0
@@ -32,7 +33,7 @@ public class SysUserController {
 	public Object index(@PathVariable("id") String id) {
 		SysUserEntity reqUser = new SysUserEntity();
 		reqUser.setUserId(id);
-		SysUserDTO sysUser = sysUserService.findUserInfo(reqUser);
+		SysUserEntity sysUser = sysUserService.findUserAllInfo(reqUser);
 		return sysUser;
 	}
 	/**

@@ -21,7 +21,6 @@ public class ShiroConfig {
      * @Author www
      * @Date 2021/6/20 17:46
      * @Description 创建用于进行权限信息的验证的Realm类
-     * 
      * @return com.www.demo.shiro.config.UserRealm
      */
     @Bean(name = "userRealm")

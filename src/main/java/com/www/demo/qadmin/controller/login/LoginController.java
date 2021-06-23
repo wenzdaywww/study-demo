@@ -1,7 +1,6 @@
 package com.www.demo.qadmin.controller.login;
 
 import com.www.demo.app.service.ISysUserService;
-import com.www.demo.model.dto.SysUserDTO;
 import com.www.demo.model.entity.SysUserEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,10 +38,10 @@ public class LoginController {
         return new ModelAndView("/qadmin/login");
     }
     /**
-     * @Author www
-     * @Date 2021/6/6 16:55
-     * @Description 登入
-     *
+     * @author www
+     * @date 2021/6/6 16:55
+     * @description 登入
+     * @deprecated 在使用spring security管理登录认证后，该方法就不能使用
      * @param userId 用户ID
      * @param password 用户密码
      * @return org.springframework.web.servlet.ModelAndView
@@ -53,12 +52,12 @@ public class LoginController {
         SysUserEntity reqUser = new SysUserEntity();
         reqUser.setUserId(userId);
         reqUser.setPassWord(password);
-        SysUserDTO userDTO = sysUserService.findUserInfo(reqUser);
-        if (userDTO == null) {
+        SysUserEntity userEntity = sysUserService.findUserAllInfo(reqUser);
+        if (userEntity == null) {
             model.addAttribute("info","用户名或密码错误！！！");
             return "/qadmin/login";
         }else {
-            session.setAttribute("adminUser",userDTO);
+            session.setAttribute("adminUser",userEntity);
             return "redirect:/qadmin/main";
         }
     }

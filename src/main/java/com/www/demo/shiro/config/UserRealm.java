@@ -1,7 +1,6 @@
 package com.www.demo.shiro.config;
 
 import com.www.demo.app.service.ISysUserService;
-import com.www.demo.model.dto.SysUserDTO;
 import com.www.demo.model.entity.SysRoleEntity;
 import com.www.demo.model.entity.SysUserEntity;
 import org.apache.commons.collections.CollectionUtils;
@@ -46,10 +45,10 @@ public class UserRealm extends AuthorizingRealm {
         SysUserEntity user = (SysUserEntity)subject.getPrincipal();
         SysUserEntity reqUser = new SysUserEntity();
         reqUser.setUserId(user.getUserId());
-        SysUserDTO userDTO = sysUserService.findUserInfo(reqUser);
-        if (CollectionUtils.isNotEmpty(userDTO.getRoleList())){
+        SysUserEntity sysUserEntity = sysUserService.findUserAllInfo(reqUser);
+        if (CollectionUtils.isNotEmpty(sysUserEntity.getRoleList())){
             List<String> roleList = new ArrayList<>();
-            for (SysRoleEntity roleEntity : userDTO.getRoleList()){
+            for (SysRoleEntity roleEntity : sysUserEntity.getRoleList()){
                 roleList.add(roleEntity.getRoleName());
             }
             authorizationInfo.addRoles(roleList);

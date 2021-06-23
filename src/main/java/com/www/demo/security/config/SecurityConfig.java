@@ -1,11 +1,17 @@
 package com.www.demo.security.config;
 
+import com.www.demo.security.impl.LoginFailureHandler;
+import com.www.demo.security.impl.LoginSuccessHandler;
+import com.www.demo.security.impl.UserDetailsServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import javax.annotation.Resource;
 
 /**
  * @version 1.0
@@ -15,6 +21,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
  */
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+    @Autowired
+    private UserDetailsServiceImpl userDetailsService;
+    @Resource
+    private LoginSuccessHandler loginSuccessHandler;
+    @Resource
+    private LoginFailureHandler loginFailureHandler;
 
     /**
      * @Author www
@@ -36,6 +48,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 //没有权限默认跳转登录页面
                 .formLogin().loginPage("/qadmin")//用户未登录时，访问任何资源都转跳到该路径，即登录页面
+                .successHandler(loginSuccessHandler)
+                .failureHandler(loginFailureHandler)
                 .loginProcessingUrl("/qadmin/login")//登录表单form中action的地址，也就是处理认证请求的路径
                 .usernameParameter("user")//登录表单form中用户名输入框input的name名，不修改的话默认是username
                 .passwordParameter("pwd")//form中密码输入框input的name名，不修改的话默认是password
@@ -63,14 +77,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         //1、使用xml配置用户信息需要使用该方法
 //        super.configure(auth);
         //2、从内存获取用户信息，需要设置密码加密方式
-        auth.inMemoryAuthentication().passwordEncoder(new BCryptPasswordEncoder())
-                .withUser("admin").password(new BCryptPasswordEncoder().encode("www362412")).roles("admin");
+//        auth.inMemoryAuthentication().passwordEncoder(new BCryptPasswordEncoder())
+//                .withUser("admin").password(new BCryptPasswordEncoder().encode("www362412")).roles("admin");
         //3、从数据库查询用户信息
+        auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
     }
     /**
      * @Author www
      * @Date 2021/6/16 22:50
-     * @Description 配置Spring Security的Filter链。
+     * @Description 配置Spring Security的Filter链
      *
      * @param web
      * @return void
