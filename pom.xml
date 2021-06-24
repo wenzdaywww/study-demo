@@ -10,10 +10,10 @@
 	</parent>
 	<!-- 当前项目信息-->
 	<groupId>com.www</groupId>
-	<artifactId>StudyDemo</artifactId>
+	<artifactId>BootDemo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
-	<name>StudyDemo</name>
+	<name>BootDemo</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
