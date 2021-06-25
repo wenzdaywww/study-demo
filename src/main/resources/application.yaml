@@ -12,7 +12,7 @@ server:
 #日志设置
 logging:
   file:
-    path: D:/log/StudyDemo
+    path: D:/log/BootDemo
   level:
     com.www.demo.model.mapper: debug
 #spring配置

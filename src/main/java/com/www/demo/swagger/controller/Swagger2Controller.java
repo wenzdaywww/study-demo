@@ -4,7 +4,6 @@ import com.www.demo.app.service.ISysUserService;
 import com.www.demo.model.entity.SysUserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -42,7 +41,6 @@ public class Swagger2Controller {
      * @return java.lang.Object
      */
     @PostMapping("/add/{id}/{name}/{psd}")
-    @Transactional(rollbackFor = Exception.class)
     public @ResponseBody Object add(@PathVariable("id")String id,@PathVariable("name")String name,@PathVariable("psd")String psd){
         SysUserEntity sysUserEntity = new SysUserEntity();
         sysUserEntity.setUserId(id);
@@ -61,7 +59,6 @@ public class Swagger2Controller {
      * @return java.lang.Object
      */
     @PostMapping("/update/{id}/{name}/{psd}")
-    @Transactional(rollbackFor = Exception.class)
     public @ResponseBody Object update(@PathVariable("id")String id,@PathVariable("name")String name,@PathVariable("psd")String psd){
         SysUserEntity sysUserEntity = sysUserService.selectByPrimaryKey(id);
         sysUserEntity.setUserName(name);
