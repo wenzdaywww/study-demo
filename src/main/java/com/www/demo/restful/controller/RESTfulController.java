@@ -19,13 +19,13 @@ public class RESTfulController {
     private ISysUserService sysUserService;
 
     @GetMapping("/get/{id}")
-    public @ResponseBody Object get(@PathVariable("id") String userId){
+    public @ResponseBody SysUserEntity get(@PathVariable("id") String userId){
         SysUserEntity sysUserEntity = sysUserService.selectByPrimaryKey(userId);
         return sysUserEntity;
     }
 
     @PostMapping("/post/{id}")
-    public @ResponseBody Object post(@PathVariable("id") String userId){
+    public @ResponseBody SysUserEntity post(@PathVariable("id") String userId){
         SysUserEntity sysUserEntity = sysUserService.selectByPrimaryKey(userId);
         return sysUserEntity;
     }

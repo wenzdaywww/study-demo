@@ -1,5 +1,8 @@
 package com.www.demo.model.entity;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModel;
+
 import java.util.Date;
 import java.util.List;
 
@@ -9,6 +12,7 @@ import java.util.List;
  * @Author www
  * @Date 2021/5/19 23:37
  */
+@ApiModel("用户信息")
 public class SysUserEntity {
     /**
      * 用户ID
