@@ -1,8 +1,8 @@
 package com.www.demo.redis.controller;
 
-import com.www.demo.redis.service.IRedisService;
+import com.www.demo.model.entity.SysUserEntity;
+import com.www.demo.redis.util.RedisUtil;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,8 +17,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/redis")
 public class RedisController {
-    @Autowired
-    private IRedisService redisService;
     /**
      * @Author www
      * @Date 2021/6/18 23:43
@@ -31,16 +29,19 @@ public class RedisController {
      */
     @RequestMapping("/put/{type}/{key}/{value}")
     public @ResponseBody Object put(@PathVariable("type") String type,@PathVariable("key") String key,@PathVariable("value") String value){
+        SysUserEntity userEntity = new SysUserEntity();
+        userEntity.setUserId(key);
+        userEntity.setUserName(value);
         if (StringUtils.equals(type,"str")){
-            redisService.putString(key,value);
+            RedisUtil.set(key,userEntity);
         }else if (StringUtils.equals(type,"hash")){
-            redisService.putHash(key,value);
+            RedisUtil.hSet(key,userEntity);
         }else if (StringUtils.equals(type,"list")){
-            redisService.putList(key,value);
+            RedisUtil.lSet(key,userEntity);
         }else if (StringUtils.equals(type,"set")){
-            redisService.putSet(key,value);
+            RedisUtil.sSet(key,userEntity);
         }else if (StringUtils.equals(type,"zset")){
-            redisService.putZSet(key,value);
+            RedisUtil.zsSet(key,userEntity);
         }
         return value;
     }
@@ -56,15 +57,15 @@ public class RedisController {
     @RequestMapping("/get/{type}/{key}")
     public @ResponseBody Object get(@PathVariable("type") String type, @PathVariable("key") String key){
         if (StringUtils.equals(type,"hash")){
-            return redisService.getHash(key);
+            return RedisUtil.hGet(key);
         }else if (StringUtils.equals(type,"list")){
-            return redisService.getList(key);
+            return RedisUtil.lGet(key);
         }else if (StringUtils.equals(type,"set")){
-            return redisService.getSet(key);
+            return RedisUtil.sGet(key);
         }else if (StringUtils.equals(type,"zset")){
-            return redisService.getZSet(key);
+            return RedisUtil.zsGet(key);
         }else {
-            return redisService.getString(key);
+            return RedisUtil.get(key);
         }
     }
 }
