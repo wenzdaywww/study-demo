@@ -14,7 +14,7 @@
 ```html
 
 <link rel="stylesheet" href="/layui/css/layui.css">
-<link rel="stylesheet" href="/qadmin/admin/css/style.css">
+<link rel="stylesheet" href="/quickadmin/admin/css/style.css">
 <script src="/layui/layui.js"></script>
 <script src="/js/jquery-3.3.1.min.js"></script>
 <script src="/js/vue.min.js"></script>
@@ -77,8 +77,8 @@
 
 ```haml
 
-<script src="/qadmin/admin/js/config.js"></script>
-<script src="/qadmin/admin/js/script.js"></script>
+<script src="/quickadmin/admin/js/config.js"></script>
+<script src="/quickadmin/admin/js/script.js"></script>
 
 ```
 
@@ -94,7 +94,7 @@
 var webname = 'QAdmin';
 
 //菜单列表路径 可以是本地json 也可以是api接口
-var menuUrl = '/qadmin/data/menu.json';
+var menuUrl = '/quickadmin/data/menu.json';
 
 
 ```

@@ -11,8 +11,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import javax.annotation.Resource;
-
 /**
  * @version 1.0
  * @Description Security配置类
@@ -23,9 +21,9 @@ import javax.annotation.Resource;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
-    @Resource
+    @Autowired
     private LoginSuccessHandler loginSuccessHandler;
-    @Resource
+    @Autowired
     private LoginFailureHandler loginFailureHandler;
 
     /**
@@ -42,19 +40,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.authorizeRequests()
                 //设置允许访问的路径
-                .antMatchers("/","/ws/**","/qadmin","/qadmin/login").permitAll()
+                .antMatchers("/","/ws/**","/qadmin","/qadmin/index").permitAll()
                 //设置运行角色的路径
                 .antMatchers("/qadmin/**").hasRole("admin")
                 .and()
                 //没有权限默认跳转登录页面
                 .formLogin().loginPage("/qadmin")//用户未登录时，访问任何资源都转跳到该路径，即登录页面
-                .successHandler(loginSuccessHandler)
-                .failureHandler(loginFailureHandler)
                 .loginProcessingUrl("/qadmin/login")//登录表单form中action的地址，也就是处理认证请求的路径
                 .usernameParameter("user")//登录表单form中用户名输入框input的name名，不修改的话默认是username
                 .passwordParameter("pwd")//form中密码输入框input的name名，不修改的话默认是password
-                .defaultSuccessUrl("/qadmin/main")//登录认证成功后默认转跳的路径
-                .failureForwardUrl("/qadmin")//登录认证失败后默认转跳的路径
+                //登录认证成功后默认转跳的路径,如果设置了failureHandler就不能使用该方法
+//                .defaultSuccessUrl("/qadmin/main")
+                //登录认证成功后的处理器,如果设置了defaultSuccessUrl就不能使用该方法
+                .successHandler(loginSuccessHandler)
+                //登录认证失败后默认转跳的路径,如果设置了failureHandler就不能使用该方法
+//                .failureUrl("/qadmin/index")
+                //登录认证失败后的处理器,如果设置了failureUrl就不能使用该方法
+                .failureHandler(loginFailureHandler)
                 .and()
                 ///qadmin/logout非post请求，需要关闭CSRF
                 .logout().logoutUrl("/qadmin/logout")//配置注销登录请求url为"/user/logout"，默认为"/logout"
@@ -93,6 +95,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         //忽略静态资源的拦截
-        web.ignoring().antMatchers("/qadmin/admin/**","/qadmin/common/**","/qadmin/data/**");
+        web.ignoring().antMatchers("/quickadmin/admin/**","/quickadmin/common/**","/quickadmin/data/**");
     }
 }

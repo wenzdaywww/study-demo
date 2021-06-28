@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>后台首页 - QAdmin后台模板</title>
     <link rel="stylesheet" href="/layui/css/layui.css">
-    <link rel="stylesheet" href="/qadmin/admin/css/style.css">
+    <link rel="stylesheet" href="/quickadmin/admin/css/style.css">
     <script src="/layui/layui.js"></script>
     <script src="/js/jquery-3.3.1.min.js"></script>
     <script src="/js/vue.min.js"></script>
@@ -23,10 +23,10 @@
 
 <div id="app">
     <!--顶栏-->
-    <div th:insert="~{/qadmin/common::headerBar}"></div>
+    <div th:insert="~{/quickadmin/common::headerBar}"></div>
     <div class="main" id="app">
         <!--左栏-->
-        <div th:insert="~{/qadmin/common::menu}"></div>
+        <div th:insert="~{/quickadmin/common::menu}"></div>
         <!--右侧-->
         <div class="right">
             <blockquote class="layui-elem-quote">
@@ -43,7 +43,7 @@
                             <ul>
                                 <li>如果您认为QAdmin对你有所帮助,你可以扫描以上二维码支持我们</li>
                                 <li>您的支持,将会出现在我们官网展现</li>
-                                <li><img height="180" src="/qadmin/admin/img/pay.png" /></li>
+                                <li><img height="180" src="/quickadmin/admin/img/pay.png" /></li>
                             </ul>
                         </div>
                     </div>
@@ -209,8 +209,8 @@
         </div>
     </div>
 </div>
-<script src="/qadmin/admin/js/config.js"></script>
-<script src="/qadmin/admin/js/script.js"></script>
+<script src="/quickadmin/admin/js/config.js"></script>
+<script src="/quickadmin/admin/js/script.js"></script>
 <script type="text/javascript">
     //模拟登录状态,实际使用时请删除掉
     if(!sessionStorage.isLgoin){

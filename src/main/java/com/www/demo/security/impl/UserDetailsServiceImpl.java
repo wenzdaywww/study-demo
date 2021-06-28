@@ -15,7 +15,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -54,6 +58,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         }
         //密码必须加密，否则无效
         User user = new User(userEntity.getUserId(), new BCryptPasswordEncoder().encode(userEntity.getPassWord()),authorities);
+        //获取当前session
+        ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        HttpServletRequest request = requestAttributes.getRequest();
+        HttpSession session = request.getSession();
+        session.setAttribute("adminUser",userEntity);
         return user;
     }
 }

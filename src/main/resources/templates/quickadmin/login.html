@@ -3,7 +3,7 @@
 
 <head>
     <title>管理员登陆 - QAdmin后台模板</title>
-    <link rel="stylesheet" th:href="@{/qadmin/admin/css/login.css}"/>
+    <link rel="stylesheet" th:href="@{/quickadmin/admin/css/login.css}"/>
     <link rel="stylesheet" th:href="@{/layui/css/layui.css}"/>
     <script th:src="@{/layui/layui.js}"></script>
 </head>
@@ -11,7 +11,7 @@
 <body id="login">
 <div class="login">
     <h2>[[#{login.title}]]</h2>
-    <p align="center" style="color: red;margin-bottom: 30px;" th:text="${info}"></p>
+    <p align="center" style="color: red;margin-bottom: 30px;" th:text="${session.message}"></p>
     <form class="layui-form" method="post" th:action="@{/qadmin/login}">
         <div class="layui-form-item">
             <input type="username" name="user" th:placeholder="#{login.username}" required lay-verify="required"  class="layui-input">

@@ -35,7 +35,7 @@ public class UserController {
     public String findUserList(Model model){
         List<SysUserEntity> list = sysUserService.findUserList(null);
         model.addAttribute("userList",list);
-        return "/qadmin/user_index";
+        return "/quickadmin/user_index";
     }
     /**
      * @Author www
@@ -47,7 +47,7 @@ public class UserController {
      */
     @GetMapping("/qadmin/addUser")
     public String toAddUserPage(Model model){
-        return "/qadmin/user_add";
+        return "/quickadmin/user_add";
     }
     /**
      * @Author www
@@ -61,7 +61,7 @@ public class UserController {
      * @return java.lang.String
      */
     @PostMapping("/qadmin/addUser")
-    @Transactional(rollbackForClassName = "Exception")
+//    @Transactional(rollbackForClassName = "Exception")
     public String saveUser(@RequestParam("id")String userId, @RequestParam("name")String userName, @RequestParam("password")String password, Model model){
         SysUserEntity sysUserEntity = sysUserService.selectByPrimaryKey(userId);
         if (sysUserEntity == null){
@@ -91,7 +91,7 @@ public class UserController {
      * @return java.lang.String
      */
     @GetMapping("/qadmin/deleteUser/{id}")
-    @Transactional(rollbackForClassName = "Exception")
+//    @Transactional(rollbackForClassName = "Exception")
     public String deleteUser(@PathVariable("id")String userId, Model model){
         SysUserEntity sysUserEntity = sysUserService.selectByPrimaryKey(userId);
         if (sysUserEntity != null){
