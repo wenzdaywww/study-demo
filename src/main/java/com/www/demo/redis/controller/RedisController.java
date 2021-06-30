@@ -3,6 +3,8 @@ package com.www.demo.redis.controller;
 import com.www.demo.model.entity.SysUserEntity;
 import com.www.demo.redis.util.RedisUtil;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/redis")
 public class RedisController {
+    private static Logger LOG = LoggerFactory.getLogger(RedisController.class);
     /**
      * @Author www
      * @Date 2021/6/18 23:43
@@ -32,6 +35,7 @@ public class RedisController {
         SysUserEntity userEntity = new SysUserEntity();
         userEntity.setUserId(key);
         userEntity.setUserName(value);
+        LOG.info("-----> put的对象：{}",userEntity);
         if (StringUtils.equals(type,"str")){
             RedisUtil.set(key,userEntity);
         }else if (StringUtils.equals(type,"hash")){
@@ -56,16 +60,19 @@ public class RedisController {
      */
     @RequestMapping("/get/{type}/{key}")
     public @ResponseBody Object get(@PathVariable("type") String type, @PathVariable("key") String key){
+        Object obj = null;
         if (StringUtils.equals(type,"hash")){
-            return RedisUtil.hGet(key);
+            obj = RedisUtil.hGet(key);
         }else if (StringUtils.equals(type,"list")){
-            return RedisUtil.lGet(key);
+            obj = RedisUtil.lGet(key);
         }else if (StringUtils.equals(type,"set")){
-            return RedisUtil.sGet(key);
+            obj = RedisUtil.sGet(key);
         }else if (StringUtils.equals(type,"zset")){
-            return RedisUtil.zsGet(key);
+            obj = RedisUtil.zsGet(key);
         }else {
-            return RedisUtil.get(key);
+            obj = RedisUtil.get(key);
         }
+        LOG.info("-----> put的对象：{}",obj);
+        return obj;
     }
 }

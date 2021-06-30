@@ -15,6 +15,15 @@ public final class RedisUtil {
     private static RedisTemplate<String,Object> redisTemplate;
     /**
      * @author www
+     * @date 2021/6/30 22:56
+     * @description 返回redisTemplate实例
+     * @return org.springframework.data.redis.core.RedisTemplate<java.lang.String, java.lang.Object>
+     */
+    public static RedisTemplate<String,Object> getRedisTemplate(){
+        return redisTemplate;
+    }
+    /**
+     * @author www
      * @date 2021/6/27 16:42
      * @description 判断key值是否存在
      * @param key 键值
