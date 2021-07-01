@@ -59,43 +59,55 @@ public final class RedisUtil {
      * @Date 2021/5/30 16:52
      * @Description 保存Hash数据
      * @param key 键值
+     * @param okey 对象键值
      * @param value 值
      * @return value
      */
-    public static Object hSet(String key, Object value){
-        redisTemplate.opsForHash().put(key,key,value);
+    public static Object hashSet(String key, String okey, Object value){
+        redisTemplate.opsForHash().put(key,okey,value);
         return value;
     }
     /**
      * @Author www
      * @Date 2021/5/30 16:52
-     * @Description 获取Hash数据
+     * @Description 获取存储在哈希表中指定字段的值
      * @param key 键值
+     * @param okey 对象字段
      * @return Object
      */
-    public static Object hGet(String key){
-        return redisTemplate.opsForHash().get(key,key);
+    public static Object hashGet(String key, String okey){
+        return redisTemplate.opsForHash().get(key,okey);
     }
     /**
      * @Author www
      * @Date 2021/5/30 16:52
-     * @Description 保存List数据
+     * @Description 获取在哈希表中指定 key 的所有字段和值
+     * @param key 键值
+     * @return Object
+     */
+    public static Object hashGet(String key){
+        return redisTemplate.opsForHash().values(key);
+    }
+    /**
+     * @Author www
+     * @Date 2021/5/30 16:52
+     * @Description 从左边保存List数据
      * @param key 键值
      * @param value 值
      * @return Object
      */
-    public static Object lSet(String key, Object value){
-        redisTemplate.opsForList().rightPush(key,value);
+    public static Object listSet(String key, Object value){
+        redisTemplate.opsForList().leftPush(key,value);
         return value;
     }
     /**
      * @Author www
      * @Date 2021/5/30 16:52
-     * @Description 获取List数据
+     * @Description 获取List集合中所有数据
      * @param key 键值
      * @return java.lang.Object
      */
-    public static Object lGet(String key){
+    public static Object listGet(String key){
         return redisTemplate.opsForList().range(key,0,-1);
     }
     /**
@@ -106,19 +118,19 @@ public final class RedisUtil {
      * @param value 值
      * @return Object
      */
-    public static Object sSet(String key, Object value){
+    public static Object setSet(String key, Object value){
        redisTemplate.opsForSet().add(key,value);
         return value;
     }
     /**
      * @Author www
      * @Date 2021/5/30 16:52
-     * @Description 获取Set数据
+     * @Description 返回Set集合中的所有数据
      * @param key 键值
      * @return java.lang.Object
      */
-    public static Object sGet(String key){
-        return redisTemplate.opsForSet().pop(key);
+    public static Object setGet(String key){
+        return redisTemplate.opsForSet().members(key);
     }
     /**
      * @Author www
@@ -126,10 +138,11 @@ public final class RedisUtil {
      * @Description 保存ZSet数据
      * @param key 键值
      * @param value 值
+     * @param score 分值
      * @return Object
      */
-    public static Object zsSet(String key, Object value){
-        redisTemplate.opsForZSet().add(key,value,-1);
+    public static Object zsetSet(String key, Object value, double score){
+        redisTemplate.opsForZSet().add(key,value,score);
         return value;
     }
     /**
@@ -139,7 +152,7 @@ public final class RedisUtil {
      * @param key 键值
      * @return java.lang.Object
      */
-    public static Object zsGet(String key){
+    public static Object zsetGet(String key){
         return redisTemplate.opsForZSet().range(key,0,-1);
     }
 

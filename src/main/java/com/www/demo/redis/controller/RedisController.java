@@ -39,13 +39,13 @@ public class RedisController {
         if (StringUtils.equals(type,"str")){
             RedisUtil.set(key,userEntity);
         }else if (StringUtils.equals(type,"hash")){
-            RedisUtil.hSet(key,userEntity);
+            RedisUtil.hashSet(key,key,userEntity);
         }else if (StringUtils.equals(type,"list")){
-            RedisUtil.lSet(key,userEntity);
+            RedisUtil.listSet(key,userEntity);
         }else if (StringUtils.equals(type,"set")){
-            RedisUtil.sSet(key,userEntity);
+            RedisUtil.setSet(key,userEntity);
         }else if (StringUtils.equals(type,"zset")){
-            RedisUtil.zsSet(key,userEntity);
+            RedisUtil.zsetSet(key,userEntity,1);
         }
         return value;
     }
@@ -62,13 +62,13 @@ public class RedisController {
     public @ResponseBody Object get(@PathVariable("type") String type, @PathVariable("key") String key){
         Object obj = null;
         if (StringUtils.equals(type,"hash")){
-            obj = RedisUtil.hGet(key);
+            obj = RedisUtil.hashGet(key);
         }else if (StringUtils.equals(type,"list")){
-            obj = RedisUtil.lGet(key);
+            obj = RedisUtil.listGet(key);
         }else if (StringUtils.equals(type,"set")){
-            obj = RedisUtil.sGet(key);
+            obj = RedisUtil.setGet(key);
         }else if (StringUtils.equals(type,"zset")){
-            obj = RedisUtil.zsGet(key);
+            obj = RedisUtil.zsetGet(key);
         }else {
             obj = RedisUtil.get(key);
         }
