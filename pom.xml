@@ -32,6 +32,18 @@
 <!--			<groupId>org.apache.tomcat.embed</groupId>-->
 <!--			<artifactId>tomcat-embed-core</artifactId>-->
 <!--		</dependency>-->
+		<!-- dubbo依赖 -->
+<!--		<dependency>-->
+<!--			<groupId>org.apache.dubbo</groupId>-->
+<!--			<artifactId>dubbo-spring-boot-starter</artifactId>-->
+<!--			<version>3.0.0</version>-->
+<!--		</dependency>-->
+		<!-- zookeeper依赖 -->
+<!--		<dependency>-->
+<!--			<groupId>com.github.sgroschupf</groupId>-->
+<!--			<artifactId>zkclient</artifactId>-->
+<!--			<version>0.1</version>-->
+<!--		</dependency>-->
 		<!-- swagger2依赖 -->
 		<dependency>
 			<groupId>io.springfox</groupId>

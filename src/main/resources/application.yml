@@ -47,7 +47,7 @@ spring:
     #druid配置
     druid:
       db-type: oracle #数据库类型
-      url: jdbc:oracle:thin:@192.168.19.128:1521:xe
+      url: jdbc:oracle:thin:@192.168.1.128:1521:xe
       username: boot
       password: www362412
       initial-size: 5 #启动程序时，在连接池中初始化多少个连接
@@ -69,7 +69,7 @@ spring:
       connect-properties: druid.stat.mergeSql=true,druid.stat.slowSqlMillis=500 #
   #redis配置
   redis:
-    host: 192.168.19.128
+    host: 192.168.1.128
     port: 6379
     password: www362412
 #Mybatis配置
