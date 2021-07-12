@@ -20,6 +20,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class SysUserController {
 	@Autowired
 	private ISysUserService sysUserService;
+
+	@RequestMapping("/hello")
+	public @ResponseBody Object hello(){
+		return "Welcome to my spring boot study！";
+	}
 	/**
 	 * @Author www
 	 * @Date 2021/6/18 23:38
@@ -47,7 +52,6 @@ public class SysUserController {
 	 * @return java.lang.Object
 	 */
 	@RequestMapping("/add/{id}/{name}/{psd}")
-	@Transactional(rollbackFor = Exception.class)
 	public @ResponseBody Object add(@PathVariable("id")String id,@PathVariable("name")String name,@PathVariable("psd")String psd){
 		SysUserEntity sysUserEntity = new SysUserEntity();
 		sysUserEntity.setUserId(id);
@@ -67,7 +71,6 @@ public class SysUserController {
 	 * @return java.lang.Object
 	 */
 	@RequestMapping("/update/{id}/{name}/{psd}")
-	@Transactional(rollbackFor = Exception.class)
 	public @ResponseBody Object update(@PathVariable("id")String id,@PathVariable("name")String name,@PathVariable("psd")String psd){
 		SysUserEntity sysUserEntity = sysUserService.selectByPrimaryKey(id);
 		sysUserEntity.setUserName(name);

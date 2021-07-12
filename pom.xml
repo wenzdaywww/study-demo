@@ -12,7 +12,7 @@
 	<groupId>com.www</groupId>
 	<artifactId>BootDemo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>pom</packaging>
 	<name>BootDemo</name>
 	<description>Demo project for Spring Boot</description>
 
@@ -127,6 +127,26 @@
 		</dependency>
 	</dependencies>
 
+	<!--配置环境的profile-->
+<!--	<profiles>-->
+<!--		&lt;!&ndash;dev默认激活，使用idea Spring Boot 配置启动工程，需要dev的配置&ndash;&gt;-->
+<!--		<profile>-->
+<!--			<id>dev</id>-->
+<!--			<properties>-->
+<!--				<profileActive>dev</profileActive>-->
+<!--			</properties>-->
+<!--			<activation>-->
+<!--				<activeByDefault>true</activeByDefault>-->
+<!--			</activation>-->
+<!--		</profile>-->
+<!--		<profile>-->
+<!--			<id>prod</id>-->
+<!--			<properties>-->
+<!--				<profileActive>prod</profileActive>-->
+<!--			</properties>-->
+<!--		</profile>-->
+<!--	</profiles>-->
+
 	<build>
 		<resources>
 		<!-- 使用jsp必须手动指定最后的编译路径，路径是springboot规定好的位置META-INF/resources -->
@@ -168,6 +188,9 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<mainClass>com.www.demo.BootDemoApplication</mainClass>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
