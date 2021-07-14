@@ -19,11 +19,10 @@ public class BootDemoApplication {
 	 * @Author www
 	 * @Date 2021/5/20 23:23
 	 * @Description springboot启动方法
-	 *
 	 * @param args
 	 * @return void
 	 */
 	public static void main(String[] args) {
-		SpringApplication.run(com.www.demo.BootDemoApplication.class, args);
+		SpringApplication.run(BootDemoApplication.class, args);
 	}
 }
