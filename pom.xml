@@ -12,7 +12,6 @@
 	<groupId>com.www</groupId>
 	<artifactId>BootDemo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>pom</packaging>
 	<name>BootDemo</name>
 	<description>Demo project for Spring Boot</description>
 
