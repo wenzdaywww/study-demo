@@ -2,7 +2,7 @@
 2、集成mybatis框架
 3、实现RESTful风格
 4、集成websocket框架
-5、集成redis框架
+5、集成redis框架，基于docker搭建redis环境
 6、集成druid数据源
 (shiro和security二选一)
 7、集成security权限认证：在QAdmin管理后台集成security
