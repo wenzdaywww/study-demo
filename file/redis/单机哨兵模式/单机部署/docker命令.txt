@@ -1,0 +1,6 @@
+#创建哨兵1
+docker run -d -p 26380:26380 --name sentinel-single1 -v /usr/local/docker/redis/config/sentinel-single1.conf:/etc/redis/sentinel.conf redis redis-sentinel /etc/redis/sentinel.conf
+#创建哨兵2
+docker run -d -p 26381:26381 --name sentinel-single2 -v /usr/local/docker/redis/config/sentinel-single2.conf:/etc/redis/sentinel.conf redis redis-sentinel /etc/redis/sentinel.conf
+#创建哨兵3
+docker run -d -p 26382:26382 --name sentinel-single3 -v /usr/local/docker/redis/config/sentinel-single3.conf:/etc/redis/sentinel.conf redis redis-sentinel /etc/redis/sentinel.conf

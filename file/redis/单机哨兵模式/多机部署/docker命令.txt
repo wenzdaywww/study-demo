@@ -1,0 +1,3 @@
+#创建哨兵
+docker run -d -p 26379:26379 --name sentinel-multiple -v /usr/local/docker/redis/config/sentinel-multiple.conf:/etc/redis/sentinel.conf redis redis-sentinel /etc/redis/sentinel.conf
+

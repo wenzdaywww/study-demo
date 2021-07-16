@@ -1,0 +1,6 @@
+#创建主机
+docker run -d -p 6380:6380 --name redis-single-master -v /usr/local/docker/redis/config/redis-single-master.conf:/etc/redis/redis.conf -v /usr/local/docker/redis/data/single-master:/data redis redis-server /etc/redis/redis.conf
+#创建从机1
+docker run -d -p 6381:6381 --name redis-single-slave1 -v /usr/local/docker/redis/config/redis-single-slave1.conf:/etc/redis/redis.conf -v /usr/local/docker/redis/data/single-slave1:/data redis redis-server /etc/redis/redis.conf
+#创建从机2
+docker run -d -p 6382:6382 --name redis-single-slave2 -v /usr/local/docker/redis/config/redis-single-slave2.conf:/etc/redis/redis.conf -v /usr/local/docker/redis/data/single-slave2:/data redis redis-server /etc/redis/redis.conf
