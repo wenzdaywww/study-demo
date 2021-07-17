@@ -35,7 +35,7 @@ public class UserController {
     public String findUserList(Model model){
         List<SysUserEntity> list = sysUserService.findUserList(null);
         model.addAttribute("userList",list);
-        return "/quickadmin/user_index";
+        return "quickadmin/user_index";
     }
     /**
      * @Author www
@@ -47,7 +47,7 @@ public class UserController {
      */
     @GetMapping("/qadmin/addUser")
     public String toAddUserPage(Model model){
-        return "/quickadmin/user_add";
+        return "quickadmin/user_add";
     }
     /**
      * @Author www

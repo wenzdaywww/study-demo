@@ -6,6 +6,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.core.env.Profiles;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.oas.annotations.EnableOpenApi;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
@@ -18,11 +19,11 @@ import java.util.ArrayList;
  * @author www
  * @version 1.0
  * @description swagger配置类
- * swagger页面访问路径：localhost:8080/swagger-ui.html
+ * swagger页面访问路径：localhost:8080/swagger-ui/index.html
  * @date 2021/6/24 23:19
  */
 @Configuration
-@EnableSwagger2
+@EnableOpenApi
 public class Swagger2Config {
     /**
      * @author www
@@ -44,7 +45,7 @@ public class Swagger2Config {
                 //配置要扫描的接口方式
                 .select().apis(RequestHandlerSelectors.basePackage("com.www.demo"))
                 //配置过滤的路径
-                .paths(PathSelectors.ant("/qadmin/**"))
+                .paths(PathSelectors.ant("qadmin/**"))
                 .build();
     }
     /**
@@ -66,8 +67,8 @@ public class Swagger2Config {
                 .apiInfo(getApiInfo())//配置API信息
                 //配置要扫描的接口方式
                 .select().apis(RequestHandlerSelectors.basePackage("com.www.demo"))
-                //配置过滤的路径
-                .paths(PathSelectors.ant("/rest/**"))
+                //配置展示的接口路径
+//                .paths(PathSelectors.ant("/rest/**"))
                 .build();
     }
     /**

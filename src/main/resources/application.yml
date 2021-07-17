@@ -9,14 +9,12 @@ server:
   servlet:
     #访问路径设置
     context-path: /
-#日志设置
-logging:
-  file:
-    path: D:/log/BootDemo
-  level:
-    com.www.demo.model.mapper: debug
+
 #spring配置
 spring:
+  profiles:
+    #配置环境文件
+    include: @profileActive@
   #security配置用户
 #  security:
 #    user:
@@ -26,10 +24,6 @@ spring:
   messages:
     # i18n国际化文件路径
     basename: i18n.login
-  #设置tomcat端口号
-  profiles:
-    #配置环境文件
-    active: dev
   #thymelea模板配置
   thymeleaf:
     #热部署文件，页面不产生缓存，及时更新
@@ -47,7 +41,7 @@ spring:
     #druid配置
     druid:
       db-type: oracle #数据库类型
-      url: jdbc:oracle:thin:@192.168.1.128:1521:xe
+      url: jdbc:oracle:thin:@192.168.1.130:1521:xe
       username: boot
       password: www362412
       initial-size: 5 #启动程序时，在连接池中初始化多少个连接
@@ -69,7 +63,7 @@ spring:
       connect-properties: druid.stat.mergeSql=true,druid.stat.slowSqlMillis=500 #
   #redis配置
   redis:
-    host: 192.168.1.128
+    host: 192.168.1.130
     port: 6379
     password: www362412
 #Mybatis配置
@@ -107,8 +101,8 @@ mybatis:
 
 #“---”可分开配置多环境文件，等效application-test.yaml
 
----
-spring:
-  profiles: test
-server:
-  port: 8082
+#---
+#spring:
+#  profiles: test
+#server:
+#  port: 8082

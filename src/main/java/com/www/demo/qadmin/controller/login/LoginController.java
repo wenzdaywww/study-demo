@@ -36,7 +36,7 @@ public class LoginController {
     @GetMapping("/qadmin")
     public String index(){
         LOG.info("-----> qadmin登录页面");
-        return "/quickadmin/login";
+        return "quickadmin/login";
     }
     /**
      * @Author www
@@ -49,6 +49,6 @@ public class LoginController {
     public String logout(HttpSession session){
         LOG.info("-----> qadmin注销");
         session.setAttribute("adminUser",null);
-        return "/quickadmin/login";
+        return "quickadmin/login";
     }
 }

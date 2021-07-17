@@ -41,7 +41,7 @@ public class WebSocketController {
 	@GetMapping("/ws")
 	public ModelAndView login() {
         LOG.info("-----> websocket登录页面");
-	    return new ModelAndView("/websocket/login");
+	    return new ModelAndView("websocket/login");
 	}
 	/**
 	 * @Author www

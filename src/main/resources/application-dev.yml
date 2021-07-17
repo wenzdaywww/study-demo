@@ -1,6 +1,17 @@
-#########
-#这是开发环境下的配置文件
-#########
-#port为服务端口，不管是https还是http请求，http的默认端口为80，https的默认端口为443
+########################
+# springboot核心配置文件
+# application.properties、application.yml、application.yaml三选一
+# 优先级：application.properties>application.yml=application.yaml
+########################
+#服务器配置
 server:
   port: 8080
+  servlet:
+    #访问路径设置
+    context-path: /
+#日志设置
+logging:
+  file:
+    path: D:/log/BootDemo
+  level:
+    com.www.demo.model.mapper: debug
