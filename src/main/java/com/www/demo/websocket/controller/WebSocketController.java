@@ -1,7 +1,7 @@
 package com.www.demo.websocket.controller;
 
 import com.www.demo.app.service.ISysUserService;
-import com.www.demo.model.entity.SysUserEntity;
+import com.www.demo.model.entity.SysUser;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
@@ -64,9 +64,7 @@ public class WebSocketController {
 			//执行登录方法，将请求的用户和密码传递到Realm的doGetAuthenticationInfo判断，没有异常则登录成功
 			subject.login(token);
 			//查询用户
-			SysUserEntity reqUser = new SysUserEntity();
-			reqUser.setUserId(userId);
-			SysUserEntity user = sysUserService.selective(reqUser);
+			SysUser user = sysUserService.selectByUserId(userId);
 			if (user != null){
 				HttpSession session = request.getSession();
 				session.setAttribute("user",user);

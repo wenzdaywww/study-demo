@@ -1,8 +1,9 @@
 package com.www.demo.shiro.config;
 
 import com.www.demo.app.service.ISysUserService;
-import com.www.demo.model.entity.SysRoleEntity;
-import com.www.demo.model.entity.SysUserEntity;
+import com.www.demo.model.dto.SysUserDTO;
+import com.www.demo.model.entity.SysRole;
+import com.www.demo.model.entity.SysUser;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
@@ -42,13 +43,11 @@ public class UserRealm extends AuthorizingRealm {
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
         //查询当前用户
         Subject subject = SecurityUtils.getSubject();
-        SysUserEntity user = (SysUserEntity)subject.getPrincipal();
-        SysUserEntity reqUser = new SysUserEntity();
-        reqUser.setUserId(user.getUserId());
-        SysUserEntity sysUserEntity = sysUserService.findUserAllInfo(reqUser);
-        if (CollectionUtils.isNotEmpty(sysUserEntity.getRoleList())){
+        SysUser user = (SysUser)subject.getPrincipal();
+        SysUserDTO sysUserDTO = sysUserService.findUserAllInfo(user.getUserId());
+        if (CollectionUtils.isNotEmpty(sysUserDTO.getRoleList())){
             List<String> roleList = new ArrayList<>();
-            for (SysRoleEntity roleEntity : sysUserEntity.getRoleList()){
+            for (SysRole roleEntity : sysUserDTO.getRoleList()){
                 roleList.add(roleEntity.getRoleName());
             }
             authorizationInfo.addRoles(roleList);
@@ -69,9 +68,7 @@ public class UserRealm extends AuthorizingRealm {
         //获取用户信息
         UsernamePasswordToken token = (UsernamePasswordToken)authenticationToken;
         //查询用户
-        SysUserEntity reqUser = new SysUserEntity();
-        reqUser.setUserId(token.getUsername());
-        SysUserEntity user = sysUserService.selective(reqUser);
+        SysUser user = sysUserService.selectByUserId(token.getUsername());
         if (user == null || !StringUtils.equals(user.getUserId(),token.getUsername())){
             return null;
         }

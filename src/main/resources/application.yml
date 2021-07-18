@@ -40,9 +40,9 @@ spring:
 #    type: com.alibaba.druid.pool.DruidDataSource
     #druid配置
     druid:
-      db-type: oracle #数据库类型
-      url: jdbc:oracle:thin:@192.168.1.130:1521:xe
-      username: boot
+      db-type: mysql #数据库类型
+      url: jdbc:mysql://192.168.1.130:3306/boot?useUnicode=true&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=GMT%2B8
+      username: root
       password: www362412
       initial-size: 5 #启动程序时，在连接池中初始化多少个连接
       min-idle: 5 #最小连接池数量
@@ -63,9 +63,19 @@ spring:
       connect-properties: druid.stat.mergeSql=true,druid.stat.slowSqlMillis=500 #
   #redis配置
   redis:
-    host: 192.168.1.130
-    port: 6379
+    #redis单机配置
+#    host: 192.168.1.130
+#    port: 6379
     password: www362412
+    #sentile配置
+    sentinel:
+      master: mymaster
+      nodes: 192.168.1.130:26379,192.168.1.131:26379,192.168.1.132:26379
+      password: www362412
+    #cluster配置
+#    cluster:
+#      nodes: 192.168.1.130:6383,192.168.1.131:6383,192.168.1.132:6383,192.168.1.133:6383,192.168.1.134:6383,192.168.1.135:6383
+#      max-redirects: 1
 #Mybatis配置
 #mapper.xml在resource文件夹下的配置
 mybatis:

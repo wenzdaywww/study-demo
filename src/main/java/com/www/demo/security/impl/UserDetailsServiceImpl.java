@@ -1,8 +1,8 @@
 package com.www.demo.security.impl;
 
 import com.www.demo.app.service.ISysUserService;
-import com.www.demo.model.entity.SysUserEntity;
-import com.www.demo.model.mapper.ISysUserRoleMapper;
+import com.www.demo.model.dto.SysUserDTO;
+import com.www.demo.model.entity.SysUser;
 import org.apache.commons.collections.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,8 +34,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private static Logger LOG = LoggerFactory.getLogger(UserDetailsServiceImpl.class);
     @Autowired
     private ISysUserService sysUserService;
-    @Autowired
-    private ISysUserRoleMapper sysUserRoleMapper;
 
     /**
      * @Author www
@@ -47,22 +45,22 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
         LOG.info("-----> security加载{}用户信息",userId);
-        SysUserEntity userEntity = sysUserService.findUserAllInfo(userId);
-        if (userEntity == null) {
+        SysUserDTO userDTO = sysUserService.findUserAllInfo(userId);
+        if (userDTO == null) {
             return null;
         }
         Collection<GrantedAuthority> authorities = new ArrayList<>();
-        if (CollectionUtils.isNotEmpty(userEntity.getRoleList())){
+        if (CollectionUtils.isNotEmpty(userDTO.getRoleList())){
             //角色权限必须添加“ROLE_”前缀，否则无法匹配
-            userEntity.getRoleList().forEach(role -> authorities.add(new SimpleGrantedAuthority("ROLE_"+role.getRoleName())));
+            userDTO.getRoleList().forEach(role -> authorities.add(new SimpleGrantedAuthority("ROLE_"+role.getRoleName())));
         }
         //密码必须加密，否则无效
-        User user = new User(userEntity.getUserId(), new BCryptPasswordEncoder().encode(userEntity.getPassWord()),authorities);
+        User user = new User(userDTO.getUserId(), new BCryptPasswordEncoder().encode(userDTO.getPassWord()),authorities);
         //获取当前session
         ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = requestAttributes.getRequest();
         HttpSession session = request.getSession();
-        session.setAttribute("adminUser",userEntity);
+        session.setAttribute("adminUser",userDTO);
         return user;
     }
 }

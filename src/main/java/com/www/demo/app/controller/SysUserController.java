@@ -1,10 +1,10 @@
 package com.www.demo.app.controller;
 
 import com.www.demo.app.service.ISysUserService;
-import com.www.demo.model.entity.SysUserEntity;
+import com.www.demo.model.dto.SysUserDTO;
+import com.www.demo.model.entity.SysUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -36,10 +36,8 @@ public class SysUserController {
 	@RequestMapping("/find/{id}")
 	@ResponseBody
 	public Object index(@PathVariable("id") String id) {
-		SysUserEntity reqUser = new SysUserEntity();
-		reqUser.setUserId(id);
-		SysUserEntity sysUser = sysUserService.findUserAllInfo(reqUser);
-		return sysUser;
+		SysUserDTO sysUserDTO = sysUserService.findUserAllInfo(id);
+		return sysUserDTO;
 	}
 	/**
 	 * @Author www
@@ -53,12 +51,12 @@ public class SysUserController {
 	 */
 	@RequestMapping("/add/{id}/{name}/{psd}")
 	public @ResponseBody Object add(@PathVariable("id")String id,@PathVariable("name")String name,@PathVariable("psd")String psd){
-		SysUserEntity sysUserEntity = new SysUserEntity();
-		sysUserEntity.setUserId(id);
-		sysUserEntity.setUserName(name);
-		sysUserEntity.setPassWord(psd);
-		sysUserService.insertSelective(sysUserEntity);
-		return sysUserEntity;
+		SysUser sysUserDTO = new SysUser();
+		sysUserDTO.setUserId(id);
+		sysUserDTO.setUserName(name);
+		sysUserDTO.setPassWord(psd);
+		sysUserService.insertSelective(sysUserDTO);
+		return sysUserDTO;
 	}
 	/**
 	 * @Author www
@@ -72,11 +70,11 @@ public class SysUserController {
 	 */
 	@RequestMapping("/update/{id}/{name}/{psd}")
 	public @ResponseBody Object update(@PathVariable("id")String id,@PathVariable("name")String name,@PathVariable("psd")String psd){
-		SysUserEntity sysUserEntity = sysUserService.selectByPrimaryKey(id);
-		sysUserEntity.setUserName(name);
-		sysUserEntity.setPassWord(psd);
-		sysUserService.updateByPrimaryKeySelective(sysUserEntity);
-		return sysUserEntity;
+		SysUser sysUserDTO = sysUserService.selectByUserId(id);
+		sysUserDTO.setUserName(name);
+		sysUserDTO.setPassWord(psd);
+		sysUserService.updateByUserId(sysUserDTO);
+		return sysUserDTO;
 	}
 
 }

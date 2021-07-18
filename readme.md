@@ -1,5 +1,5 @@
-1、数据库使用docker运行wnameless/oracle-xe-11g镜像容器
-2、集成mybatis框架
+1、数据库使用docker运行mysql镜像容器
+2、集成mybatis-plus插件
 3、实现RESTful风格
 4、集成websocket框架
 5、集成redis框架，基于docker搭建redis环境

@@ -1,7 +1,7 @@
 package com.www.demo.restful.controller;
 
 import com.www.demo.app.service.ISysUserService;
-import com.www.demo.model.entity.SysUserEntity;
+import com.www.demo.model.entity.SysUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -19,14 +19,16 @@ public class RESTfulController {
     private ISysUserService sysUserService;
 
     @GetMapping("/get/{id}")
-    public @ResponseBody SysUserEntity get(@PathVariable("id") String userId){
-        SysUserEntity sysUserEntity = sysUserService.selectByPrimaryKey(userId);
-        return sysUserEntity;
+    public @ResponseBody
+    SysUser get(@PathVariable("id") String userId){
+        SysUser sysUserDTO = sysUserService.selectByUserId(userId);
+        return sysUserDTO;
     }
 
     @PostMapping("/post/{id}")
-    public @ResponseBody SysUserEntity post(@PathVariable("id") String userId){
-        SysUserEntity sysUserEntity = sysUserService.selectByPrimaryKey(userId);
-        return sysUserEntity;
+    public @ResponseBody
+    SysUser post(@PathVariable("id") String userId){
+        SysUser sysUserDTO = sysUserService.selectByUserId(userId);
+        return sysUserDTO;
     }
 }

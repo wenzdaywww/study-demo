@@ -1,6 +1,6 @@
 package com.www.demo.redis.controller;
 
-import com.www.demo.model.entity.SysUserEntity;
+import com.www.demo.model.entity.SysUser;
 import com.www.demo.redis.util.RedisUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -32,7 +32,7 @@ public class RedisController {
      */
     @RequestMapping("/put/{type}/{key}/{value}")
     public @ResponseBody Object put(@PathVariable("type") String type,@PathVariable("key") String key,@PathVariable("value") String value){
-        SysUserEntity userEntity = new SysUserEntity();
+        SysUser userEntity = new SysUser();
         userEntity.setUserId(key);
         userEntity.setUserName(value);
         LOG.info("-----> put的对象：{}",userEntity);

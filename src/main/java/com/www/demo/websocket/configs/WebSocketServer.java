@@ -2,12 +2,10 @@ package com.www.demo.websocket.configs;
 
 import com.alibaba.fastjson.JSON;
 import com.www.demo.app.service.ISysUserService;
-import com.www.demo.model.entity.SysUserEntity;
+import com.www.demo.model.entity.SysUser;
 import com.www.demo.websocket.pojo.Message;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,11 +58,9 @@ public class WebSocketServer {
 		message.setType(Message.ONLINE);
 		message.setUserId(userId);
 		//查询当前所有在线用户信息
-		List<SysUserEntity> userList = new ArrayList<>();
+		List<SysUser> userList = new ArrayList<>();
 		onlineSessions.forEach((userIdTemp, webSocketServer) -> {
-			SysUserEntity reqUser = new SysUserEntity();
-			reqUser.setUserId(userIdTemp);
-			SysUserEntity user = sysUserService.selective(reqUser);
+			SysUser user = sysUserService.selectByUserId(userIdTemp);
 			user.setPassWord(null);
 			userList.add(user);
 		});

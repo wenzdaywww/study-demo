@@ -1,15 +1,20 @@
 package com.www.demo.app.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.www.demo.app.service.ISysUserService;
-import com.www.demo.model.entity.SysMenuEntity;
-import com.www.demo.model.entity.SysRoleEntity;
-import com.www.demo.model.entity.SysUserEntity;
+import com.www.demo.model.dto.SysUserDTO;
+import com.www.demo.model.entity.SysMenu;
+import com.www.demo.model.entity.SysRole;
+import com.www.demo.model.entity.SysUser;
 import com.www.demo.model.mapper.ISysRoleMenuMapper;
 import com.www.demo.model.mapper.ISysUserMapper;
 import com.www.demo.model.mapper.ISysUserRoleMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.www.demo.utils.MyBeanUtils;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -20,92 +25,74 @@ import java.util.List;
  */
 @Service
 public class SysUserServiceImpl implements ISysUserService {
-    @Autowired
+    @Resource
     private ISysUserMapper sysUserMapper;
-    @Autowired
+    @Resource
     private ISysUserRoleMapper sysUserRoleMapper;
-    @Autowired
+    @Resource
     private ISysRoleMenuMapper sysRoleMenuMapper;
     /**
      * @Author www
      * @Date 2021/6/7 22:56
      * @Description 查询用户信息
-     *
      * @param user 查询条件
      * @return java.util.List<com.www.demo.model.entity.SysUserEntity>
      */
     @Override
-    public List<SysUserEntity> findUserList(SysUserEntity user) {
-        return sysUserMapper.findUserList(user);
+    public List<SysUser> findUserList(SysUser user) {
+        QueryWrapper<SysUser> wrapper = new QueryWrapper<>();
+        return sysUserMapper.selectList(wrapper);
     }
 
     /**
      * @Author www
      * @Date 2021/5/19 23:41
      * @Description 根据用户ID查询用户信息
-     *
      * @param userId 用户ID
      * @return com.www.demo.model.SysUserEntity 用户信息
      */
     @Override
-    public SysUserEntity selectByPrimaryKey(String userId) {
-        return sysUserMapper.selectByPrimaryKey(userId);
+    public SysUser selectByUserId(String userId) {
+        QueryWrapper<SysUser> wrapper = new QueryWrapper<>();
+        wrapper.lambda().eq(SysUser::getUserId,userId);
+        return sysUserMapper.selectOne(wrapper);
     }
     /**
      * @Author www
      * @Date 2021/5/19 23:41
      * @Description 插入用户信息（更新非空数据）
-     *
      * @param record 用户信息
      * @return int 插入条数
      */
     @Override
-    public int insertSelective(SysUserEntity record) {
-        return sysUserMapper.insertSelective(record);
+    public int insertSelective(SysUser record) {
+        if(record == null){
+            return 0;
+        }
+        record.setSysCreateDate(new Date());
+        record.setSysUpdateDate(new Date());
+        record.setIsDelete("0");
+        return sysUserMapper.insert(record);
     }
     /**
      * @Author www
      * @Date 2021/5/19 23:42
      * @Description 根据主键更新用户信息（更新非空数据）
-     *
      * @param record 用户信息
      * @return int 插入条数
      */
     @Override
-    public int updateByPrimaryKeySelective(SysUserEntity record) {
-        return sysUserMapper.updateByPrimaryKeySelective(record);
-    }
-    /**
-     * @Author www
-     * @Date 2021/5/19 23:42
-     * @Description 根据用户信息（更新非空数据）查询用户信息
-     *
-     * @param record 用户信息
-     * @return int 用户信息
-     */
-    @Override
-    public SysUserEntity selective(SysUserEntity record) {
-        if (record != null){
-            return sysUserMapper.selective(record);
+    public int updateByUserId(SysUser record) {
+        if(record == null){
+            return 0;
         }
-        return null;
-    }
-    /**
-     * @Author www
-     * @Date 2021/6/15 23:15
-     * @Description 查询用户信息，包含角色信息
-     *
-     * @param reqUser 查询条件
-     * @return com.www.demo.model.entity.SysUserEntity
-     */
-    @Override
-    public SysUserEntity findUserAllInfo(SysUserEntity reqUser) {
-        SysUserEntity user = selective(reqUser);
-        List<SysRoleEntity> roleList = sysUserRoleMapper.findUserRoles(reqUser.getUserId());
-        user.setRoleList(roleList);
-        List<SysMenuEntity> menuList = sysRoleMenuMapper.findMenuList(roleList);
-        user.setMenuList(menuList);
-        return user;
+        UpdateWrapper<SysUser> wrapper = new UpdateWrapper<>();
+        wrapper.lambda().set(SysUser::getUserName,record.getUserName());
+        wrapper.lambda().set(SysUser::getPassWord,record.getPassWord());
+        wrapper.lambda().set(SysUser::getIsDelete,record.getIsDelete());
+        wrapper.lambda().set(SysUser::getSysUpdateDate, new Date());
+        wrapper.lambda().eq(SysUser::getUserId,record.getUserId());
+        return sysUserMapper.update(null,wrapper);
     }
     /**
      * @Author www
@@ -115,15 +102,19 @@ public class SysUserServiceImpl implements ISysUserService {
      * @return com.www.demo.model.entity.SysUserEntity
      */
     @Override
-    public SysUserEntity findUserAllInfo(String userId) {
-        SysUserEntity user = selectByPrimaryKey(userId);
+    public SysUserDTO findUserAllInfo(String userId) {
+        SysUser user = selectByUserId(userId);
         if (user == null){
             return null;
         }
-        List<SysRoleEntity> roleList = sysUserRoleMapper.findUserRoles(userId);
-        user.setRoleList(roleList);
-        List<SysMenuEntity> menuList = sysRoleMenuMapper.findMenuList(roleList);
-        user.setMenuList(menuList);
-        return user;
+        SysUserDTO sysUserDTO = new SysUserDTO();
+        MyBeanUtils.copyProperties(sysUserDTO,user);
+        //查询角色信息
+        List<SysRole> roleList = sysUserRoleMapper.findUserRoles(user.getUserId());
+        sysUserDTO.setRoleList(roleList);
+        //查询菜单信息
+        List<SysMenu> menuList = sysRoleMenuMapper.findMenuList(roleList);
+        sysUserDTO.setMenuList(menuList);
+        return sysUserDTO;
     }
 }

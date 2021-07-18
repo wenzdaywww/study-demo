@@ -1,6 +1,7 @@
 package com.www.demo.app.service;
 
-import com.www.demo.model.entity.SysUserEntity;
+import com.www.demo.model.dto.SysUserDTO;
+import com.www.demo.model.entity.SysUser;
 
 import java.util.List;
 
@@ -19,16 +20,7 @@ public interface ISysUserService {
      * @param userId 用户id
      * @return com.www.demo.model.entity.SysUserEntity
      */
-    SysUserEntity findUserAllInfo(String userId);
-    /**
-     * @Author www
-     * @Date 2021/6/15 23:15
-     * @Description 查询用户信息，包含角色信息
-     *
-     * @param reqUser 查询条件
-     * @return com.www.demo.model.entity.SysUserEntity
-     */
-    SysUserEntity findUserAllInfo(SysUserEntity reqUser);
+    SysUserDTO findUserAllInfo(String userId);
     /**
      * @Author www
      * @Date 2021/6/7 22:56
@@ -37,7 +29,7 @@ public interface ISysUserService {
      * @param user 查询条件
      * @return java.util.List<com.www.demo.model.entity.SysUserEntity>
      */
-    List<SysUserEntity> findUserList(SysUserEntity user);
+    List<SysUser> findUserList(SysUser user);
     /**
      * @Author www
      * @Date 2021/5/19 23:41
@@ -46,7 +38,7 @@ public interface ISysUserService {
      * @param userId 用户ID
      * @return com.www.demo.model.SysUserEntity 用户信息
      */
-    SysUserEntity selectByPrimaryKey(String userId);
+    SysUser selectByUserId(String userId);
     /**
      * @Author www
      * @Date 2021/5/19 23:41
@@ -55,7 +47,7 @@ public interface ISysUserService {
      * @param record 用户信息
      * @return int 插入条数
      */
-    int insertSelective(SysUserEntity record);
+    int insertSelective(SysUser record);
     /**
      * @Author www
      * @Date 2021/5/19 23:42
@@ -64,14 +56,5 @@ public interface ISysUserService {
      * @param record 用户信息
      * @return int 插入条数
      */
-    int updateByPrimaryKeySelective(SysUserEntity record);
-    /**
-     * @Author www
-     * @Date 2021/5/19 23:42
-     * @Description 根据用户信息（更新非空数据）查询用户信息
-     *
-     * @param record 用户信息
-     * @return int 用户信息
-     */
-    SysUserEntity selective(SysUserEntity record);
+    int updateByUserId(SysUser record);
 }
