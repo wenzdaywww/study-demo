@@ -1,0 +1,6 @@
+#创建6个redis实例
+docker run -d -p 6383:6383 -p 16383:16383 --name redis-cluster --restart=always -v /usr/local/docker/redis/config/redis-cluster.conf:/etc/redis/redis.conf -v /usr/local/docker/redis/data/cluster:/data redis redis-server /etc/redis/redis.conf
+#进入任意redis容器
+docker exec -it redis-cluster /bin/bash
+#创建集群
+redis-cli --cluster create 192.168.1.130:6383 192.168.1.131:6383 192.168.1.132:6383 192.168.1.133:6383 192.168.1.134:6383 192.168.1.135:6383 --cluster-replicas 1 -a www362412

@@ -1,4 +1,4 @@
 #创建主机
 docker run -d -p 6379:6379 --name redis-multiple-master -v /usr/local/docker/redis/config/redis-multiple-master.conf:/etc/redis/redis.conf -v /usr/local/docker/redis/data/multiple-master:/data redis redis-server /etc/redis/redis.conf
-#创建从机
+#创建2个从机
 docker run -d -p 6379:6379 --name redis-multiple-slave -v /usr/local/docker/redis/config/redis-multiple-slave.conf:/etc/redis/redis.conf -v /usr/local/docker/redis/data/multiple-slave:/data redis redis-server /etc/redis/redis.conf
