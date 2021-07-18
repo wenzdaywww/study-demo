@@ -45,7 +45,7 @@ public class Swagger2Config {
                 //配置要扫描的接口方式
                 .select().apis(RequestHandlerSelectors.basePackage("com.www.demo"))
                 //配置过滤的路径
-                .paths(PathSelectors.ant("qadmin/**"))
+                .paths(PathSelectors.ant("/qadmin/**"))
                 .build();
     }
     /**
@@ -68,7 +68,30 @@ public class Swagger2Config {
                 //配置要扫描的接口方式
                 .select().apis(RequestHandlerSelectors.basePackage("com.www.demo"))
                 //配置展示的接口路径
-//                .paths(PathSelectors.ant("/rest/**"))
+                .paths(PathSelectors.ant("/rest/**"))
+                .build();
+    }
+    /**
+     * @author www
+     * @date 2021/6/27 11:05
+     * @description 配置websocket的docket对象信息
+     * @param env 环境配置信息
+     * @return springfox.documentation.spring.web.plugins.Docket
+     */
+    @Bean
+    public Docket redisDocket(Environment env){
+        //获取环境配置,判断是否开启swagger
+        Profiles profiles = Profiles.of("test","dev");
+        boolean envFlag = env.acceptsProfiles(profiles);
+        return new Docket(DocumentationType.SWAGGER_2)
+                .groupName("redis")
+                //配置是否启动swagger
+                .enable(envFlag)
+                .apiInfo(getApiInfo())//配置API信息
+                //配置要扫描的接口方式
+                .select().apis(RequestHandlerSelectors.basePackage("com.www.demo"))
+                //配置展示的接口路径
+                .paths(PathSelectors.ant("/redis/**"))
                 .build();
     }
     /**
