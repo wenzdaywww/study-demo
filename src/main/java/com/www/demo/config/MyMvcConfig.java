@@ -31,10 +31,10 @@ public class MyMvcConfig implements WebMvcConfigurer {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         LOG.info("-----> 加载视图控制器");
-        registry.addViewController("/qadmin").setViewName("/quickadmin/login");
-        registry.addViewController("/qadmin/index").setViewName("/quickadmin/login");
-        registry.addViewController("/qadmin/main").setViewName("/quickadmin/index");
-        registry.addViewController("/ws/index").setViewName("/websocket/index");
+        registry.addViewController("/qadmin").setViewName("quickadmin/login");
+        registry.addViewController("/qadmin/index").setViewName("quickadmin/login");
+        registry.addViewController("/qadmin/main").setViewName("quickadmin/index");
+        registry.addViewController("/ws/index").setViewName("websocket/index");
     }
 
     /**
