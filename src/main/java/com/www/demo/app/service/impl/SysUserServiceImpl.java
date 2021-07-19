@@ -2,6 +2,8 @@ package com.www.demo.app.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.www.demo.app.service.ISysUserService;
 import com.www.demo.model.dto.SysUserDTO;
 import com.www.demo.model.entity.SysMenu;
@@ -11,6 +13,7 @@ import com.www.demo.model.mapper.ISysRoleMenuMapper;
 import com.www.demo.model.mapper.ISysUserMapper;
 import com.www.demo.model.mapper.ISysUserRoleMapper;
 import com.www.demo.utils.MyBeanUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -35,13 +38,19 @@ public class SysUserServiceImpl implements ISysUserService {
      * @Author www
      * @Date 2021/6/7 22:56
      * @Description 查询用户信息
+     * @param page 当前页数
      * @param user 查询条件
      * @return java.util.List<com.www.demo.model.entity.SysUserEntity>
      */
     @Override
-    public List<SysUser> findUserList(SysUser user) {
+    public List<SysUser> findUserList(int page, SysUser user) {
         QueryWrapper<SysUser> wrapper = new QueryWrapper<>();
-        return sysUserMapper.selectList(wrapper);
+        if(user != null && StringUtils.isNotBlank(user.getUserId())){
+            wrapper.lambda().eq(SysUser :: getUserId, user.getUserId());
+        }
+        Page<SysUser> pageLsit = new Page<>(page,10);
+        pageLsit = sysUserMapper.selectPage(pageLsit,wrapper);
+        return pageLsit.getRecords();
     }
 
     /**

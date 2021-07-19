@@ -25,11 +25,11 @@ public interface ISysUserService {
      * @Author www
      * @Date 2021/6/7 22:56
      * @Description 查询用户信息
-     *
+     * @param page 当前页数
      * @param user 查询条件
      * @return java.util.List<com.www.demo.model.entity.SysUserEntity>
      */
-    List<SysUser> findUserList(SysUser user);
+    List<SysUser> findUserList(int page,SysUser user);
     /**
      * @Author www
      * @Date 2021/5/19 23:41

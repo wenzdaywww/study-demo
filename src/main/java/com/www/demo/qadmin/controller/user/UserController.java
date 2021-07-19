@@ -31,8 +31,8 @@ public class UserController {
      * @return java.lang.String
      */
     @GetMapping("/qadmin/userList")
-    public String findUserList(Model model){
-        List<SysUser> list = sysUserService.findUserList(null);
+    public String findUserList(@RequestParam("page") int page, Model model){
+        List<SysUser> list = sysUserService.findUserList(page,null);
         model.addAttribute("userList",list);
         return "quickadmin/user_index";
     }
@@ -78,7 +78,7 @@ public class UserController {
             sysUserDTO.setSysUpdateDate(new Date());
             sysUserService.updateByUserId(sysUserDTO);
         }
-        return findUserList(model);
+        return findUserList(1,model);
     }
     /**
      * @Author www
@@ -97,6 +97,6 @@ public class UserController {
             sysUserDTO.setIsDelete(StringUtils.equals("1", sysUserDTO.getIsDelete()) ? "0" : "1");
             sysUserService.updateByUserId(sysUserDTO);
         }
-        return findUserList(model);
+        return findUserList(1,model);
     }
 }

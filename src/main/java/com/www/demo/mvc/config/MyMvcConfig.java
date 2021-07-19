@@ -1,13 +1,11 @@
-package com.www.demo.config;
+package com.www.demo.mvc.config;
 
 import com.www.demo.i18n.I18nLocaleResolver;
-import com.www.demo.qadmin.config.QAdminLoginHandlerInterceptor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.LocaleResolver;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 

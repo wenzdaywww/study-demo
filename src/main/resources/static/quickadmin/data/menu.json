@@ -11,7 +11,7 @@
     "hidden": false,
     "list": [{
         "name": "用户列表",
-        "url": "/qadmin/userList"
+        "url": "/qadmin/userList?page=1"
     }, {
         "name": "添加用户",
         "url": "/qadmin/addUser"

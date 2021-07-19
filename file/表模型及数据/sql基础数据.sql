@@ -42,7 +42,7 @@ values ('index','首页',null,'&#xe68e;','/qadmin/main',0,'0',now(),now());
 insert into SYS_MENU (menu_code,menu_name,parent_id,menu_icon,menu_url,order_num,is_delete,SYS_UPDATE_DATE,SYS_CREATE_DATE)
 values ('userManage','用户管理',null,'&#xe612;',null,1,'0',now(),now());
 insert into SYS_MENU (menu_code,menu_name,parent_id,menu_icon,menu_url,order_num,is_delete,SYS_UPDATE_DATE,SYS_CREATE_DATE)
-values ('userList','用户列表',(select a.parent_id from (select m.menu_id parent_id from SYS_MENU m where m.menu_code='userManage') a),null,'/qadmin/userList',2,'0',now(),now());
+values ('userList','用户列表',(select a.parent_id from (select m.menu_id parent_id from SYS_MENU m where m.menu_code='userManage') a),null,'/qadmin/userList?page=1',2,'0',now(),now());
 insert into SYS_MENU (menu_code,menu_name,parent_id,menu_icon,menu_url,order_num,is_delete,SYS_UPDATE_DATE,SYS_CREATE_DATE)
 values ('userAdd','添加用户',(select a.parent_id from (select m.menu_id parent_id  from SYS_MENU m where menu_code='userManage') a),null,'/qadmin/addUser',3,'0',now(),now());
 

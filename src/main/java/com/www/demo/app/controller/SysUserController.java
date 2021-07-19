@@ -1,6 +1,8 @@
 package com.www.demo.app.controller;
 
 import com.www.demo.app.service.ISysUserService;
+import com.www.demo.model.common.ResponseEnum;
+import com.www.demo.model.common.ResponseMsg;
 import com.www.demo.model.dto.SysUserDTO;
 import com.www.demo.model.entity.SysUser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +23,6 @@ public class SysUserController {
 	@Autowired
 	private ISysUserService sysUserService;
 
-	@RequestMapping("/hello")
-	public @ResponseBody Object hello(){
-		return "Welcome to my spring boot study！";
-	}
 	/**
 	 * @Author www
 	 * @Date 2021/6/18 23:38
@@ -35,9 +33,9 @@ public class SysUserController {
 	 */
 	@RequestMapping("/find/{id}")
 	@ResponseBody
-	public Object index(@PathVariable("id") String id) {
+	public ResponseMsg<SysUserDTO> index(@PathVariable("id") String id) {
 		SysUserDTO sysUserDTO = sysUserService.findUserAllInfo(id);
-		return sysUserDTO;
+		return new ResponseMsg<>(ResponseEnum.SUCCESS,sysUserDTO);
 	}
 	/**
 	 * @Author www
@@ -50,13 +48,13 @@ public class SysUserController {
 	 * @return java.lang.Object
 	 */
 	@RequestMapping("/add/{id}/{name}/{psd}")
-	public @ResponseBody Object add(@PathVariable("id")String id,@PathVariable("name")String name,@PathVariable("psd")String psd){
-		SysUser sysUserDTO = new SysUser();
-		sysUserDTO.setUserId(id);
-		sysUserDTO.setUserName(name);
-		sysUserDTO.setPassWord(psd);
-		sysUserService.insertSelective(sysUserDTO);
-		return sysUserDTO;
+	public @ResponseBody ResponseMsg<SysUser> add(@PathVariable("id")String id,@PathVariable("name")String name,@PathVariable("psd")String psd){
+		SysUser sysUser = new SysUser();
+		sysUser.setUserId(id);
+		sysUser.setUserName(name);
+		sysUser.setPassWord(psd);
+		sysUserService.insertSelective(sysUser);
+		return new ResponseMsg<>(ResponseEnum.SUCCESS,sysUser);
 	}
 	/**
 	 * @Author www
@@ -69,12 +67,12 @@ public class SysUserController {
 	 * @return java.lang.Object
 	 */
 	@RequestMapping("/update/{id}/{name}/{psd}")
-	public @ResponseBody Object update(@PathVariable("id")String id,@PathVariable("name")String name,@PathVariable("psd")String psd){
-		SysUser sysUserDTO = sysUserService.selectByUserId(id);
-		sysUserDTO.setUserName(name);
-		sysUserDTO.setPassWord(psd);
-		sysUserService.updateByUserId(sysUserDTO);
-		return sysUserDTO;
+	public @ResponseBody ResponseMsg<SysUser> update(@PathVariable("id")String id,@PathVariable("name")String name,@PathVariable("psd")String psd){
+		SysUser sysUser = sysUserService.selectByUserId(id);
+		sysUser.setUserName(name);
+		sysUser.setPassWord(psd);
+		sysUserService.updateByUserId(sysUser);
+		return new ResponseMsg<>(ResponseEnum.SUCCESS,sysUser);
 	}
 
 }

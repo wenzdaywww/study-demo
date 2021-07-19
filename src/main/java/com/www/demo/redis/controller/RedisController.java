@@ -1,5 +1,7 @@
 package com.www.demo.redis.controller;
 
+import com.www.demo.model.common.ResponseEnum;
+import com.www.demo.model.common.ResponseMsg;
 import com.www.demo.model.entity.SysUser;
 import com.www.demo.redis.util.RedisUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -31,23 +33,23 @@ public class RedisController {
      * @return java.lang.Object
      */
     @RequestMapping("/put/{type}/{key}/{value}")
-    public @ResponseBody Object put(@PathVariable("type") String type,@PathVariable("key") String key,@PathVariable("value") String value){
-        SysUser userEntity = new SysUser();
-        userEntity.setUserId(key);
-        userEntity.setUserName(value);
-        LOG.info("-----> put的对象：{}",userEntity);
+    public @ResponseBody ResponseMsg<SysUser> put(@PathVariable("type") String type, @PathVariable("key") String key, @PathVariable("value") String value){
+        SysUser sysUser = new SysUser();
+        sysUser.setUserId(key);
+        sysUser.setUserName(value);
+        LOG.info("-----> put的对象：{}",sysUser);
         if (StringUtils.equals(type,"str")){
-            RedisUtil.set(key,userEntity);
+            RedisUtil.set(key,sysUser);
         }else if (StringUtils.equals(type,"hash")){
-            RedisUtil.hashSet(key,key,userEntity);
+            RedisUtil.hashSet(key,key,sysUser);
         }else if (StringUtils.equals(type,"list")){
-            RedisUtil.listSet(key,userEntity);
+            RedisUtil.listSet(key,sysUser);
         }else if (StringUtils.equals(type,"set")){
-            RedisUtil.setSet(key,userEntity);
+            RedisUtil.setSet(key,sysUser);
         }else if (StringUtils.equals(type,"zset")){
-            RedisUtil.zsetSet(key,userEntity,1);
+            RedisUtil.zsetSet(key,sysUser,1);
         }
-        return value;
+        return new ResponseMsg<>(ResponseEnum.SUCCESS,sysUser);
     }
     /**
      * @Author www
@@ -59,7 +61,7 @@ public class RedisController {
      * @return java.lang.Object
      */
     @RequestMapping("/get/{type}/{key}")
-    public @ResponseBody Object get(@PathVariable("type") String type, @PathVariable("key") String key){
+    public @ResponseBody ResponseMsg get(@PathVariable("type") String type, @PathVariable("key") String key){
         Object obj = null;
         if (StringUtils.equals(type,"hash")){
             obj = RedisUtil.hashGet(key);
@@ -73,6 +75,6 @@ public class RedisController {
             obj = RedisUtil.get(key);
         }
         LOG.info("-----> put的对象：{}",obj);
-        return obj;
+        return new ResponseMsg<>(ResponseEnum.SUCCESS,obj);
     }
 }
