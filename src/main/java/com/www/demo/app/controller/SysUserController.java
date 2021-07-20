@@ -2,7 +2,7 @@ package com.www.demo.app.controller;
 
 import com.www.demo.app.service.ISysUserService;
 import com.www.demo.model.common.ResponseEnum;
-import com.www.demo.model.common.ResponseMsg;
+import com.www.demo.model.common.ResponseDTO;
 import com.www.demo.model.dto.SysUserDTO;
 import com.www.demo.model.entity.SysUser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,9 +33,9 @@ public class SysUserController {
 	 */
 	@RequestMapping("/find/{id}")
 	@ResponseBody
-	public ResponseMsg<SysUserDTO> index(@PathVariable("id") String id) {
+	public ResponseDTO<SysUserDTO> index(@PathVariable("id") String id) {
 		SysUserDTO sysUserDTO = sysUserService.findUserAllInfo(id);
-		return new ResponseMsg<>(ResponseEnum.SUCCESS,sysUserDTO);
+		return new ResponseDTO<>(ResponseEnum.SUCCESS,sysUserDTO);
 	}
 	/**
 	 * @Author www
@@ -48,13 +48,14 @@ public class SysUserController {
 	 * @return java.lang.Object
 	 */
 	@RequestMapping("/add/{id}/{name}/{psd}")
-	public @ResponseBody ResponseMsg<SysUser> add(@PathVariable("id")String id,@PathVariable("name")String name,@PathVariable("psd")String psd){
+	public @ResponseBody
+    ResponseDTO<SysUser> add(@PathVariable("id")String id, @PathVariable("name")String name, @PathVariable("psd")String psd){
 		SysUser sysUser = new SysUser();
 		sysUser.setUserId(id);
 		sysUser.setUserName(name);
 		sysUser.setPassWord(psd);
 		sysUserService.insertSelective(sysUser);
-		return new ResponseMsg<>(ResponseEnum.SUCCESS,sysUser);
+		return new ResponseDTO<>(ResponseEnum.SUCCESS,sysUser);
 	}
 	/**
 	 * @Author www
@@ -67,12 +68,13 @@ public class SysUserController {
 	 * @return java.lang.Object
 	 */
 	@RequestMapping("/update/{id}/{name}/{psd}")
-	public @ResponseBody ResponseMsg<SysUser> update(@PathVariable("id")String id,@PathVariable("name")String name,@PathVariable("psd")String psd){
+	public @ResponseBody
+    ResponseDTO<SysUser> update(@PathVariable("id")String id, @PathVariable("name")String name, @PathVariable("psd")String psd){
 		SysUser sysUser = sysUserService.selectByUserId(id);
 		sysUser.setUserName(name);
 		sysUser.setPassWord(psd);
 		sysUserService.updateByUserId(sysUser);
-		return new ResponseMsg<>(ResponseEnum.SUCCESS,sysUser);
+		return new ResponseDTO<>(ResponseEnum.SUCCESS,sysUser);
 	}
 
 }

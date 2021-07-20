@@ -8,7 +8,7 @@ import java.io.Serializable;
  * @description 响应报文类
  * @date 2021/7/19 22:22
  */
-public class ResponseMsg<T> implements Serializable {
+public class ResponseDTO<T> implements Serializable {
     private static final long serialVersionUID = 1L;
     /** 响应码 **/
     private Integer code;
@@ -19,11 +19,22 @@ public class ResponseMsg<T> implements Serializable {
     /**
      * @author www
      * @date 2021/7/19 22:26
+     * @description 响应报文构造方法(默认成功状态)
+     * @param data 数据
+     */
+    public ResponseDTO(T data) {
+        this.code = ResponseEnum.SUCCESS.getCode();
+        this.msg = ResponseEnum.SUCCESS.getMsg();
+        this.data = data;
+    }
+    /**
+     * @author www
+     * @date 2021/7/19 22:26
      * @description 响应报文构造方法
      * @param code 响应码
      * @param data 数据
      */
-    public ResponseMsg(ResponseEnum code, T data) {
+    public ResponseDTO(ResponseEnum code, T data) {
         this.code = code.getCode();
         this.msg = code.getMsg();
         this.data = data;
@@ -36,7 +47,7 @@ public class ResponseMsg<T> implements Serializable {
      * @param msg 响应信息
      * @param data 数据
      */
-    public ResponseMsg(ResponseEnum code, String msg, T data) {
+    public ResponseDTO(ResponseEnum code, String msg, T data) {
         this.code = code.getCode();
         this.msg = msg == null ? code.getMsg() : msg;
         this.data = data;
