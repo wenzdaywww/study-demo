@@ -71,7 +71,7 @@ spring:
         connect-properties: druid.stat.mergeSql=true,druid.stat.slowSqlMillis=500 #
       #从数据库
       slave:
-        url: jdbc:mysql://192.168.1.132:3306/boot?useUnicode=true&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=GMT%2B8
+        url: jdbc:mysql://192.168.1.131:3306/boot?useUnicode=true&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=GMT%2B8
         driver-class-name: com.mysql.jdbc.Driver
         username: select
         password: www362412
