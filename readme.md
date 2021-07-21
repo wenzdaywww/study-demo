@@ -8,3 +8,5 @@
 7、集成security权限认证：在QAdmin管理后台集成security
 8、集成shiro权限认证 ：在websocket聊天页面中集成shiro
 9、集成Swagger框架
+10、集成dubbo
+11、集成zookeeper

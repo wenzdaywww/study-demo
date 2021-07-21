@@ -6,7 +6,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.4.0</version>
-		<relativePath /> <!-- lookup parent from repository -->
+		<relativePath />
 	</parent>
 	<!-- 当前项目信息-->
 	<groupId>com.www</groupId>
@@ -26,15 +26,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		<!-- AOP依赖 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-aop</artifactId>
 		</dependency>
-		<!-- 引入springboot内嵌Tomcat对jsp的解析依赖，必要的 -->
-		<!--		<dependency>-->
-		<!--			<groupId>org.apache.tomcat.embed</groupId>-->
-		<!--			<artifactId>tomcat-embed-core</artifactId>-->
-		<!--		</dependency>-->
 		<!-- dubbo依赖 -->
 		<!--		<dependency>-->
 		<!--			<groupId>org.apache.dubbo</groupId>-->

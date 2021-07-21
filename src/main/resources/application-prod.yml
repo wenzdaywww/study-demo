@@ -12,6 +12,6 @@ server:
 #日志设置
 logging:
   file:
-    path: /run/log/
+    path: /run/log/bootdemo
   level:
     com.www.demo.model.mapper: debug
