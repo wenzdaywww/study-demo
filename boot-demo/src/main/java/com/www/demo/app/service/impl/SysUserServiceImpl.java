@@ -117,7 +117,7 @@ public class SysUserServiceImpl implements ISysUserService {
             return null;
         }
         SysUserDTO sysUserDTO = new SysUserDTO();
-        MyBeanUtils.copyProperties(sysUserDTO,user);
+        MyBeanUtils.copyProperties(user,sysUserDTO);
         //查询角色信息
         List<SysRole> roleList = sysUserRoleMapper.findUserRoles(user.getUserId());
         sysUserDTO.setRoleList(roleList);

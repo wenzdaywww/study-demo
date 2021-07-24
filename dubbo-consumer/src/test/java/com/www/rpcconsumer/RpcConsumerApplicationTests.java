@@ -1,4 +1,4 @@
-package com.example.www.rpcconsumer;
+package com.www.rpcconsumer;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -20,11 +20,11 @@ public class MyBeanUtils extends BeanUtils {
      * @author www
      * @date 2021/7/18 21:55
      * @description 对象复制
-     * @param dest 目标对象
      * @param orig 源对象
+     * @param dest 目标对象
      * @return void
      */
-    public static void copyProperties(Object dest, Object orig){
+    public static void copyProperties(Object orig, Object dest){
         try {
             BeanUtils.copyProperties(dest, orig);
         }catch (Exception e){

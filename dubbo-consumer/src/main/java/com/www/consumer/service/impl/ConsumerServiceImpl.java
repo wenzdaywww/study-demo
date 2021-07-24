@@ -1,8 +1,9 @@
-package com.example.www.dubbo.consumer.service.impl;
+package com.www.consumer.service.impl;
 
-import com.example.www.dubbo.consumer.service.IConsumerService;
+import com.www.consumer.service.IConsumerService;
 import com.www.dubbo.model.SysUserInfo;
 import com.www.dubbo.service.ISysUserInfoService;
+import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,8 +14,8 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ConsumerServiceImpl implements IConsumerService {
-
-    ISysUserInfoService sysUserInfoService;
+    @Reference
+    private ISysUserInfoService sysUserInfoService;
 
     @Override
     public SysUserInfo findUserById(String userId) {

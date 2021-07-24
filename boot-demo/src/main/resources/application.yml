@@ -9,6 +9,20 @@ server:
   servlet:
     #访问路径设置
     context-path: /
+#dubbo配置
+dubbo:
+  application:
+    name: boot-user-provider   #指定当前服务/应用名称，唯一性
+    version: 1.0.0
+  protocol:
+    name: dubbo   #
+    port: 20880   #
+  #注册中心
+  registry:
+    address: zookeeper://192.168.1.130:2181
+    timeout: 1000
+  scan:
+    base-packages: com.www.demo.dubbo.provider   #
 
 #spring配置
 spring:

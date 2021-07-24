@@ -29,11 +29,45 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- dubbo依赖 -->
+		<dependency>
+			<groupId>org.apache.dubbo</groupId>
+			<artifactId>dubbo-spring-boot-starter</artifactId>
+			<version>2.7.3</version>
+		</dependency>
 		<!-- 引入自定义的dubbo统一管理的服务接口包，便于管理接口 -->
 		<dependency>
 			<groupId>com.www</groupId>
 			<artifactId>dubbo-interface</artifactId>
 			<version>1.0.0</version>
+		</dependency>
+		<!-- zookeeper客户端依赖 -->
+<!--		<dependency>-->
+<!--			<groupId>com.github.sgroschupf</groupId>-->
+<!--			<artifactId>zkclient</artifactId>-->
+<!--			<version>0.1</version>-->
+<!--		</dependency>-->
+		<!-- zookeeper依赖 -->
+		<dependency>
+			<groupId>org.apache.curator</groupId>
+			<artifactId>curator-recipes</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.curator</groupId>
+			<artifactId>curator-framework</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.zookeeper</groupId>
+			<artifactId>zookeeper</artifactId>
+			<version>3.7.0</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-log4j12</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 	</dependencies>
 	<build>
@@ -42,7 +76,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<mainClass>com.example.www.DubboConsumerApplication</mainClass>
+					<mainClass>com.www.DubboConsumerApplication</mainClass>
 				</configuration>
 			</plugin>
 		</plugins>

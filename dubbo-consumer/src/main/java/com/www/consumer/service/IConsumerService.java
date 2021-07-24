@@ -1,4 +1,4 @@
-package com.example.www.dubbo.consumer.service;
+package com.www.consumer.service;
 
 import com.www.dubbo.model.SysUserInfo;
 
