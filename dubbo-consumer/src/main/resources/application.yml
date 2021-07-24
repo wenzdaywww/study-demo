@@ -3,8 +3,8 @@ server:
 
 dubbo:
   application:
-    name: dubbo-consumer
+    name: dubbo-consumer  #指定当前服务/应用名称，唯一性
   #注册中心
   registry:
-    address: zookeeper://192.168.1.130:2181
-    timeout: 1000
+    address: zookeeper://192.168.1.130:2181 #注册中心服务器地址，如果地址没有端口缺省为9090，同一集群内的多个地址用逗号分隔
+    timeout: 10000  #注册中心请求超时时间(毫秒)

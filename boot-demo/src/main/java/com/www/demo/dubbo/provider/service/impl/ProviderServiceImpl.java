@@ -17,8 +17,8 @@ import org.springframework.stereotype.Component;
  * @description 生产者服务
  * @date 2021/7/5 22:45
  */
-@Service
-@Component
+@Service //注意是dubbo的Service
+@Component //一般使用Component，避免与dubbo的Service重复
 public class ProviderServiceImpl implements ISysUserInfoService {
     private static Logger LOG = LoggerFactory.getLogger(ProviderServiceImpl.class);
     @Autowired
