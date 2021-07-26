@@ -21,8 +21,10 @@ dubbo:
   registry:
     address: zookeeper://192.168.1.130:2181 #注册中心服务器地址，如果地址没有端口缺省为9090，同一集群内的多个地址用逗号分隔
     timeout: 10000  #注册中心请求超时时间(毫秒)
-  scan:
-    base-packages: com.www.demo.dubbo.provider  #生产者服务扫描路径，必须配置，否则无法加载服务
+  monitor:
+    protocol: registry
+#  scan:
+#    base-packages: com.www.demo.dubbo.provider  #生产者服务扫描路径，使用该配置就不需要@EnableDubbo，否则需要在启动类加上@EnableDubbo
 
 #spring配置
 spring:
