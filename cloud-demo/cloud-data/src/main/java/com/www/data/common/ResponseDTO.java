@@ -19,11 +19,10 @@ public class ResponseDTO<T> implements Serializable {
     /**
      * @author www
      * @date 2021/8/1 19:54
-     * @description
+     * @description 有其他有参构造方法，则必须有无参数的构造方法，否则反序列的时候会报错
      * @return
      */
-    public ResponseDTO() {
-    }
+    public ResponseDTO() {}
 
     /**
      * @author www
