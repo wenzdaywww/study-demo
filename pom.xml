@@ -7,6 +7,6 @@
 	<artifactId>boot-study</artifactId>
 	<version>1.0.0</version>
 	<name>boot-study</name>
-	<description>Spring Boot学习Demo</description>
+	<description>微服务学习Demo</description>
 
 </project>

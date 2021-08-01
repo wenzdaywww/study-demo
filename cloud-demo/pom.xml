@@ -10,6 +10,12 @@
         <relativePath/>
     </parent>
 
+    <properties>
+        <java.version>1.8</java.version>
+        <project-version>1.0.0</project-version>
+        <spring-boot-version>2.4.0</spring-boot-version>
+    </properties>
+
     <groupId>com.www</groupId>
     <artifactId>cloud-demo</artifactId>
     <version>1.0.0</version>
@@ -17,32 +23,46 @@
     <packaging>pom</packaging>
     <description>Spring Cloud学习Demo</description>
 
+    <modules>
+        <module>cloud-provider</module>
+        <module>cloud-consumer</module>
+        <module>cloud-data</module>
+    </modules>
+    <!-- springboot框架起步依赖 -->
+    <dependencies>
+        <!-- springboot框架web项目起步依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!-- springboot框架测试起步依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+    </dependencies>
+    <!-- dependencies管理 -->
     <dependencyManagement>
         <dependencies>
             <!-- springcloud依赖 -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>Hoxton.SR12</version>
+                <version>Hoxton.RELEASE</version>
                 <type>pom</type>
                 <scope>runtime</scope>
             </dependency>
-            <!-- springboot框架web项目起步依赖 -->
+            <!-- mybatis插件依赖 -->
             <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-web</artifactId>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>3.4.3</version>
             </dependency>
-            <!-- springboot框架测试起步依赖 -->
+            <!-- mysql数据库依赖 -->
             <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-test</artifactId>
-                <scope>test</scope>
-            </dependency>
-            <!-- druid数据连接池 -->
-            <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>druid-spring-boot-starter</artifactId>
-                <version>1.2.5</version>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>8.0.25</version>
             </dependency>
             <!--fastjson 依赖-->
             <dependency>
@@ -62,28 +82,24 @@
                 <artifactId>log4j</artifactId>
                 <version>1.2.17</version>
             </dependency>
-            <!-- mysql数据库依赖 -->
+            <!-- springcloud数据包 -->
             <dependency>
-                <groupId>mysql</groupId>
-                <artifactId>mysql-connector-java</artifactId>
-                <version>8.0.25</version>
-            </dependency>
-            <!-- mybatis插件依赖 -->
-            <dependency>
-                <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-boot-starter</artifactId>
-                <version>3.4.3</version>
+                <groupId>com.www</groupId>
+                <artifactId>cloud-data</artifactId>
+                <version>1.0.0</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
 
     <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
 
 </project>
