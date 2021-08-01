@@ -11,19 +11,19 @@ import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 /**
- * @author www
- * @version 1.0
- * @description redis配置类
- * @date 2021/6/27 15:15
+ * <p>@Description redis配置类 </p>
+ * <p>@Version 1.0 </p>
+ * <p>@Author www </p>
+ * <p>@Date 2021/8/1 21:05 </p>
  */
 @Configuration
 public class RedisConfig {
     /**
-     * @author www
-     * @date 2021/6/27 15:31
-     * @description 自定义redisTemplate
+     * <p>@Description 自定义redisTemplate </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/1 21:06 </p>
      * @param redisConnectionFactory redis连接工厂
-     * @return org.springframework.data.redis.core.RedisTemplate<java.lang.Sring, java.lang.Object>
+     * @return org.springframework.data.redis.core.RedisTemplate<java.lang.String, java.lang.Object>
      */
     @Bean
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {

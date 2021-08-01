@@ -20,18 +20,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @version 1.0
- * @Description security登录认证失败处理
- * @Author www
- * @Date 2021/6/22 23:13
+ * <p>@Description ecurity登录认证失败处理 </p>
+ * <p>@Version 1.0 </p>
+ * <p>@Author www </p>
+ * <p>@Date 2021/8/1 21:11 </p>
  */
 @Component
 public class LoginFailureHandler implements AuthenticationFailureHandler  {
     private static Logger LOG = LoggerFactory.getLogger(LoginFailureHandler.class);
     /**
-     * @Author www
-     * @Date 2021/6/22 23:15
-     * @Description 登录失败处理事件
+     * <p>@Description 登录失败处理事件 </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/1 21:12 </p>
      * @param request 请求报文
      * @param response 响应报文
      * @param exception 认证异常

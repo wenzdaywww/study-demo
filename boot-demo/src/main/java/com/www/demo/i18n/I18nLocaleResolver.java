@@ -8,17 +8,16 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Locale;
 
 /**
- * @version 1.0
- * @Description i18n国际化文件解析器
- * @Author www
- * @Date 2021/6/6 17:59
+ * <p>@Description i18n国际化文件解析器 </p>
+ * <p>@Version 1.0 </p>
+ * <p>@Author www </p>
+ * <p>@Date 2021/8/1 20:53 </p>
  */
 public class I18nLocaleResolver implements LocaleResolver {
     /**
-     * @Author www
-     * @Date 2021/6/6 18:01
-     * @Description 设置语言解析请求
-     *
+     * <p>@Description 设置语言解析请求 </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/1 20:53 </p>
      * @param httpServletRequest http请求
      * @return java.util.Locale
      */

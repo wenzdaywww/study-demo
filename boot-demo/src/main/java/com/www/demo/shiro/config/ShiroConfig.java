@@ -10,17 +10,18 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * @version 1.0
- * @Description shiro配置类
- * @Author www
- * @Date 2021/6/20 16:05
+ * <p>@Description shiro配置类 </p>
+ * <p>@Version 1.0 </p>
+ * <p>@Author www </p>
+ * <p>@Date 2021/8/1 21:13 </p>
  */
 @Configuration
 public class ShiroConfig {
     /**
-     * @Author www
-     * @Date 2021/6/20 17:46
-     * @Description 创建用于进行权限信息的验证的Realm类
+     * <p>@Description 创建用于进行权限信息的验证的Realm类 </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/1 21:13 </p>
+     *
      * @return com.www.demo.shiro.config.UserRealm
      */
     @Bean(name = "userRealm")
@@ -28,11 +29,11 @@ public class ShiroConfig {
         return new UserRealm();
     }
     /**
-     * @Author www
-     * @Date 2021/6/20 17:51
-     * @Description 创建安全管理器，需要依赖realm类
+     * <p>@Description 创建安全管理器，需要依赖realm类 </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/1 21:13 </p>
      * @param userRealm 权限信息
-     * @return org.apache.shiro.web.session.mgt.DefaultWebSessionManager
+     * @return org.apache.shiro.web.mgt.DefaultWebSecurityManager
      */
     @Bean(name = "defaultWebSecurityManager")
     public DefaultWebSecurityManager getDefaultWebSecurityManager(@Qualifier("userRealm") UserRealm userRealm){
@@ -41,9 +42,9 @@ public class ShiroConfig {
         return securityManager;
     }
     /**
-     * @Author www
-     * @Date 2021/6/20 17:56
-     * @Description 创建filter过滤器，设置对应的过滤条件和跳转条件，需要依赖安全管理器
+     * <p>@Description 创建filter过滤器，设置对应的过滤条件和跳转条件，需要依赖安全管理器 </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/1 21:13 </p>
      * @param securityManager 安全管理器
      * @return org.apache.shiro.spring.web.ShiroFilterFactoryBean
      */

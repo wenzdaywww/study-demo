@@ -9,18 +9,18 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 /**
- * @description 角色菜单Mapper
- * @version 1.0
- * @author www
- * @date 2021/7/18 19:23
+ * <p>@Description 角色菜单Mapper </p>
+ * <p>@Version 1.0 </p>
+ * <p>@Author www </p>
+ * <p>@Date 2021/8/1 20:58 </p>
  */
 public interface ISysRoleMenuMapper extends BaseMapper<SysRoleMenu> {
     /**
-     * @Author www
-     * @Date 2021/6/18 21:22
-     * @Description 根据角色ID查询所有菜单
+     * <p>@Description 根据角色ID查询所有菜单 </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/1 20:58 </p>
      * @param roleList 角色ID集合
-     * @return java.util.List<com.www.demo.model.entity.SysMenuEntity>
+     * @return java.util.List<com.www.demo.model.entity.SysMenu>
      */
     List<SysMenu> findMenuList(@Param("roleList") List<SysRole> roleList);
 }

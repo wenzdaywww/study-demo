@@ -7,19 +7,20 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @author www
- * @version 1.0
- * @description Mybatis配置
- * @date 2021/7/19 21:13
+ * <p>@Description Mybatis配置 </p>
+ * <p>@Version 1.0 </p>
+ * <p>@Author www </p>
+ * <p>@Date 2021/8/1 21:01 </p>
  */
 @Configuration
 public class MyBatisConfig {
     /**
-     * @author www
-     * @date 2021/7/19 21:14
-     * @description 新的分页插件,一缓和二缓遵循mybatis的规则,
-     * 需要设置 MybatisConfiguration#useDeprecatedExecutor = false 避免缓存出现问题
-     * @return OptimisticLockerInterceptor
+     * <p>@Description 新的分页插件,一缓和二缓遵循mybatis的规则,
+     *    需要设置 MybatisConfiguration#useDeprecatedExecutor = false 避免缓存出现问题
+     * </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/1 21:01 </p>
+     * @return com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor
      */
     @Bean
     public MybatisPlusInterceptor mybatisPlusInterceptor(){

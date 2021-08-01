@@ -21,12 +21,13 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * @version 1.0
- * @Description WebSocket 聊天服务端
- * ServerEndpoint WebSocket服务端 需指定端点的访问路径
- * Session   WebSocket会话对象 通过它给客户端发送消息
- * @Author www
- * @Date 2021/5/24 23:36
+ * <p>@Description WebSocket 聊天服务端
+ *  ServerEndpoint WebSocket服务端 需指定端点的访问路径
+ *  session   WebSocket会话对象 通过它给客户端发送消息
+ * </p>
+ * <p>@Version 1.0 </p>
+ * <p>@Author www </p>
+ * <p>@Date 2021/8/1 21:16 </p>
  */
 @Component
 @ServerEndpoint("/ws/{userId}") //配置websocket的连接路径
@@ -40,12 +41,12 @@ public class WebSocketServer {
 	private String userId;
 
 	private static ISysUserService sysUserService;
-
 	/**
-	 * @Author www
-	 * @Date 2021/5/27 22:59
-	 * @Description 当客户端连接到服务端处理方法
+	 * <p>@Description 当客户端连接到服务端处理方法 </p>
+	 * <p>@Author www </p>
+	 * <p>@Date 2021/8/1 21:17 </p>
 	 * @param session 会话对象
+	 * @param userId 用户ID
 	 * @return void
 	 */
 	@OnOpen
@@ -69,9 +70,9 @@ public class WebSocketServer {
 		sendMessageToAll(null,msg);
 	}
 	/**
-	 * @Author www
-	 * @Date 2021/5/27 22:59
-	 * @Description 收到客户端发送的消息处理方法
+	 * <p>@Description 收到客户端发送的消息处理方法 </p>
+	 * <p>@Author www </p>
+	 * <p>@Date 2021/8/1 21:17 </p>
 	 * @param session 客户端的会话对象
 	 * @param jsonStr 消息内容
 	 * @return void
@@ -89,9 +90,9 @@ public class WebSocketServer {
         }
 	}
 	/**
-	 * @Author www
-	 * @Date 2021/5/27 23:01
-	 * @Description 客户端断开连接处理方法
+	 * <p>@Description 客户端断开连接处理方法 </p>
+	 * <p>@Author www </p>
+	 * <p>@Date 2021/8/1 21:17 </p>
 	 * @return void
 	 */
 	@OnClose
@@ -100,9 +101,9 @@ public class WebSocketServer {
 		onlineSessions.remove(userId);
 	}
 	/**
-	 * @Author www
-	 * @Date 2021/5/27 23:02
-	 * @Description 通信发生异常处理
+	 * <p>@Description 通信发生异常处理 </p>
+	 * <p>@Author www </p>
+	 * <p>@Date 2021/8/1 21:18 </p>
 	 * @param session 会话对象
 	 * @param error 异常信息
 	 * @return void
@@ -113,9 +114,9 @@ public class WebSocketServer {
 		error.printStackTrace();
 	}
 	/**
-	 * @Author www
-	 * @Date 2021/5/27 22:58
-	 * @Description 发送信息给所有人
+	 * <p>@Description 发送信息给所有人 </p>
+	 * <p>@Author www </p>
+	 * <p>@Date 2021/8/1 21:18 </p>
 	 * @param userId 用户ID
 	 * @param msg 消息
 	 * @return void
@@ -132,13 +133,13 @@ public class WebSocketServer {
 		});
 	}
     /**
-     * @Author www
-     * @Date 2021/5/28 00:03
-     * @Description 发送消息到指定用户
-     * @param receiveUsrId 接收的用户ID
-     * @param msg 消息
-     * @return void
-     */
+	 * <p>@Description 发送消息到指定用户 </p>
+	 * <p>@Author www </p>
+	 * <p>@Date 2021/8/1 21:18 </p>
+	 * @param receiveUsrId 接收的用户ID
+	 * @param msg 消息
+	 * @return void
+	 */
 	private void sendMessageToOne(String receiveUsrId,String msg){
 	    if (onlineSessions.containsKey(receiveUsrId)){
 	        try {

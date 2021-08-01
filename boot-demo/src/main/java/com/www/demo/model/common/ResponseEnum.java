@@ -1,10 +1,10 @@
 package com.www.demo.model.common;
 
 /**
- * @author www
- * @version 1.0
- * @description 响应码枚举值
- * @date 2021/7/19 22:28
+ * <p>@Description 响应码枚举值 </p>
+ * <p>@Version 1.0 </p>
+ * <p>@Author www </p>
+ * <p>@Date 2021/8/1 20:56 </p>
  */
 public enum ResponseEnum {
     /** 成功 **/

@@ -12,10 +12,10 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
- * @version 1.0
- * @Description Security配置类
- * @Author www
- * @Date 2021/6/15 22:11
+ * <p>@Description Security配置类 </p>
+ * <p>@Version 1.0 </p>
+ * <p>@Author www </p>
+ * <p>@Date 2021/8/1 21:10 </p>
  */
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -25,13 +25,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private LoginSuccessHandler loginSuccessHandler;
     @Autowired
     private LoginFailureHandler loginFailureHandler;
-
     /**
-     * @Author www
-     * @Date 2021/6/16 22:07
-     * @Description 授权
-     * 配置如何通过拦截器保护请求
-     * @param http
+     * <p>@Description 授权,配置如何通过拦截器保护请求 </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/1 21:10 </p>
+     * @param http http请求
      * @return void
      */
     @Override
@@ -67,11 +65,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.rememberMe().rememberMeParameter("rmb");//配置记住我的参数
     }
     /**
-     * @Author www
-     * @Date 2021/6/16 22:10
-     * @Description 认证
-     * 配置user-detail（用户详细信息）服务
-     * @param auth
+     * <p>@Description 认证,配置user-detail（用户详细信息）服务 </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/1 21:11 </p>
+     * @param auth 认证信息
      * @return void
      */
     @Override
@@ -85,10 +82,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
     }
     /**
-     * @Author www
-     * @Date 2021/6/16 22:50
-     * @Description 配置Spring Security的Filter链
-     *
+     * <p>@Description 配置Spring Security的Filter链 </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/1 21:11 </p>
      * @param web
      * @return void
      */

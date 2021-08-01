@@ -21,10 +21,10 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @version 1.0
- * @Description 用户信息服务层
- * @Author www
- * @Date 2021/5/20 23:11
+ * <p>@Description 用户信息服务层  </p>
+ * <p>@Version 1.0 </p>
+ * <p>@Author www </p>
+ * <p>@Date 2021/8/1 20:36 </p>
  */
 @Service
 public class SysUserServiceImpl implements ISysUserService {
@@ -35,12 +35,12 @@ public class SysUserServiceImpl implements ISysUserService {
     @Resource
     private ISysRoleMenuMapper sysRoleMenuMapper;
     /**
-     * @Author www
-     * @Date 2021/6/7 22:56
-     * @Description 查询用户信息
+     * <p>@Description 查询用户信息 </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/1 20:36 </p>
      * @param page 当前页数
      * @param user 查询条件
-     * @return java.util.List<com.www.demo.model.entity.SysUserEntity>
+     * @return java.util.List<com.www.demo.model.entity.SysUser>
      */
     @Override
     public List<SysUser> findUserList(int page, SysUser user) {
@@ -54,11 +54,11 @@ public class SysUserServiceImpl implements ISysUserService {
     }
 
     /**
-     * @Author www
-     * @Date 2021/5/19 23:41
-     * @Description 根据用户ID查询用户信息
+     * <p>@Description 根据用户ID查询用户信息 </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/1 20:36 </p>
      * @param userId 用户ID
-     * @return com.www.demo.model.SysUserEntity 用户信息
+     * @return com.www.demo.model.entity.SysUser用户信息
      */
     @Override
     public SysUser selectByUserId(String userId) {
@@ -67,9 +67,9 @@ public class SysUserServiceImpl implements ISysUserService {
         return sysUserMapper.selectOne(wrapper);
     }
     /**
-     * @Author www
-     * @Date 2021/5/19 23:41
-     * @Description 插入用户信息（更新非空数据）
+     * <p>@Description 插入用户信息（更新非空数据） </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/1 20:37 </p>
      * @param record 用户信息
      * @return int 插入条数
      */
@@ -84,9 +84,9 @@ public class SysUserServiceImpl implements ISysUserService {
         return sysUserMapper.insert(record);
     }
     /**
-     * @Author www
-     * @Date 2021/5/19 23:42
-     * @Description 根据主键更新用户信息（更新非空数据）
+     * <p>@Description 根据主键更新用户信息（更新非空数据） </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/1 20:37 </p>
      * @param record 用户信息
      * @return int 插入条数
      */
@@ -104,11 +104,11 @@ public class SysUserServiceImpl implements ISysUserService {
         return sysUserMapper.update(null,wrapper);
     }
     /**
-     * @Author www
-     * @Date 2021/6/15 23:15
-     * @Description 查询用户信息，包含角色信息
+     * <p>@Description 查询用户信息，包含角色信息 </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/1 20:38 </p>
      * @param userId 用户id
-     * @return com.www.demo.model.entity.SysUserEntity
+     * @return com.www.demo.model.dto.SysUserDTO
      */
     @Override
     public SysUserDTO findUserAllInfo(String userId) {

@@ -4,10 +4,10 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @description 用户角色表
- * @version 1.0
- * @author www
- * @date 2021/7/18 19:18
+ * <p>@Description 用户角色表 </p>
+ * <p>@Version 1.0 </p>
+ * <p>@Author www </p>
+ * <p>@Date 2021/8/1 20:57 </p>
  */
 public class SysUserRole implements Serializable {
     /**

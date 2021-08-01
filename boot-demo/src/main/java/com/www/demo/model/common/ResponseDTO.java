@@ -3,10 +3,10 @@ package com.www.demo.model.common;
 import java.io.Serializable;
 
 /**
- * @author www
- * @version 1.0
- * @description 响应报文类
- * @date 2021/7/19 22:22
+ * <p>@Description 响应报文类 </p>
+ * <p>@Version 1.0 </p>
+ * <p>@Author www </p>
+ * <p>@Date 2021/8/1 20:54 </p>
  */
 public class ResponseDTO<T> implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -17,10 +17,16 @@ public class ResponseDTO<T> implements Serializable {
     /** 响应数据 **/
     private T data;
     /**
-     * @author www
-     * @date 2021/7/19 22:26
-     * @description 响应报文构造方法(默认成功状态)
-     * @param data 数据
+     * <p>@Description 有其他有参构造方法，则必须有无参数的构造方法，否则反序列的时候会报错 </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/1 20:55 </p>
+     */
+    public ResponseDTO() {}
+    /**
+     * <p>@Description 响应报文构造方法(默认成功状态) </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/1 20:54 </p>
+     * @param data  数据
      */
     public ResponseDTO(T data) {
         this.code = ResponseEnum.SUCCESS.getCode();
@@ -28,9 +34,9 @@ public class ResponseDTO<T> implements Serializable {
         this.data = data;
     }
     /**
-     * @author www
-     * @date 2021/7/19 22:26
-     * @description 响应报文构造方法
+     * <p>@Description 响应报文构造方法 </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/1 20:55 </p>
      * @param code 响应码
      * @param data 数据
      */
@@ -40,9 +46,9 @@ public class ResponseDTO<T> implements Serializable {
         this.data = data;
     }
     /**
-     * @author www
-     * @date 2021/7/19 22:26
-     * @description 响应报文构造方法
+     * <p>@Description 响应报文构造方法 </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/1 20:55 </p>
      * @param code 响应码
      * @param msg 响应信息
      * @param data 数据

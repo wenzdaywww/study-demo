@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * @version 1.0
- * @Description 用户信息控制层，用于测试Mybatis
- * @Author www
- * @Date 2021/5/20 23:14
+ * <p>@Description  用户信息控制层，用于测试Mybatis </p>
+ * <p>@Version 1.0 </p>
+ * <p>@Author www </p>
+ * <p>@Date 2021/8/1 20:34 </p>
  */
 @Controller
 @RequestMapping("/user")
@@ -24,12 +24,11 @@ public class SysUserController {
 	private ISysUserService sysUserService;
 
 	/**
-	 * @Author www
-	 * @Date 2021/6/18 23:38
-	 * @Description 根据用户ID查询用户信息
-	 *
+	 * <p>@Description 根据用户ID查询用户信息 </p>
+	 * <p>@Author www </p>
+	 * <p>@Date 2021/8/1 20:34 </p>
 	 * @param id 用户id
-	 * @return java.lang.Object
+	 * @return com.www.demo.model.common.ResponseDTO<com.www.demo.model.dto.SysUserDTO>
 	 */
 	@RequestMapping("/find/{id}")
 	@ResponseBody
@@ -38,18 +37,16 @@ public class SysUserController {
 		return new ResponseDTO<>(ResponseEnum.SUCCESS,sysUserDTO);
 	}
 	/**
-	 * @Author www
-	 * @Date 2021/6/18 23:38
-	 * @Description 添加用户信息
-	 *
+	 * <p>@Description 添加用户信息 </p>
+	 * <p>@Author www </p>
+	 * <p>@Date 2021/8/1 20:35 </p>
 	 * @param id 用户id
 	 * @param name 用户名称
 	 * @param psd 密码
-	 * @return java.lang.Object
+	 * @return com.www.demo.model.common.ResponseDTO<com.www.demo.model.entity.SysUser>
 	 */
 	@RequestMapping("/add/{id}/{name}/{psd}")
-	public @ResponseBody
-    ResponseDTO<SysUser> add(@PathVariable("id")String id, @PathVariable("name")String name, @PathVariable("psd")String psd){
+	public @ResponseBody ResponseDTO<SysUser> add(@PathVariable("id")String id, @PathVariable("name")String name, @PathVariable("psd")String psd){
 		SysUser sysUser = new SysUser();
 		sysUser.setUserId(id);
 		sysUser.setUserName(name);
@@ -58,18 +55,16 @@ public class SysUserController {
 		return new ResponseDTO<>(ResponseEnum.SUCCESS,sysUser);
 	}
 	/**
-	 * @Author www
-	 * @Date 2021/6/18 23:38
-	 * @Description 更新用户信息
-	 *
+	 * <p>@Description 更新用户信息 </p>
+	 * <p>@Author www </p>
+	 * <p>@Date 2021/8/1 20:35 </p>
 	 * @param id 用户id
 	 * @param name 用户名称
 	 * @param psd 密码
-	 * @return java.lang.Object
+	 * @return com.www.demo.model.common.ResponseDTO<com.www.demo.model.entity.SysUser>
 	 */
 	@RequestMapping("/update/{id}/{name}/{psd}")
-	public @ResponseBody
-    ResponseDTO<SysUser> update(@PathVariable("id")String id, @PathVariable("name")String name, @PathVariable("psd")String psd){
+	public @ResponseBody ResponseDTO<SysUser> update(@PathVariable("id")String id, @PathVariable("name")String name, @PathVariable("psd")String psd){
 		SysUser sysUser = sysUserService.selectByUserId(id);
 		sysUser.setUserName(name);
 		sysUser.setPassWord(psd);

@@ -20,10 +20,10 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 /**
- * @version 1.0
- * @Description websocket控制层
- * @Author www
- * @Date 2021/5/24 23:53
+ * <p>@Description websocket控制层 </p>
+ * <p>@Version 1.0 </p>
+ * <p>@Author www </p>
+ * <p>@Date 2021/8/1 21:18 </p>
  */
 @Controller
 public class WebSocketController {
@@ -32,10 +32,9 @@ public class WebSocketController {
 	@Autowired
 	private ISysUserService sysUserService;
 	/**
-	 * @Author www
-	 * @Date 2021/5/24 23:35
-	 * @Description 登入页面
-	 *
+	 * <p>@Description 登入页面 </p>
+	 * <p>@Author www </p>
+	 * <p>@Date 2021/8/1 21:18 </p>
 	 * @return org.springframework.web.servlet.ModelAndView
 	 */
 	@GetMapping("/ws")
@@ -44,14 +43,14 @@ public class WebSocketController {
 	    return new ModelAndView("websocket/login");
 	}
 	/**
-	 * @Author www
-	 * @Date 2021/5/24 23:35
-	 * @Description 聊天页面
-	 * 集成shiro实现登录拦截
-	 * @param userId
-	 * @param password
-	 * @param request
-	 * @return org.springframework.web.servlet.ModelAndView
+	 * <p>@Description 聊天页面，集成shiro实现登录拦截 </p>
+	 * <p>@Author www </p>
+	 * <p>@Date 2021/8/1 21:19 </p>
+	 * @param userId 用户ID
+	 * @param password 密码
+	 * @param request 请求
+	 * @param model model
+	 * @return java.lang.String
 	 */
 	@PostMapping("/ws/login")
 	public String chat(String userId, String password, HttpServletRequest request,Model model) throws UnknownHostException {

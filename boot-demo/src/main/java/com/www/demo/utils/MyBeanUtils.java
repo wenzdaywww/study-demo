@@ -9,17 +9,17 @@ import org.slf4j.LoggerFactory;
 import java.lang.reflect.InvocationTargetException;
 
 /**
- * @author www 对象工具类
- * @version 1.0
- * @description
- * @date 2021/7/18 21:54
+ * <p>@Description 对象工具类 </p>
+ * <p>@Version 1.0 </p>
+ * <p>@Author www </p>
+ * <p>@Date 2021/8/1 21:15 </p>
  */
 public class MyBeanUtils extends BeanUtils {
     private static Logger LOG = LoggerFactory.getLogger(MyBeanUtils.class);
     /**
-     * @author www
-     * @date 2021/7/18 21:55
-     * @description 对象复制
+     * <p>@Description 对象复制 </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/1 21:16 </p>
      * @param orig 源对象
      * @param dest 目标对象
      * @return void

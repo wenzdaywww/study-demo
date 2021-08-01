@@ -24,21 +24,20 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 /**
- * @version 1.0
- * @Description 用户详细信息服务类，用于实现spring security的登录认证
- * @Author www
- * @Date 2021/6/22 22:35
+ * <p>@Description 用户详细信息服务类，用于实现spring security的登录认证 </p>
+ * <p>@Version 1.0 </p>
+ * <p>@Author www </p>
+ * <p>@Date 2021/8/1 21:12 </p>
  */
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
     private static Logger LOG = LoggerFactory.getLogger(UserDetailsServiceImpl.class);
     @Autowired
     private ISysUserService sysUserService;
-
     /**
-     * @Author www
-     * @Date 2021/6/22 22:36
-     * @Description 加载用户信息
+     * <p>@Description 加载用户信息 </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/1 21:12 </p>
      * @param userId 用户ID
      * @return org.springframework.security.core.userdetails.UserDetails
      */

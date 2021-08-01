@@ -4,10 +4,10 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @description 用户信息表
- * @version 1.0
- * @author www
- * @date 2021/7/18 19:17
+ * <p>@Description 用户信息表 </p>
+ * <p>@Version 1.0 </p>
+ * <p>@Author www </p>
+ * <p>@Date 2021/8/1 21:23 </p>
  */
 public class SysUserDTO implements Serializable {
     /**

@@ -12,10 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
- * @author www
- * @version 1.0
- * @description 生产者服务
- * @date 2021/7/5 22:45
+ * <p>@Description dubbo生产者服务 </p>
+ * <p>@Version 1.0 </p>
+ * <p>@Author www </p>
+ * <p>@Date 2021/8/1 20:52 </p>
  */
 @Service //注意是dubbo的Service
 @Component //一般使用Component，避免与dubbo的Service重复
@@ -24,11 +24,11 @@ public class ProviderServiceImpl implements ISysUserInfoService {
     @Autowired
     private ISysUserService sysUserService;
     /**
-     * @author www
-     * @date 2021/7/24 09:39
-     * @description 根据用户Id查询用户信息
+     * <p>@Description 根据用户Id查询用户信息 </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/1 20:52 </p>
      * @param userId 用户Id
-     * @return com.www.model.dubbo.SysUserInfo
+     * @return com.www.dubbo.model.SysUserInfo 用户信息
      */
     @Override
     public SysUserInfo findSysUserInfoById(String userId) {

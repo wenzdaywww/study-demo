@@ -8,10 +8,10 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @description 用户信息表
- * @version 1.0
- * @author www
- * @date 2021/7/18 19:17
+ * <p>@Description 用户信息表 </p>
+ * <p>@Version 1.0 </p>
+ * <p>@Author www </p>
+ * <p>@Date 2021/8/1 20:56 </p>
  */
 public class SysUserDTO implements Serializable {
     /**  菜单信息 **/

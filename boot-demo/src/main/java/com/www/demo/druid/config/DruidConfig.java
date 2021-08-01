@@ -13,19 +13,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @version 1.0
- * @Description druid配置类
- * @Author www
- * @Date 2021/6/9 21:34
+ * <p>@Description druid配置类 </p>
+ * <p>@Version 1.0 </p>
+ * <p>@Author www </p>
+ * <p>@Date 2021/8/1 20:44 </p>
  */
 @Configuration
 public class DruidConfig {
-
     /**
-     * @Author www
+     * <p>@Description 注册druid的数据源对象 </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/1 20:45 </p>
      * @deprecated 使用多数据源时，该方法就不能使用
-     * @Date 2021/6/9 21:46
-     * @Description 注册druid的数据源对象
      * @return javax.sql.DataSource
      */
 //    @Bean
@@ -36,9 +35,15 @@ public class DruidConfig {
     /**
      * @Author www
      * @Date 2021/6/9 21:48
-     * @Description 设置druid后台监控功能
-     * 因为spring boot内置了servlet容器，所以没有web.xml，替代方法使用：ServletRegistrationBean
-     * 注：监控页面路径为：localhost:8080/druid
+     * @Description
+     * @return org.springframework.boot.web.servlet.ServletRegistrationBean
+     */
+    /**
+     * <p>@Description 设置druid后台监控功能
+     *     因为spring boot内置了servlet容器，所以没有web.xml，替代方法使用：ServletRegistrationBean
+     *     注：监控页面路径为：localhost:8080/druid </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/1 20:45 </p>
      * @return org.springframework.boot.web.servlet.ServletRegistrationBean
      */
     @Bean
@@ -57,10 +62,9 @@ public class DruidConfig {
         return  bean;
     }
     /**
-     * @Author www
-     * @Date 2021/6/9 21:56
-     * @Description druid监控过滤器
-     *
+     * <p>@Description druid监控过滤器 </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/1 20:46 </p>
      * @return org.springframework.boot.web.servlet.FilterRegistrationBean
      */
     @Bean

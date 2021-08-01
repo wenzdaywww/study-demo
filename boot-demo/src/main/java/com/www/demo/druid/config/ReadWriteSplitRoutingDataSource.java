@@ -3,16 +3,16 @@ package com.www.demo.druid.config;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 
 /**
- * @author www
- * @version 1.0
- * @description 读写分离数据源动态代理类
- * @date 2021/7/20 22:41
+ * <p>@Description 读写分离数据源动态代理类 </p>
+ * <p>@Version 1.0 </p>
+ * <p>@Author www </p>
+ * <p>@Date 2021/8/1 20:51 </p>
  */
 public class ReadWriteSplitRoutingDataSource extends AbstractRoutingDataSource {
     /**
-     * @author www
-     * @date 2021/7/20 22:42
-     * @description 数据源动态代理获取数据源
+     * <p>@Description 数据源动态代理获取数据源 </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/1 20:51 </p>
      * @return java.lang.Object
      */
     @Override

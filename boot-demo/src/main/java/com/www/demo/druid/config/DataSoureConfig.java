@@ -13,10 +13,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.sql.DataSource;
 
 /**
- * @author www
- * @version 1.0
- * @description 加载多个数据源配置，如主从数据库
- * @date 2021/7/20 22:06
+ * <p>@Description 加载多个数据源配置，如主从数据库 </p>
+ * <p>@Version 1.0 </p>
+ * <p>@Author www </p>
+ * <p>@Date 2021/8/1 20:40 </p>
  */
 @Configuration
 @EnableTransactionManagement
@@ -27,9 +27,9 @@ public class DataSoureConfig {
     private Class<? extends DataSource> dataSoureType;
 
     /**
-     * @author www
-     * @date 2021/7/20 22:13
-     * @description 配置主数据源
+     * <p>@Description 配置主数据源 </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/1 20:40 </p>
      * @return javax.sql.DataSource
      */
     @Bean("masterDataSource")
@@ -41,9 +41,9 @@ public class DataSoureConfig {
         return masterDataSource;
     }
     /**
-     * @author www
-     * @date 2021/7/20 22:13
-     * @description 配置从数据源
+     * <p>@Description 配置从数据源 </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/1 20:41 </p>
      * @return javax.sql.DataSource
      */
     @Bean("slaveDataSource")

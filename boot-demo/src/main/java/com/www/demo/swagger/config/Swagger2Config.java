@@ -16,19 +16,18 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import java.util.ArrayList;
 
 /**
- * @author www
- * @version 1.0
- * @description swagger配置类
- * swagger页面访问路径：localhost:8080/swagger-ui/index.html
- * @date 2021/6/24 23:19
+ * <p>@Description swagger配置类，swagger页面访问路径：localhost:8080/swagger-ui/index.html </p>
+ * <p>@Version 1.0 </p>
+ * <p>@Author www </p>
+ * <p>@Date 2021/8/1 21:14 </p>
  */
 @Configuration
 @EnableOpenApi
 public class Swagger2Config {
     /**
-     * @author www
-     * @date 2021/6/27 11:05
-     * @description 配置qadmin的docket对象信息
+     * <p>@Description 配置qadmin的docket对象信息 </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/1 21:15 </p>
      * @param env 环境配置信息
      * @return springfox.documentation.spring.web.plugins.Docket
      */
@@ -49,9 +48,9 @@ public class Swagger2Config {
                 .build();
     }
     /**
-     * @author www
-     * @date 2021/6/27 11:05
-     * @description 配置websocket的docket对象信息
+     * <p>@Description 配置websocket的docket对象信息 </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/1 21:15 </p>
      * @param env 环境配置信息
      * @return springfox.documentation.spring.web.plugins.Docket
      */
@@ -72,9 +71,9 @@ public class Swagger2Config {
                 .build();
     }
     /**
-     * @author www
-     * @date 2021/6/27 11:05
-     * @description 配置websocket的docket对象信息
+     * <p>@Description 配置websocket的docket对象信息 </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/1 21:15 </p>
      * @param env 环境配置信息
      * @return springfox.documentation.spring.web.plugins.Docket
      */
@@ -95,9 +94,9 @@ public class Swagger2Config {
                 .build();
     }
     /**
-     * @author www
-     * @date 2021/6/27 11:06
-     * @description 配置API信息
+     * <p>@Description 配置API信息 </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/1 21:15 </p>
      * @return springfox.documentation.service.ApiInfo
      */
     private ApiInfo getApiInfo(){

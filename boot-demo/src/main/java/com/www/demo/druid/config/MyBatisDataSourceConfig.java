@@ -26,13 +26,14 @@ import javax.sql.DataSource;
 import java.util.List;
 
 /**
- * @author www
- * @version 1.0
- * @description mybatis的数据源配置
- * @date 2021/7/20 22:36
+ * <p>@Description mybatis的数据源配置
+ * DataSoureConfig这个文件在DataSourceConfiguration加载完成之后再加载MybatisConfiguration
+ * </p>
+ * <p>@Version 1.0 </p>
+ * <p>@Author www </p>
+ * <p>@Date 2021/8/1 20:47 </p>
  */
 @Configuration
-//DataSoureConfig这个文件在DataSourceConfiguration加载完成之后再加载MybatisConfiguration
 @AutoConfigureAfter(DataSoureConfig.class)
 public class MyBatisDataSourceConfig extends MybatisPlusAutoConfiguration {
     private static Logger LOG = LoggerFactory.getLogger(MyBatisDataSourceConfig.class);
@@ -45,9 +46,9 @@ public class MyBatisDataSourceConfig extends MybatisPlusAutoConfiguration {
         super(properties, interceptorsProvider, typeHandlersProvider, languageDriversProvider, resourceLoader, databaseIdProvider, configurationCustomizersProvider, mybatisPlusPropertiesCustomizerProvider, applicationContext);
     }
     /**
-     * @author www
-     * @date 2021/7/20 22:53
-     * @description 加载数据源类型
+     * <p>@Description 加载数据源类型 </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/1 20:47 </p>
      * @return org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource
      */
     @Bean(name = "routingDataSource")
@@ -64,9 +65,10 @@ public class MyBatisDataSourceConfig extends MybatisPlusAutoConfiguration {
         return proxy;
     }
     /**
-     * @author www
-     * @date 2021/7/20 22:39
-     * @description 加载数据源到mybatis的SqlSessionFactory中
+     * <p>@Description 加载数据源到mybatis的SqlSessionFactory中 </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/1 20:47 </p>
+     * @param dataSource
      * @return org.apache.ibatis.session.SqlSessionFactory
      */
     @Bean(name = "sqlSessionFactory")

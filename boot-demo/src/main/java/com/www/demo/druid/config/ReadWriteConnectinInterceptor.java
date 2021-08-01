@@ -9,20 +9,20 @@ import org.springframework.core.Ordered;
 import org.springframework.stereotype.Component;
 
 /**
- * @author www
- * @version 1.0
- * @description 读写分离数据源切断的拦截器-AOP注入
- * @date 2021/7/20 22:58
+ * <p>@Description 读写分离数据源切断的拦截器-AOP注入 </p>
+ * <p>@Version 1.0 </p>
+ * <p>@Author www </p>
+ * <p>@Date 2021/8/1 20:48 </p>
  */
 @Aspect
 @Component
 public class ReadWriteConnectinInterceptor implements Ordered {
     private static Logger LOG = LoggerFactory.getLogger(ReadWriteConnectinInterceptor.class);
     /**
-     * @author www
-     * @date 2021/7/20 23:13
-     * @description 读操作AOP切面
-     * @param proceedingJoinPoint
+     * <p>@Description 读数据操作AOP切面 </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/1 20:49 </p>
+     * @param proceedingJoinPoint 切点
      * @return java.lang.Object
      */
     @Around(value = "execution(* com.www.demo.model.mapper..*.select*(..))")
@@ -46,10 +46,10 @@ public class ReadWriteConnectinInterceptor implements Ordered {
         return result;
     }
     /**
-     * @author www
-     * @date 2021/7/20 23:13
-     * @description 插入操作AOP切面
-     * @param proceedingJoinPoint
+     * <p>@Description 插入数据操作AOP切面 </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/1 20:49 </p>
+     * @param proceedingJoinPoint 切点
      * @return java.lang.Object
      */
     @Around(value = "execution(* com.www.demo.model.mapper..*.insert*(..))")
@@ -71,10 +71,10 @@ public class ReadWriteConnectinInterceptor implements Ordered {
         return result;
     }
     /**
-     * @author www
-     * @date 2021/7/20 23:13
-     * @description 删除操作AOP切面
-     * @param proceedingJoinPoint
+     * <p>@Description 删除数据操作AOP切面 </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/1 20:50 </p>
+     * @param proceedingJoinPoint 切点
      * @return java.lang.Object
      */
     @Around(value = "execution(* com.www.demo.model.mapper..*.delete*(..))")
@@ -82,10 +82,10 @@ public class ReadWriteConnectinInterceptor implements Ordered {
         return insert(proceedingJoinPoint);
     }
     /**
-     * @author www
-     * @date 2021/7/20 23:13
-     * @description 更新操作AOP切面
-     * @param proceedingJoinPoint
+     * <p>@Description 更新数据操作AOP切面 </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/1 20:50 </p>
+     * @param proceedingJoinPoint 切点
      * @return java.lang.Object
      */
     @Around(value = "execution(* com.www.demo.model.mapper..*.update*(..))")

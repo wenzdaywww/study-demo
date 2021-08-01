@@ -12,22 +12,21 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @version 1.0
- * @Description 管理后台用户信息Controller层
- * @Author www
- * @Date 2021/6/7 22:52
+ * <p>@Description 管理后台用户信息Controller层 </p>
+ * <p>@Version 1.0 </p>
+ * <p>@Author www </p>
+ * <p>@Date 2021/8/1 21:04 </p>
  */
 @Controller
 public class UserController {
     @Autowired
     private ISysUserService sysUserService;
-
     /**
-     * @Author www
-     * @Date 2021/6/7 23:00
-     * @Description 查询用户列表
-     *
-     * @param model
+     * <p>@Description 查询用户列表 </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/1 21:04 </p>
+     * @param page 当前页数
+     * @param model model
      * @return java.lang.String
      */
     @GetMapping("/qadmin/userList")
@@ -37,11 +36,10 @@ public class UserController {
         return "quickadmin/user_index";
     }
     /**
-     * @Author www
-     * @Date 2021/6/7 23:00
-     * @Description 跳转添加用户页面
-     *
-     * @param model
+     * <p>@Description 跳转添加用户页面 </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/1 21:04 </p>
+     * @param model model
      * @return java.lang.String
      */
     @GetMapping("/qadmin/addUser")
@@ -49,18 +47,16 @@ public class UserController {
         return "quickadmin/user_add";
     }
     /**
-     * @Author www
-     * @Date 2021/6/8 00:00
-     * @Description 保存用户
-     *
+     * <p>@Description 保存用户 </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/1 21:04 </p>
      * @param userId 用户ID
      * @param userName 用户名
      * @param password 用户密码
-     * @param model
+     * @param model model
      * @return java.lang.String
      */
     @PostMapping("/qadmin/addUser")
-//    @Transactional(rollbackForClassName = "Exception")
     public String saveUser(@RequestParam("id")String userId, @RequestParam("name")String userName, @RequestParam("password")String password, Model model){
         SysUser sysUserDTO = sysUserService.selectByUserId(userId);
         if (sysUserDTO == null){
@@ -81,16 +77,14 @@ public class UserController {
         return findUserList(1,model);
     }
     /**
-     * @Author www
-     * @Date 2021/6/8 23:03
-     * @Description 删除用户
-     *
+     * <p>@Description 删除用户 </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/1 21:05 </p>
      * @param userId 用户ID
-     * @param model
+     * @param model model
      * @return java.lang.String
      */
     @GetMapping("/qadmin/deleteUser/{id}")
-//    @Transactional(rollbackForClassName = "Exception")
     public String deleteUser(@PathVariable("id")String userId, Model model){
         SysUser sysUserDTO = sysUserService.selectByUserId(userId);
         if (sysUserDTO != null){

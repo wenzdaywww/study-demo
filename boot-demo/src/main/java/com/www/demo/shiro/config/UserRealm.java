@@ -21,20 +21,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @version 1.0
- * @Description 用于进行权限信息的验证
- * @Author www
- * @Date 2021/6/20 16:16
+ * <p>@Description 用于进行权限信息的验证 </p>
+ * <p>@Version 1.0 </p>
+ * <p>@Author www </p>
+ * <p>@Date 2021/8/1 21:14 </p>
  */
 public class UserRealm extends AuthorizingRealm {
     private static Log LOG = LogFactory.getLog(UserRealm.class);
     @Autowired
     private ISysUserService sysUserService;
     /**
-     * @Author www
-     * @Date 2021/6/20 19:03
-     * @Description 授权
-     * @param principalCollection
+     * <p>@Description 授权 </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/1 21:14 </p>
+     * @param principalCollection 授权信息
      * @return org.apache.shiro.authz.AuthorizationInfo
      */
     @Override
@@ -54,11 +54,10 @@ public class UserRealm extends AuthorizingRealm {
         }
         return authorizationInfo;
     }
-
     /**
-     * @Author www
-     * @Date 2021/6/20 19:02
-     * @Description 用户信息认证
+     * <p>@Description 用户信息认证 </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/1 21:14 </p>
      * @param authenticationToken 令牌信息
      * @return org.apache.shiro.authc.AuthenticationInfo
      */

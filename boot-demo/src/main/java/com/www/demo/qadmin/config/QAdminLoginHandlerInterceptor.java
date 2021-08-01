@@ -7,20 +7,19 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * @version 1.0
- * @Description 登录拦截器，用于自定义Spring MVC的拦截器
- * @Author www
- * @Date 2021/6/6 21:47
+ * <p>@Description 登录拦截器，用于自定义Spring MVC的拦截器 </p>
+ * <p>@Version 1.0 </p>
+ * <p>@Author www </p>
+ * <p>@Date 2021/8/1 21:02 </p>
  */
 public class QAdminLoginHandlerInterceptor implements HandlerInterceptor {
     /**
-     * @Author www
-     * @Date 2021/6/6 21:51
-     * @Description 登录拦截处理
-     *
+     * <p>@Description 登录拦截处理 </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/1 21:02 </p>
      * @param request 请求参数
      * @param response 响应参数
-     * @param handler
+     * @param handler 处理器
      * @return boolean ture不拦截，false拦截
      */
     @Override

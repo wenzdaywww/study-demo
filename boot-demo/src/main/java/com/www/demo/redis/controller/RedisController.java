@@ -13,24 +13,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * @version 1.0
- * @Description redis框架测试控制层
- * @Author www
- * @Date 2021/5/25 23:02
+ * <p>@Description redis框架测试控制层 </p>
+ * <p>@Version 1.0 </p>
+ * <p>@Author www </p>
+ * <p>@Date 2021/8/1 21:06 </p>
  */
 @Controller
 @RequestMapping("/redis")
 public class RedisController {
     private static Logger LOG = LoggerFactory.getLogger(RedisController.class);
     /**
-     * @Author www
-     * @Date 2021/6/18 23:43
-     * @Description 保存数据
-     *
+     * <p>@Description 保存数据 </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/1 21:06 </p>
      * @param type 数据类型
      * @param key key值
      * @param value value值
-     * @return java.lang.Object
+     * @return com.www.demo.model.common.ResponseDTO<com.www.demo.model.entity.SysUser>
      */
     @RequestMapping("/put/{type}/{key}/{value}")
     public @ResponseBody
@@ -53,13 +52,12 @@ public class RedisController {
         return new ResponseDTO<>(ResponseEnum.SUCCESS,sysUser);
     }
     /**
-     * @Author www
-     * @Date 2021/6/18 23:43
-     * @Description 获取数据
-     *
+     * <p>@Description 获取数据 </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/1 21:06 </p>
      * @param type 数据类型
      * @param key key值
-     * @return java.lang.Object
+     * @return com.www.demo.model.common.ResponseDTO
      */
     @RequestMapping("/get/{type}/{key}")
     public @ResponseBody

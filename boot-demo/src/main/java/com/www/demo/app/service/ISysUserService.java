@@ -6,10 +6,10 @@ import com.www.demo.model.entity.SysUser;
 import java.util.List;
 
 /**
- * @version 1.0
- * @Description 用户信息服务接口
- * @Author www
- * @Date 2021/5/20 23:14
+ * <p>@Description 用户信息服务接口 </p>
+ * <p>@Version 1.0 </p>
+ * <p>@Author www </p>
+ * <p>@Date 2021/5/20 23:14 </p>
  */
 public interface ISysUserService {
     /**
@@ -31,12 +31,11 @@ public interface ISysUserService {
      */
     List<SysUser> findUserList(int page,SysUser user);
     /**
-     * @Author www
-     * @Date 2021/5/19 23:41
-     * @Description 根据用户ID查询用户信息
-     *
+     * <p>@description 根据用户ID查询用户信息</p>
+     * <p>@author www </p>
+     * <p>@date 2021/8/1 20:30 </p>
      * @param userId 用户ID
-     * @return com.www.demo.model.SysUserEntity 用户信息
+     * @return com.www.demo.model.entity.SysUser 用户信息
      */
     SysUser selectByUserId(String userId);
     /**

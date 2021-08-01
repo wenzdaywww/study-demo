@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * @author www
- * @version 1.0
- * @description
- * @date 2021/7/13 00:30
+ * <p>@Description dubbo消费者controller </p>
+ * <p>@Version 1.0 </p>
+ * <p>@Author www </p>
+ * <p>@Date 2021/8/1 21:24 </p>
  */
 @Controller
 public class MyController {

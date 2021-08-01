@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpSession;
 
 /**
- * @version 1.0
- * @Description 管理后台登入Controller层
- * @Author www
- * @Date 2021/6/6 16:30
+ * <p>@Description 管理后台登入Controller层 </p>
+ * <p>@Version 1.0 </p>
+ * <p>@Author www </p>
+ * <p>@Date 2021/8/1 21:03 </p>
  */
 @Controller
 public class LoginController {
@@ -22,11 +22,10 @@ public class LoginController {
     @Autowired
     private ISysUserService sysUserService;
     /**
-     * @Author www
-     * @Date 2021/6/6 16:34
-     * @Description 进入登入页面
-     *
-     * @return org.springframework.web.servlet.ModelAndView
+     * <p>@Description 进入登入页面 </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/1 21:03 </p>
+     * @return java.lang.String
      */
     @GetMapping("/qadmin")
     public String index(){
@@ -34,10 +33,10 @@ public class LoginController {
         return "quickadmin/login";
     }
     /**
-     * @Author www
-     * @Date 2021/6/6 23:15
-     * @Description 退出登录
-     * @param session
+     * <p>@Description 退出登录 </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/1 21:03 </p>
+     * @param session 会话
      * @return java.lang.String
      */
     @RequestMapping("/qadmin/logout")
