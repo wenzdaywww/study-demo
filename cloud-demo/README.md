@@ -4,3 +4,4 @@
 ## cloud-data: 服务接口的POJO类
 ## cloud-consumer: 服务调用方
 ## cloud-provider：服务提供方法
+## cloud-eureka-server：eureka服务注册中心
