@@ -10,7 +10,7 @@
     </parent>
 
     <groupId>com.www</groupId>
-    <artifactId>cloud-eureka-server</artifactId>
+    <artifactId>cloud-eureka-server-cluster2</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
 

@@ -5,6 +5,7 @@
 	<!-- 当前项目信息-->
 	<groupId>com.www</groupId>
 	<artifactId>boot-study</artifactId>
+	<packaging>pom</packaging>
 	<version>1.0.0</version>
 	<name>boot-study</name>
 	<description>微服务学习Demo</description>

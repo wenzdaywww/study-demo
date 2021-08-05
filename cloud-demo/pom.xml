@@ -27,7 +27,9 @@
         <module>cloud-provider</module>
         <module>cloud-consumer</module>
         <module>cloud-data</module>
-        <module>cloud-eureka-server</module>
+        <module>cloud-eureka-server-cluster1</module>
+        <module>cloud-eureka-server-cluster2</module>
+        <module>cloud-eureka-server-cluster3</module>
     </modules>
     <!-- springboot框架起步依赖 -->
     <dependencies>

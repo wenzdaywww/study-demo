@@ -1,0 +1,18 @@
+server:
+  port: 7003
+
+spring:
+  security:
+    user:
+      name: www
+      password: www362412
+
+eureka:
+  instance:
+    hostname: eureka-server-cluster2 #服务注册中心实例的主机名
+  client:
+    fetch-registry: false #此客户端是否获取eureka服务器注册表上的注册信息，默认为true
+    register-with-eureka: false  #实例是否在eureka服务器上注册自己的信息以供其他服务发现，默认为true
+    service-url:
+      #配置eureka其他集群地址（不包括当前注册中心）
+      defaultZone: http://www:www362412@localhost:7002/eureka/,http://www:www362412@localhost:7004/eureka/
