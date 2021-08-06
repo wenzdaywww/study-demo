@@ -2,13 +2,18 @@ package com.www.controller;
 
 import com.www.data.common.ResponseDTO;
 import com.www.data.dto.SysUserDTO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.List;
 
 /**
  * <p>@Description Restful API调用方 </p>
@@ -19,8 +24,12 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 @RequestMapping("/cons")
 public class RestConsumerController {
+    private static final Logger LOGGER = LoggerFactory.getLogger(RestConsumerController.class);
     @Autowired
     private RestTemplate restTemplate;
+    @Autowired
+    private DiscoveryClient discoveryClient;
+    private String providerURL = "http://cloud-provider";
     /**
      * <p>@Description 直接调用服务 </p>
      * <p>@Author www </p>
@@ -33,7 +42,7 @@ public class RestConsumerController {
         return restTemplate.getForObject("http://localhost:8080/pro/get/"+name,ResponseDTO.class);
     }
     /**
-     * <p>@Description 直接调用服务 </p>
+     * <p>@Description 通过eureka调用服务 </p>
      * <p>@Author www </p>
      * <p>@Date 2021/8/4 22:23 </p>
      * @param name
@@ -42,6 +51,25 @@ public class RestConsumerController {
     @GetMapping("/get/{name}")
     public ResponseDTO<SysUserDTO> getName(@PathVariable("name") String name){
         //cloud-provider为服务提供方的spring.application.name
-        return restTemplate.getForObject("http://cloud-provider/pro/get/"+name,ResponseDTO.class);
+        return restTemplate.getForObject(providerURL+"/pro/get/"+name,ResponseDTO.class);
+    }
+    /**
+     * <p>@Description 获取负载均衡的服务信息 </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/4 22:11 </p>
+     * @return java.lang.Object
+     */
+    @GetMapping("/discovery")
+    public Object discovery(){
+        List<String> serviceLis = discoveryClient.getServices();
+        for (String service:serviceLis) {
+            LOGGER.info("-----> services={}",service);
+        }
+        List<ServiceInstance> instanceList = discoveryClient.getInstances("cloud-provider");
+        for (ServiceInstance instance : instanceList) {
+            LOGGER.info("-----> instance.ServiceId={},instance.Host={},instance.Port={},instance.Uri={},",
+                    instance.getServiceId(),instance.getHost(),instance.getPort(),instance.getUri());
+        }
+        return discoveryClient;
     }
 }

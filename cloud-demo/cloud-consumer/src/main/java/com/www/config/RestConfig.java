@@ -20,7 +20,7 @@ public class RestConfig {
      * @return org.springframework.web.client.RestTemplate
      */
     @Bean
-    @LoadBalanced //此注解开启eureka的服务
+    @LoadBalanced //此注解开启负载均衡
     public RestTemplate getRestTemplate(){
         return new RestTemplate();
     }

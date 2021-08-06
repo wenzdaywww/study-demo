@@ -11,15 +11,15 @@
     </parent>
 
     <groupId>com.www</groupId>
-    <artifactId>cloud-provider</artifactId>
+    <artifactId>cloud-provider2</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
     <dependencies>
-        <!-- eureka依赖 -->
+        <!-- eureka-client依赖 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-eureka</artifactId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
         <!-- actuator完善监控信息 -->
         <dependency>
@@ -44,7 +44,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.www.RestProviderApplication</mainClass>
+                    <mainClass>com.www.RestProvider2Application</mainClass>
                 </configuration>
             </plugin>
         </plugins>
