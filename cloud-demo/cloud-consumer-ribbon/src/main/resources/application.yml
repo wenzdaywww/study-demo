@@ -17,3 +17,7 @@ eureka:
   instance:
     instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port} #该实例注册到服务中心的唯一ID
     prefer-ip-address: true #该实例，相较于hostname是否优先使用IP
+#ribbon配置
+ribbon:
+  eureka:
+    enabled: true

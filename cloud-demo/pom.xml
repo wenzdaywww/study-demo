@@ -25,8 +25,8 @@
     <description>Spring Cloud学习Demo</description>
 
     <modules>
-        <module>cloud-consumer</module>
         <module>cloud-data</module>
+        <module>cloud-consumer-ribbon</module>
         <module>cloud-eureka-server-cluster1</module>
         <module>cloud-eureka-server-cluster2</module>
         <module>cloud-eureka-server-cluster3</module>
@@ -50,7 +50,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
-            <version>${spring-boot-version}</version>
             <optional>true</optional>
             <scope>true</scope>
         </dependency>
@@ -66,11 +65,12 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <!-- ribbon负载均衡 -->
+            <!-- Spring Cloud 2020.x.x以上版本netflix移除ribbon，
+            使用loadbalancer取代ribbon负载均衡依赖 -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-starter-ribbon</artifactId>
-                <version>1.4.7.RELEASE</version>
+                <artifactId>spring-cloud-starter-loadbalancer</artifactId>
+                <version>${spring-cloud-version}</version>
             </dependency>
             <!-- eureka-server注册中心依赖 -->
             <dependency>
@@ -119,6 +119,12 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>3.9</version>
+            </dependency>
+            <!--collections 依赖-->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-collections4</artifactId>
+                <version>4.4</version>
             </dependency>
             <!-- log4j依赖-->
             <dependency>

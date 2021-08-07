@@ -1,4 +1,4 @@
-package com.www.controller;
+package com.www.app.controller;
 
 import com.www.data.common.ResponseDTO;
 import com.www.data.dto.SysUserDTO;

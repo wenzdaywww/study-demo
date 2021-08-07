@@ -1,4 +1,4 @@
-package com.www.controller;
+package com.www.app.controller;
 
 import com.www.data.common.ResponseDTO;
 import com.www.data.dto.SysUserDTO;
@@ -23,8 +23,8 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/cons")
-public class RestConsumerController {
-    private static final Logger LOGGER = LoggerFactory.getLogger(RestConsumerController.class);
+public class ConsumerRibbonController {
+    private static final Logger LOGGER = LoggerFactory.getLogger(ConsumerRibbonController.class);
     @Autowired
     private RestTemplate restTemplate;
     @Autowired
@@ -62,14 +62,18 @@ public class RestConsumerController {
     @GetMapping("/discovery")
     public Object discovery(){
         List<String> serviceLis = discoveryClient.getServices();
+        StringBuffer sb = new StringBuffer();
         for (String service:serviceLis) {
             LOGGER.info("-----> services={}",service);
+            sb.append("services="+service+"\n");
         }
         List<ServiceInstance> instanceList = discoveryClient.getInstances("cloud-provider");
         for (ServiceInstance instance : instanceList) {
-            LOGGER.info("-----> instance.ServiceId={},instance.Host={},instance.Port={},instance.Uri={},",
+            LOGGER.info("-----> instance.ServiceId={},instance.Host={},instance.Port={},instance.Uri={}",
                     instance.getServiceId(),instance.getHost(),instance.getPort(),instance.getUri());
+            sb.append("sinstance.ServiceId="+instance.getServiceId()+",instance.Host="+instance.getHost()+
+                    ",instance.Port="+instance.getPort()+",instance.Uri="+instance.getUri()+"\n");
         }
-        return discoveryClient;
+        return sb.toString();
     }
 }

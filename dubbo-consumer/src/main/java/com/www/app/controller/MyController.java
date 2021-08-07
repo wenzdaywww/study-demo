@@ -1,4 +1,4 @@
-package com.www.controller;
+package com.www.app.controller;
 
 import com.www.consumer.service.IConsumerService;
 import org.springframework.beans.factory.annotation.Autowired;

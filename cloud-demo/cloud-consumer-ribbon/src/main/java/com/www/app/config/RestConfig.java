@@ -1,5 +1,7 @@
-package com.www.config;
+package com.www.app.config;
 
+import com.netflix.loadbalancer.IRule;
+import com.netflix.loadbalancer.RandomRule;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,5 +26,14 @@ public class RestConfig {
     public RestTemplate getRestTemplate(){
         return new RestTemplate();
     }
-
+    /**
+     * <p>@Description 添加全局负载均衡策略 </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/7 15:04 </p>
+     * @return com.netflix.loadbalancer.IRule
+     */
+    @Bean
+    public IRule getRule(){
+        return new RandomRule();
+    }
 }
