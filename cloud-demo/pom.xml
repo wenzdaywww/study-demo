@@ -65,8 +65,7 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <!-- Spring Cloud 2020.x.x以上版本netflix移除ribbon，
-            使用loadbalancer取代ribbon负载均衡依赖 -->
+            <!-- Spring Cloud 2020.x.x以上版本netflix移除ribbon，推荐使用loadbalancer取代ribbon负载均衡依赖 -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-loadbalancer</artifactId>
@@ -83,6 +82,24 @@
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
                 <version>${spring-cloud-version}</version>
+            </dependency>
+            <!-- ribbon依赖 -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
+                <version>2.2.9.RELEASE</version>
+            </dependency>
+            <!-- feign依赖-->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-openfeign</artifactId>
+                <version>2.2.9.RELEASE</version>
+            </dependency>
+            <!-- hystrix依赖 -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+                <version>2.2.9.RELEASE</version>
             </dependency>
             <!-- security安全认证依赖 -->
             <dependency>
