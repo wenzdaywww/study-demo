@@ -4,10 +4,10 @@
 
 	<!-- 当前项目信息-->
 	<groupId>com.www</groupId>
-	<artifactId>boot-study</artifactId>
+	<artifactId>study-demo</artifactId>
 	<packaging>pom</packaging>
 	<version>1.0.0</version>
-	<name>boot-study</name>
-	<description>微服务学习Demo</description>
+	<name>study-demo</name>
+	<description>技术学习Demo</description>
 
 </project>
