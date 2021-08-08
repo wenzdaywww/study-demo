@@ -15,7 +15,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication //springboot核心注解，主要用于开启spring自动配置
 @MapperScan(basePackages = "com.www.demo.model.mapper")//配置mapper扫描路径。mapper接口类不使用@Mapper时使用该注解
 @EnableDubbo //开启dubbo注解
-public class BootDemoApplication {
+public class MyBootApplication {
 	/**
 	 * <p>@Description springboot启动方法 </p>
 	 * <p>@Author www </p>
@@ -24,6 +24,6 @@ public class BootDemoApplication {
 	 * @return void
 	 */
 	public static void main(String[] args) {
-		SpringApplication.run(BootDemoApplication.class, args);
+		SpringApplication.run(MyBootApplication.class, args);
 	}
 }

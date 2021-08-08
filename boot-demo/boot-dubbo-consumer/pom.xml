@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.www</groupId>
-	<artifactId>dubbo-consumer</artifactId>
+	<artifactId>boot-dubbo-consumer</artifactId>
 	<version>0.0.1</version>
-	<name>dubbo-consumer</name>
+	<name>boot-dubbo-consumer</name>
 	<description>dubbo消费者demo</description>
 
 	<properties>
@@ -38,7 +38,7 @@
 		<!-- 引入自定义的dubbo统一管理的服务接口包，便于管理接口 -->
 		<dependency>
 			<groupId>com.www</groupId>
-			<artifactId>dubbo-interface</artifactId>
+			<artifactId>boot-dubbo-api</artifactId>
 			<version>1.0.0</version>
 		</dependency>
 		<!-- zookeeper客户端依赖 -->
