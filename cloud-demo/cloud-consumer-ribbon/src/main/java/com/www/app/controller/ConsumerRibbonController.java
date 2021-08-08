@@ -1,5 +1,6 @@
 package com.www.app.controller;
 
+import com.www.app.feign.CloudProviderService;
 import com.www.data.common.ResponseDTO;
 import com.www.data.dto.SysUserDTO;
 import org.slf4j.Logger;
@@ -28,6 +29,8 @@ public class ConsumerRibbonController {
     @Autowired
     private RestTemplate restTemplate;
     @Autowired
+    private CloudProviderService cloudProviderService;
+    @Autowired
     private DiscoveryClient discoveryClient;
     private String providerURL = "http://cloud-provider";
     /**
@@ -52,6 +55,17 @@ public class ConsumerRibbonController {
     public ResponseDTO<SysUserDTO> getName(@PathVariable("name") String name){
         //cloud-provider为服务提供方的spring.application.name
         return restTemplate.getForObject(providerURL+"/pro/get/"+name,ResponseDTO.class);
+    }
+    /**
+     * <p>@Description 通过feign调用服务 </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/4 22:23 </p>
+     * @param name
+     * @return com.www.data.common.ResponseDTO<com.www.data.dto.SysUserDTO>
+     */
+    @GetMapping("/feign/{name}")
+    public ResponseDTO<SysUserDTO> feignName(@PathVariable("name") String name){
+        return cloudProviderService.get(name);
     }
     /**
      * <p>@Description 获取负载均衡的服务信息 </p>
