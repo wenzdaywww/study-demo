@@ -25,10 +25,16 @@ public class RestProviderController {
     private static final Logger LOGGER = LoggerFactory.getLogger(RestProviderController.class);
     @Value("${server.port}")
     private String port;
-
+    /**
+     * <p>@Description hystrix实现服务熔断 </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/8 22:27 </p>
+     * @param name
+     * @return com.www.data.common.ResponseDTO
+     */
     @HystrixCommand(fallbackMethod = "hystrixFindName")//设置备选方案
     @GetMapping("/get/{name}")
-    public ResponseDTO findName(@PathVariable("name") String name){
+    public ResponseDTO getName(@PathVariable("name") String name){
         LOGGER.info("----> /pro/get/{name}的name={}",name);
         if(StringUtils.equals(name,"hystrix")){
             //此处抛出异常，则会执行备选方法hystrixFindName
@@ -51,6 +57,20 @@ public class RestProviderController {
         LOGGER.info("----> /get/{name}失败的备选方案的name={}",name);
         SysUserDTO sysUserDTO = new SysUserDTO();
         sysUserDTO.setUserName("/get/{name}失败的备选方案的name="+name);
+        sysUserDTO.setUserId(port);
+        ResponseDTO<SysUserDTO> responseDTO = new ResponseDTO<SysUserDTO>(sysUserDTO);
+        return responseDTO;
+    }
+
+    @GetMapping("/find/{name}")
+    public ResponseDTO findName(@PathVariable("name") String name){
+        LOGGER.info("----> /pro/get/{name}的name={}",name);
+        if(StringUtils.equals(name,"hystrix")){
+            //此处抛出异常，则会执行备选方法hystrixFindName
+            throw  new RuntimeException("----> hystrix test");
+        }
+        SysUserDTO sysUserDTO = new SysUserDTO();
+        sysUserDTO.setUserName(name);
         sysUserDTO.setUserId(port);
         ResponseDTO<SysUserDTO> responseDTO = new ResponseDTO<SysUserDTO>(sysUserDTO);
         return responseDTO;

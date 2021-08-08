@@ -1,5 +1,8 @@
 package com.www.data.common;
 
+import lombok.Data;
+import lombok.experimental.Accessors;
+
 import java.io.Serializable;
 
 /**
@@ -8,6 +11,8 @@ import java.io.Serializable;
  * <p>@Author www </p>
  * <p>@Date 2021/8/1 21:21 </p>
  */
+@Data
+@Accessors(chain = true)
 public class ResponseDTO<T> implements Serializable {
     private static final long serialVersionUID = 1L;
     /** 响应码 **/
@@ -56,30 +61,6 @@ public class ResponseDTO<T> implements Serializable {
     public ResponseDTO(ResponseEnum code, String msg, T data) {
         this.code = code.getCode();
         this.msg = msg == null ? code.getMsg() : msg;
-        this.data = data;
-    }
-
-    public Integer getCode() {
-        return code;
-    }
-
-    public void setCode(Integer code) {
-        this.code = code;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
-    public T getData() {
-        return data;
-    }
-
-    public void setData(T data) {
         this.data = data;
     }
 }

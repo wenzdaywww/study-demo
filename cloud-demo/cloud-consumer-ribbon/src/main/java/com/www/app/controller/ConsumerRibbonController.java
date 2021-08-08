@@ -68,6 +68,17 @@ public class ConsumerRibbonController {
         return cloudProviderService.get(name);
     }
     /**
+     * <p>@Description 通过feign调用服务 </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/4 22:23 </p>
+     * @param name
+     * @return com.www.data.common.ResponseDTO<com.www.data.dto.SysUserDTO>
+     */
+    @GetMapping("/hystrix/{name}")
+    public ResponseDTO<SysUserDTO> hystrixName(@PathVariable("name") String name){
+        return cloudProviderService.find(name);
+    }
+    /**
      * <p>@Description 获取负载均衡的服务信息 </p>
      * <p>@Author www </p>
      * <p>@Date 2021/8/4 22:11 </p>

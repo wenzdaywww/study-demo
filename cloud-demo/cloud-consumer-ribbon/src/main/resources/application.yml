@@ -21,3 +21,7 @@ eureka:
 ribbon:
   eureka:
     enabled: true
+#feign
+feign:
+  hystrix:
+    enabled: true #开启熔断机制

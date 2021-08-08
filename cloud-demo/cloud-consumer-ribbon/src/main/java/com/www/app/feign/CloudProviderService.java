@@ -13,7 +13,10 @@ import org.springframework.web.bind.annotation.PathVariable;
  * <p>@Date 2021/8/8 11:15 </p>
  */
 @Component
-@FeignClient(value = "cloud-provider")//服务提供者名称
+//fallback:只设置回退内容
+//fallbackFactory:可设置回退内容，且可设置查看服务失败的异常信息
+//如果两个都设置，优先执行fallback
+@FeignClient(value = "cloud-provider",fallback = CloudProviderServiceFallback.class,fallbackFactory = CloudProviderServiceFallbackFactory.class)//服务提供者名称
 public interface CloudProviderService {
     /**
      * <p>@Description 服务方法 </p>
@@ -24,4 +27,13 @@ public interface CloudProviderService {
      */
     @GetMapping("/pro/get/{name}")
     ResponseDTO get(@PathVariable("name") String name);
+    /**
+     * <p>@Description 服务方法 </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/8 13:47 </p>
+     * @param name 名称
+     * @return com.www.data.common.ResponseDTO
+     */
+    @GetMapping("/pro/find/{name}")
+    ResponseDTO find(@PathVariable("name") String name);
 }
