@@ -12,7 +12,9 @@
     <groupId>com.www</groupId>
     <artifactId>cloud-eureka-server-cluster1</artifactId>
     <version>1.0.0</version>
+    <name>cloud-eureka-server-cluster1</name>
     <packaging>jar</packaging>
+    <description>eureka的注册中心服务demo</description>
 
     <dependencies>
         <!-- log4j依赖-->

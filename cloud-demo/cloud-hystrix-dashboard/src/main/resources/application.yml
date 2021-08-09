@@ -1,0 +1,6 @@
+server:
+  port: 9001
+#配置允许监控的proxy host name
+hystrix:
+  dashboard:
+    proxy-stream-allow-list: "*"

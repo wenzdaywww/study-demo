@@ -13,7 +13,9 @@
     <groupId>com.www</groupId>
     <artifactId>cloud-provider1</artifactId>
     <version>1.0.0</version>
+    <name>cloud-provider1</name>
     <packaging>jar</packaging>
+    <description>服务提供者demo</description>
 
     <dependencies>
         <!-- eureka-client依赖 -->
@@ -30,6 +32,11 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+        </dependency>
+        <!-- hystrix的dashboard监控依赖 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
         </dependency>
         <!-- log4j依赖-->
         <dependency>

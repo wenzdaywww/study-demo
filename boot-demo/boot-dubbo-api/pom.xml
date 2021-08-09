@@ -8,6 +8,6 @@
     <artifactId>boot-dubbo-api</artifactId>
     <version>1.0.0</version>
     <name>boot-dubbo-api</name>
-    <description>dubbo的服务接口</description>
+    <description>dubbo的接口服务</description>
 
 </project>

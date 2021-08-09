@@ -7,7 +7,9 @@
     <groupId>com.www</groupId>
     <artifactId>cloud-data</artifactId>
     <version>1.0.0</version>
+    <name>cloud-data</name>
     <packaging>jar</packaging>
+    <description>公共数据服务包</description>
 
     <dependencies>
         <!-- lombok链式编程依赖 -->

@@ -33,6 +33,7 @@
         <module>cloud-provider1</module>
         <module>cloud-provider2</module>
         <module>cloud-provider3</module>
+        <module>cloud-hystrix-dashboard</module>
     </modules>
     <!-- springboot框架起步依赖 -->
     <dependencies>
@@ -99,6 +100,12 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+                <version>${spring-cloud-version}</version>
+            </dependency>
+            <!-- hystrix的dashboard监控依赖 -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
                 <version>${spring-cloud-version}</version>
             </dependency>
             <!-- security安全认证依赖 -->

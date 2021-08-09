@@ -12,7 +12,9 @@
     <groupId>com.www</groupId>
     <artifactId>cloud-consumer-ribbon</artifactId>
     <version>1.0.0</version>
+    <name>cloud-consumer-ribbon</name>
     <packaging>jar</packaging>
+    <description>服务消费者demo</description>
 
     <dependencies>
         <!-- eureka-client依赖 -->

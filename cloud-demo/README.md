@@ -11,3 +11,4 @@
 ## cloud-eureka-server-cluster1：eureka服务注册中心集群1
 ## cloud-eureka-server-cluster2：eureka服务注册中心集群2
 ## cloud-eureka-server-cluster3：eureka服务注册中心集群3
+## cloud-hystrix-dashboard：Hystrix Dashboard（熔断仪表盘）监控数据服务

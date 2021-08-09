@@ -13,7 +13,9 @@
     <groupId>com.www</groupId>
     <artifactId>cloud-provider3</artifactId>
     <version>1.0.0</version>
+    <name>cloud-provider3</name>
     <packaging>jar</packaging>
+    <description>服务提供者demo</description>
 
     <dependencies>
         <!-- eureka-client依赖 -->
