@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>cloud-demo</artifactId>
+        <groupId>com.www</groupId>
+        <version>1.0.0</version>
+    </parent>
+
+    <groupId>com.www</groupId>
+    <artifactId>cloud-zuul</artifactId>
+    <version>1.0.0</version>
+    <name>cloud-zuul</name>
+    <packaging>jar</packaging>
+    <description>zuul路由网关demo</description>
+
+    <dependencies>
+        <!-- log4j依赖-->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+        </dependency>
+        <!-- eureka-server依赖 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+        <!-- ribbon负载均衡依赖 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
+        </dependency>
+        <!-- zuul路由网关依赖 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
+        </dependency>
+        <!-- springcloud数据包 -->
+        <dependency>
+            <groupId>com.www</groupId>
+            <artifactId>cloud-data</artifactId>
+        </dependency>
+        <!--fastjson 依赖-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
+    </dependencies>
+</project>

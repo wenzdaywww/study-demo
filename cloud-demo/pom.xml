@@ -34,6 +34,7 @@
         <module>cloud-provider2</module>
         <module>cloud-provider3</module>
         <module>cloud-hystrix-dashboard</module>
+        <module>cloud-zuul</module>
     </modules>
     <!-- springboot框架起步依赖 -->
     <dependencies>
@@ -84,19 +85,19 @@
                 <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
                 <version>${spring-cloud-version}</version>
             </dependency>
-            <!-- ribbon依赖 -->
+            <!-- ribbon负载均衡依赖 -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
                 <version>${spring-cloud-version}</version>
             </dependency>
-            <!-- feign依赖-->
+            <!-- feign服务调用依赖-->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-openfeign</artifactId>
                 <version>${spring-cloud-version}</version>
             </dependency>
-            <!-- hystrix依赖 -->
+            <!-- hystrix服务熔断依赖 -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
@@ -106,6 +107,12 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
+                <version>${spring-cloud-version}</version>
+            </dependency>
+            <!-- zuul路由网关依赖 -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
                 <version>${spring-cloud-version}</version>
             </dependency>
             <!-- security安全认证依赖 -->

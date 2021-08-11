@@ -1,0 +1,24 @@
+server:
+  port: 9001
+#eureka配置
+eureka:
+  client:
+    service-url:
+      #配置eureka集群地址
+      defaultZone : http://www:www362412@localhost:7002/eureka/,http://www:www362412@localhost:7003/eureka/,http://www:www362412@localhost:7004/eureka/ #注册中心地址
+  instance:
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port} #该实例注册到服务中心的唯一ID
+    prefer-ip-address: true #该实例，相较于hostname是否优先使用IP
+spring:
+  application:
+    name: zuul-server
+#zuul路由网关配置
+zuul:
+  routes:
+    #设置cloud-provider服务路径
+    provider.serviceId: cloud-provider
+    provider.path: /provider/**
+  ignored-services: "*" #设置不能使用spring.application.name访问
+ribbon:
+  eureka:
+    enabled: true
