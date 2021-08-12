@@ -35,6 +35,7 @@
         <module>cloud-provider3</module>
         <module>cloud-hystrix-dashboard</module>
         <module>cloud-zuul</module>
+        <module>cloud-config-server</module>
     </modules>
     <!-- springboot框架起步依赖 -->
     <dependencies>
@@ -115,13 +116,25 @@
                 <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
                 <version>${spring-cloud-version}</version>
             </dependency>
+            <!-- config客户端依赖 -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-config-client</artifactId>
+                <version>2.2.8.RELEASE</version>
+            </dependency>
+            <!-- config服务端依赖 -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-config-server</artifactId>
+                <version>2.2.8.RELEASE</version>
+            </dependency>
             <!-- security安全认证依赖 -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-security</artifactId>
                 <version>${spring-boot-version}</version>
             </dependency>
-            <!-- actuator -->
+            <!-- actuator监控信息 -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-actuator</artifactId>
