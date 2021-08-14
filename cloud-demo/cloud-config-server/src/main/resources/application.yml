@@ -10,4 +10,4 @@ spring:
         git:
           uri: https://github.com/wenzdaywww/spring-cloud-config
           # github的默认分支已由master改为main，所以这边需要设置默认分支
-          default-label: spring-cloud-demo
+          default-label: main

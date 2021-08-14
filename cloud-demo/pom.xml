@@ -36,6 +36,7 @@
         <module>cloud-hystrix-dashboard</module>
         <module>cloud-zuul</module>
         <module>cloud-config-server</module>
+        <module>cloud-config-client</module>
     </modules>
     <!-- springboot框架起步依赖 -->
     <dependencies>

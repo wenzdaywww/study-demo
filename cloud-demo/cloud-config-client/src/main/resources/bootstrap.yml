@@ -1,0 +1,7 @@
+spring:
+  cloud:
+    config:
+      uri: http://localhost:3344 #config服务端地址
+      label: spring-cloud-demo #分支名称
+      profile: dev
+      name: cloud-config-client #配置文件名称，不带yml后缀

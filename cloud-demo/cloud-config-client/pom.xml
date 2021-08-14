@@ -10,17 +10,17 @@
     </parent>
 
     <groupId>com.www</groupId>
-    <artifactId>cloud-config-server</artifactId>
+    <artifactId>cloud-config-client</artifactId>
     <version>1.0.0</version>
-    <name>cloud-config-server</name>
+    <name>cloud-config-client</name>
     <packaging>jar</packaging>
-    <description>Spring Cloud Config服务端demo</description>
+    <description>Spring Cloud Config客户端demo</description>
 
     <dependencies>
-        <!-- config服务端依赖 -->
+        <!-- config客户端依赖 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-config-server</artifactId>
+            <artifactId>spring-cloud-config-client</artifactId>
         </dependency>
     </dependencies>
 
@@ -30,7 +30,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.www.config.server.ConfigServerApplication</mainClass>
+                    <mainClass>com.www.config.client.ConfigClientApplication</mainClass>
                 </configuration>
             </plugin>
         </plugins>

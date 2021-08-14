@@ -13,3 +13,4 @@
 ## cloud-eureka-server-cluster3：eureka服务注册中心集群3
 ## cloud-hystrix-dashboard：Hystrix Dashboard（熔断仪表盘）监控数据服务
 ## cloud-config-server: spring cloud config服务端
+## cloud-config-client: spring cloud config客户端
