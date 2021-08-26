@@ -12,12 +12,12 @@ import org.springframework.stereotype.Service;
  * <p>@Author www </p>
  * <p>@Date 2021/8/25 22:53 </p>
  */
-@RabbitListener(queues = "simple-queue")
+//@RabbitListener(queues = "simple-queue")
 @Service
 public class SimpleListener {
     private static Logger logger = LoggerFactory.getLogger(SimpleListener.class);
 
-    @RabbitHandler
+//    @RabbitHandler
     public void reviceMsg(String msg){
         logger.info("-----> 简单模式的队列监听到的数据:{}",msg);
     }

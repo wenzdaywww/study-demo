@@ -28,14 +28,6 @@ public class ConsumerService implements IConsumerService {
         String msg = null;
         if("simple".equals(type)){
             msg = (String) rabbitTemplate.receiveAndConvert("simple-queue");
-        }else if("work".equals(type)){
-
-        }else if("direct".equals(type)){
-
-        }else if("fanout".equals(type)){
-
-        }else if("topic".equals(type)){
-
         }
         return msg;
     }

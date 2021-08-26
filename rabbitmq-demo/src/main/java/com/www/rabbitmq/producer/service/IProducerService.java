@@ -11,6 +11,22 @@ import org.springframework.web.bind.annotation.PathVariable;
  */
 public interface IProducerService {
     /**
+     * <p>@Description 简通过代码配置队列与交换区关系的消息队列 </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/25 21:46 </p>
+     * @param msg
+     * @return java.lang.String
+     */
+    String test(String msg);
+    /**
+     * <p>@Description 单个消息延时 </p>
+     * <p>@Author www </p>
+     * <p>@Date 2021/8/25 21:46 </p>
+     * @param msg
+     * @return java.lang.String
+     */
+    String ttl(String msg);
+    /**
      * <p>@Description 简单模式发送消息到消息队列 </p>
      * <p>@Author www </p>
      * <p>@Date 2021/8/25 21:46 </p>
@@ -18,36 +34,4 @@ public interface IProducerService {
      * @return java.lang.String
      */
     String simple(String msg);
-    /**
-     * <p>@Description 工作模式发送消息到消息队列 </p>
-     * <p>@Author www </p>
-     * <p>@Date 2021/8/25 21:46 </p>
-     * @param msg
-     * @return java.lang.String
-     */
-    String work(String msg);
-    /**
-     * <p>@Description 路由模式发送消息到消息队列 </p>
-     * <p>@Author www </p>
-     * <p>@Date 2021/8/25 21:46 </p>
-     * @param msg
-     * @return java.lang.String
-     */
-    String direct(String msg);
-    /**
-     * <p>@Description 发布订阅模式发送消息到消息队列 </p>
-     * <p>@Author www </p>
-     * <p>@Date 2021/8/25 21:46 </p>
-     * @param msg
-     * @return java.lang.String
-     */
-    String fanout(String msg);
-    /**
-     * <p>@Description 主题模式发送消息到消息队列 </p>
-     * <p>@Author www </p>
-     * <p>@Date 2021/8/25 21:46 </p>
-     * @param msg
-     * @return java.lang.String
-     */
-    String topic(String msg);
 }
