@@ -3,47 +3,50 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <!-- spring boot 父级依赖 ，必要-->
+
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.4.0</version>
-        <relativePath />
+        <groupId>com.www</groupId>
+        <artifactId>cloud-demo</artifactId>
+        <version>1.0.0</version>
     </parent>
-    <!-- 当前项目信息-->
+
     <groupId>com.www</groupId>
-    <artifactId>rabbitmq-demo</artifactId>
+    <artifactId>provider3</artifactId>
     <version>1.0.0</version>
-    <name>rabbitmq-demo</name>
-    <description>RabbitMQ消息队列-消费者demo</description>
-    <!-- 依赖配置 -->
+    <name>provider3</name>
+    <packaging>jar</packaging>
+    <description>服务提供者demo</description>
+
     <dependencies>
-        <!-- springboot框架web项目起步依赖 -->
+        <!-- eureka-client依赖 -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
-        <!-- rabbitmq依赖 -->
+        <!-- actuator完善监控信息 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-amqp</artifactId>
-            <version>2.4.0</version>
+            <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
         <!-- log4j依赖-->
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
+        </dependency>
+        <!-- springcloud数据包 -->
+        <dependency>
+            <groupId>com.www</groupId>
+            <artifactId>common</artifactId>
         </dependency>
     </dependencies>
+
     <build>
         <plugins>
-            <!-- springboot项目打包编译插件 -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.www.rabbitmq.consumer.RabbitMQApplication</mainClass>
+                    <mainClass>com.www.RestProvider3Application</mainClass>
                 </configuration>
             </plugin>
         </plugins>

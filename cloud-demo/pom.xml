@@ -25,18 +25,18 @@
     <description>Spring Cloud学习Demo</description>
 
     <modules>
-        <module>cloud-data</module>
-        <module>cloud-consumer-ribbon</module>
-        <module>cloud-eureka-server-cluster1</module>
-        <module>cloud-eureka-server-cluster2</module>
-        <module>cloud-eureka-server-cluster3</module>
-        <module>cloud-provider1</module>
-        <module>cloud-provider2</module>
-        <module>cloud-provider3</module>
-        <module>cloud-hystrix-dashboard</module>
-        <module>cloud-zuul</module>
-        <module>cloud-config-server</module>
-        <module>cloud-config-client</module>
+        <module>common</module>
+        <module>consumer-ribbon</module>
+        <module>eureka-server-cluster1</module>
+        <module>eureka-server-cluster2</module>
+        <module>eureka-server-cluster3</module>
+        <module>provider1</module>
+        <module>provider2</module>
+        <module>provider3</module>
+        <module>hystrix-dashboard</module>
+        <module>zuul</module>
+        <module>config-server</module>
+        <module>config-client</module>
     </modules>
     <!-- springboot框架起步依赖 -->
     <dependencies>
@@ -187,7 +187,7 @@
             <!-- springcloud数据包 -->
             <dependency>
                 <groupId>com.www</groupId>
-                <artifactId>cloud-data</artifactId>
+                <artifactId>common</artifactId>
                 <version>1.0.0</version>
             </dependency>
         </dependencies>
