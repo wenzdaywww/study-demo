@@ -1,6 +1,13 @@
+#服务器配置
+server:
+  port: 8080
+  servlet:
+    #访问路径设置
+    context-path: /
 # 应用名称
 spring:
   application:
     name: zookeeper-demo
-
+zookeeper:
+  address: 192.168.1.130:2181
 
