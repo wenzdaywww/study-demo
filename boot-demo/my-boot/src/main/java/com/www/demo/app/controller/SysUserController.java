@@ -4,7 +4,7 @@ import com.www.demo.app.service.ISysUserService;
 import com.www.demo.model.common.ResponseEnum;
 import com.www.demo.model.common.ResponseDTO;
 import com.www.demo.model.dto.SysUserDTO;
-import com.www.demo.model.entity.SysUser;
+import com.www.demo.model.entity.SysUserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -46,8 +46,8 @@ public class SysUserController {
 	 * @return com.www.demo.model.common.ResponseDTO<com.www.demo.model.entity.SysUser>
 	 */
 	@RequestMapping("/add/{id}/{name}/{psd}")
-	public @ResponseBody ResponseDTO<SysUser> add(@PathVariable("id")String id, @PathVariable("name")String name, @PathVariable("psd")String psd){
-		SysUser sysUser = new SysUser();
+	public @ResponseBody ResponseDTO<SysUserEntity> add(@PathVariable("id")String id, @PathVariable("name")String name, @PathVariable("psd")String psd){
+		SysUserEntity sysUser = new SysUserEntity();
 		sysUser.setUserId(id);
 		sysUser.setUserName(name);
 		sysUser.setPassWord(psd);
@@ -64,8 +64,8 @@ public class SysUserController {
 	 * @return com.www.demo.model.common.ResponseDTO<com.www.demo.model.entity.SysUser>
 	 */
 	@RequestMapping("/update/{id}/{name}/{psd}")
-	public @ResponseBody ResponseDTO<SysUser> update(@PathVariable("id")String id, @PathVariable("name")String name, @PathVariable("psd")String psd){
-		SysUser sysUser = sysUserService.selectByUserId(id);
+	public @ResponseBody ResponseDTO<SysUserEntity> update(@PathVariable("id")String id, @PathVariable("name")String name, @PathVariable("psd")String psd){
+		SysUserEntity sysUser = sysUserService.selectByUserId(id);
 		sysUser.setUserName(name);
 		sysUser.setPassWord(psd);
 		sysUserService.updateByUserId(sysUser);

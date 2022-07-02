@@ -2,7 +2,6 @@ package com.www.demo.security.impl;
 
 import com.www.demo.app.service.ISysUserService;
 import com.www.demo.model.dto.SysUserDTO;
-import com.www.demo.model.entity.SysUser;
 import org.apache.commons.collections.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

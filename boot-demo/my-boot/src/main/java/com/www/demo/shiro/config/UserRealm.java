@@ -2,8 +2,8 @@ package com.www.demo.shiro.config;
 
 import com.www.demo.app.service.ISysUserService;
 import com.www.demo.model.dto.SysUserDTO;
-import com.www.demo.model.entity.SysRole;
-import com.www.demo.model.entity.SysUser;
+import com.www.demo.model.entity.SysRoleEntity;
+import com.www.demo.model.entity.SysUserEntity;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
@@ -43,11 +43,11 @@ public class UserRealm extends AuthorizingRealm {
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
         //查询当前用户
         Subject subject = SecurityUtils.getSubject();
-        SysUser user = (SysUser)subject.getPrincipal();
+        SysUserEntity user = (SysUserEntity)subject.getPrincipal();
         SysUserDTO sysUserDTO = sysUserService.findUserAllInfo(user.getUserId());
         if (CollectionUtils.isNotEmpty(sysUserDTO.getRoleList())){
             List<String> roleList = new ArrayList<>();
-            for (SysRole roleEntity : sysUserDTO.getRoleList()){
+            for (SysRoleEntity roleEntity : sysUserDTO.getRoleList()){
                 roleList.add(roleEntity.getRoleName());
             }
             authorizationInfo.addRoles(roleList);
@@ -67,7 +67,7 @@ public class UserRealm extends AuthorizingRealm {
         //获取用户信息
         UsernamePasswordToken token = (UsernamePasswordToken)authenticationToken;
         //查询用户
-        SysUser user = sysUserService.selectByUserId(token.getUsername());
+        SysUserEntity user = sysUserService.selectByUserId(token.getUsername());
         if (user == null || !StringUtils.equals(user.getUserId(),token.getUsername())){
             return null;
         }

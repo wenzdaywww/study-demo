@@ -1,7 +1,7 @@
 package com.www.demo.model.dto;
 
-import com.www.demo.model.entity.SysMenu;
-import com.www.demo.model.entity.SysRole;
+import com.www.demo.model.entity.SysMenuEntity;
+import com.www.demo.model.entity.SysRoleEntity;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -15,9 +15,9 @@ import java.util.List;
  */
 public class SysUserDTO implements Serializable {
     /**  菜单信息 **/
-    List<SysMenu> menuList;
+    List<SysMenuEntity> menuList;
     /**  角色信息 **/
-    List<SysRole> roleList;
+    List<SysRoleEntity> roleList;
     /**
      * Database Column Remarks:
      *   主键ID
@@ -271,19 +271,19 @@ public class SysUserDTO implements Serializable {
         this.sysCreateDate = sysCreateDate;
     }
 
-    public List<SysMenu> getMenuList() {
+    public List<SysMenuEntity> getMenuList() {
         return menuList;
     }
 
-    public void setMenuList(List<SysMenu> menuList) {
+    public void setMenuList(List<SysMenuEntity> menuList) {
         this.menuList = menuList;
     }
 
-    public List<SysRole> getRoleList() {
+    public List<SysRoleEntity> getRoleList() {
         return roleList;
     }
 
-    public void setRoleList(List<SysRole> roleList) {
+    public void setRoleList(List<SysRoleEntity> roleList) {
         this.roleList = roleList;
     }
 }

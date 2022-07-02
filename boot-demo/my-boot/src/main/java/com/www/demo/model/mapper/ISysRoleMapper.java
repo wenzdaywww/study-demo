@@ -1,7 +1,7 @@
 package com.www.demo.model.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.www.demo.model.entity.SysRole;
+import com.www.demo.model.entity.SysRoleEntity;
 
 /**
  * <p>@Description 角色表Mapper </p>
@@ -9,5 +9,5 @@ import com.www.demo.model.entity.SysRole;
  * <p>@Author www </p>
  * <p>@Date 2021/8/1 20:58 </p>
  */
-public interface ISysRoleMapper extends BaseMapper<SysRole> {
+public interface ISysRoleMapper extends BaseMapper<SysRoleEntity> {
 }

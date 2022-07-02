@@ -10,7 +10,7 @@ import java.util.List;
  * <p>@Author www </p>
  * <p>@Date 2021/8/1 20:57 </p>
  */
-public class SysUser implements Serializable {
+public class SysUserEntity implements Serializable {
     /**
      * Database Column Remarks:
      *   主键ID

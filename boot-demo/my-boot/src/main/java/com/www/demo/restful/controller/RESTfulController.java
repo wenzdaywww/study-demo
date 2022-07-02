@@ -3,7 +3,7 @@ package com.www.demo.restful.controller;
 import com.www.demo.app.service.ISysUserService;
 import com.www.demo.model.common.ResponseDTO;
 import com.www.demo.model.common.ResponseEnum;
-import com.www.demo.model.entity.SysUser;
+import com.www.demo.model.entity.SysUserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -23,20 +23,20 @@ public class RESTfulController {
     private ISysUserService sysUserService;
 
     @GetMapping("/find")
-    public @ResponseBody ResponseDTO<List<SysUser>> find(){
-        List<SysUser> sysUserList = sysUserService.findUserList(1,null);
+    public @ResponseBody ResponseDTO<List<SysUserEntity>> find(){
+        List<SysUserEntity> sysUserList = sysUserService.findUserList(1,null);
         return new ResponseDTO<>(ResponseEnum.SUCCESS, sysUserList);
     }
 
     @GetMapping("/get/{id}")
-    public @ResponseBody ResponseDTO<SysUser> get(@PathVariable("id") String userId){
-        SysUser sysUser = sysUserService.selectByUserId(userId);
+    public @ResponseBody ResponseDTO<SysUserEntity> get(@PathVariable("id") String userId){
+        SysUserEntity sysUser = sysUserService.selectByUserId(userId);
         return new ResponseDTO<>(ResponseEnum.SUCCESS, sysUser);
     }
 
     @PostMapping("/post/{id}")
-    public @ResponseBody ResponseDTO<SysUser> post(@PathVariable("id") String userId){
-        SysUser sysUserDTO = sysUserService.selectByUserId(userId);
+    public @ResponseBody ResponseDTO<SysUserEntity> post(@PathVariable("id") String userId){
+        SysUserEntity sysUserDTO = sysUserService.selectByUserId(userId);
         return new ResponseDTO<>(ResponseEnum.SUCCESS, sysUserDTO);
     }
 }

@@ -1,7 +1,7 @@
 package com.www.demo.dubbo.provider.service.impl;
 
 import com.www.demo.app.service.ISysUserService;
-import com.www.demo.model.entity.SysUser;
+import com.www.demo.model.entity.SysUserEntity;
 import com.www.demo.utils.MyBeanUtils;
 import com.www.dubbo.model.SysUserInfo;
 import com.www.dubbo.service.ISysUserInfoService;
@@ -33,7 +33,7 @@ public class ProviderServiceImpl implements ISysUserInfoService {
     @Override
     public SysUserInfo findSysUserInfoById(String userId) {
         LOG.info("-----> dubbo服务被调用：userId = {}",userId);
-        SysUser sysUser = sysUserService.selectByUserId(userId);
+        SysUserEntity sysUser = sysUserService.selectByUserId(userId);
         if(sysUser != null){
             SysUserInfo sysUserInfo = new SysUserInfo();
             MyBeanUtils.copyProperties(sysUser,sysUserInfo);

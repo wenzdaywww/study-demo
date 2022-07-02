@@ -1,7 +1,7 @@
 package com.www.demo.websocket.pojo;
 
 import com.alibaba.fastjson.JSON;
-import com.www.demo.model.entity.SysUser;
+import com.www.demo.model.entity.SysUserEntity;
 
 import java.util.List;
 
@@ -41,7 +41,7 @@ public class Message {
     /**在线用户数**/
     private int onlineCount;
     /** 在线用户信息 **/
-    private List<SysUser> userList;
+    private List<SysUserEntity> userList;
 
     public static String jsonStr(String type, String userId,String receiveId, String msg, int onlineTotal) {
         return JSON.toJSONString(new Message(type, userId,receiveId, msg, onlineTotal));
@@ -63,11 +63,11 @@ public class Message {
         this.onlineCount = onlineCount;
     }
 
-    public List<SysUser> getUserList() {
+    public List<SysUserEntity> getUserList() {
         return userList;
     }
 
-    public void setUserList(List<SysUser> userList) {
+    public void setUserList(List<SysUserEntity> userList) {
         this.userList = userList;
     }
 

@@ -1,7 +1,7 @@
 package com.www.demo.qadmin.controller.user;
 
 import com.www.demo.app.service.ISysUserService;
-import com.www.demo.model.entity.SysUser;
+import com.www.demo.model.entity.SysUserEntity;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,7 +31,7 @@ public class UserController {
      */
     @GetMapping("/qadmin/userList")
     public String findUserList(@RequestParam("page") int page, Model model){
-        List<SysUser> list = sysUserService.findUserList(page,null);
+        List<SysUserEntity> list = sysUserService.findUserList(page,null);
         model.addAttribute("userList",list);
         return "quickadmin/user_index";
     }
@@ -58,9 +58,9 @@ public class UserController {
      */
     @PostMapping("/qadmin/addUser")
     public String saveUser(@RequestParam("id")String userId, @RequestParam("name")String userName, @RequestParam("password")String password, Model model){
-        SysUser sysUserDTO = sysUserService.selectByUserId(userId);
+        SysUserEntity sysUserDTO = sysUserService.selectByUserId(userId);
         if (sysUserDTO == null){
-            sysUserDTO = new SysUser();
+            sysUserDTO = new SysUserEntity();
             sysUserDTO.setUserId(userId);
             sysUserDTO.setUserName(userName);
             sysUserDTO.setPassWord(password);
@@ -86,7 +86,7 @@ public class UserController {
      */
     @GetMapping("/qadmin/deleteUser/{id}")
     public String deleteUser(@PathVariable("id")String userId, Model model){
-        SysUser sysUserDTO = sysUserService.selectByUserId(userId);
+        SysUserEntity sysUserDTO = sysUserService.selectByUserId(userId);
         if (sysUserDTO != null){
             sysUserDTO.setIsDelete(StringUtils.equals("1", sysUserDTO.getIsDelete()) ? "0" : "1");
             sysUserService.updateByUserId(sysUserDTO);

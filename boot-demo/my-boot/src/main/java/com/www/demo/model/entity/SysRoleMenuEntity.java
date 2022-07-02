@@ -9,7 +9,7 @@ import java.util.Date;
  * <p>@Author www </p>
  * <p>@Date 2021/8/1 20:57 </p>
  */
-public class SysRoleMenu implements Serializable {
+public class SysRoleMenuEntity implements Serializable {
     /**
      * Database Column Remarks:
      *   菜单ID

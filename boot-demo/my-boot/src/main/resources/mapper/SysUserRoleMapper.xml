@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.www.demo.model.mapper.ISysUserRoleMapper">
-  <resultMap id="BaseResultMap" type="com.www.demo.model.entity.SysUserRole">
+  <resultMap id="BaseResultMap" type="com.www.demo.model.entity.SysUserRoleEntity">
     <id column="SUR_ID" jdbcType="INTEGER" property="surId" />
     <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
     <result column="ROLE_ID" jdbcType="INTEGER" property="roleId" />
@@ -16,7 +16,7 @@
     SUR_ID, USER_ID, ROLE_ID, SYS_UPDATE_DATE, SYS_CREATE_DATE
   </sql>
 
-  <select id="findUserRoles" parameterType="java.lang.String" resultType="com.www.demo.model.entity.SysRole">
+  <select id="findUserRoles" parameterType="java.lang.String" resultType="com.www.demo.model.entity.SysRoleEntity">
     select distinct r.* from SYS_USER_ROLE u,SYS_ROLE R where r.ROLE_ID=u.ROLE_ID
     <if test="userId != null">
       AND USER_ID = #{userId,jdbcType=VARCHAR}

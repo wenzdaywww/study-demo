@@ -2,7 +2,7 @@ package com.www.demo.websocket.configs;
 
 import com.alibaba.fastjson.JSON;
 import com.www.demo.app.service.ISysUserService;
-import com.www.demo.model.entity.SysUser;
+import com.www.demo.model.entity.SysUserEntity;
 import com.www.demo.websocket.pojo.Message;
 
 import org.apache.commons.lang3.StringUtils;
@@ -59,9 +59,9 @@ public class WebSocketServer {
 		message.setType(Message.ONLINE);
 		message.setUserId(userId);
 		//查询当前所有在线用户信息
-		List<SysUser> userList = new ArrayList<>();
+		List<SysUserEntity> userList = new ArrayList<>();
 		onlineSessions.forEach((userIdTemp, webSocketServer) -> {
-			SysUser user = sysUserService.selectByUserId(userIdTemp);
+			SysUserEntity user = sysUserService.selectByUserId(userIdTemp);
 			user.setPassWord(null);
 			userList.add(user);
 		});
