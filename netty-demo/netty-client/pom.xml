@@ -29,6 +29,12 @@
             <artifactId>netty-all</artifactId>
             <version>4.1.42.Final</version>
         </dependency>
+        <!-- netty-core依赖 -->
+        <dependency>
+            <groupId>com.www</groupId>
+            <artifactId>netty-core</artifactId>
+            <version>1.0.0</version>
+        </dependency>
         <!-- lombok链式编程依赖 -->
         <dependency>
             <groupId>org.projectlombok</groupId>
