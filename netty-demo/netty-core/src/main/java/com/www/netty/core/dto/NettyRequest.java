@@ -12,8 +12,14 @@ import java.io.Serializable;
  */
 @Data
 public class NettyRequest implements Serializable {
-
-    private String name;
-    /** 请求数据 **/
-    private String msg;
+    /** 请求的服务名称 **/
+    private String serviceName;
+    /** 请求的服务版本 **/
+    private String version;
+    /** 请求的服务方法 **/
+    private String method;
+    /** 请求的服务方法参数类型 **/
+    private Class<?>[] paramType;
+    /** 请求的服务方法参数值 **/
+    private Object[] param;
 }

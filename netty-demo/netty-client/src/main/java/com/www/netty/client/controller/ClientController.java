@@ -19,6 +19,6 @@ public class ClientController {
 
     @GetMapping("/test/{name}")
     public Object test(@PathVariable("name") String name){
-        return nettyClient.sendRequest("127.0.0.1",6668,name);
+        return null;
     }
 }

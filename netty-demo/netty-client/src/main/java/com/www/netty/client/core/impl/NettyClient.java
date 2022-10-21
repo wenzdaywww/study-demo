@@ -1,9 +1,16 @@
-package com.www.netty.client.core;
+package com.www.netty.client.core.impl;
 
+import com.www.netty.client.core.INettyClient;
 import com.www.netty.client.handler.NettyResponseHandler;
+import com.www.netty.client.store.RpcFuture;
+import com.www.netty.client.store.RpcResponseCache;
 import com.www.netty.core.coder.NettyDecoder;
 import com.www.netty.core.coder.NettyEncoder;
 import com.www.netty.core.dto.NettyRequest;
+import com.www.netty.core.dto.NettyResponse;
+import com.www.netty.core.protocol.MessageConstants;
+import com.www.netty.core.protocol.MessageEnum;
+import com.www.netty.core.protocol.MessageHeader;
 import com.www.netty.core.protocol.MessageProtocol;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
@@ -14,6 +21,8 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.UUID;
+
 /**
  * <p>@Description netty客户端实现类 </p>
  * <p>@Version 1.0 </p>
@@ -21,7 +30,7 @@ import lombok.extern.slf4j.Slf4j;
  * <p>@Date 2022/10/17 17:06 </p>
  */
 @Slf4j
-public class NettyClient implements INettyClient{
+public class NettyClient implements INettyClient {
     private Bootstrap bootstrap;
     private EventLoopGroup loopGroup;
     /**
@@ -57,13 +66,16 @@ public class NettyClient implements INettyClient{
      * <p>@Date 2022/10/17 17:17  </p>
      * @param ip 请求ip
      * @param port 请求端口
-     * @param msg 请求内容
+     * @param protocol 请求协议
      * @return java.lang.Object 响应内容
      */
     @Override
-    public Object sendRequest(String ip,int port,String msg) {
+    public MessageProtocol<NettyResponse> sendRequest(String ip,int port,MessageProtocol protocol) {
         try {
             ChannelFuture channelFuture = bootstrap.connect(ip,port).sync();
+            //将异步返回结果保存到缓存中
+            RpcFuture<MessageProtocol<NettyResponse>> future = new RpcFuture<>();
+            RpcResponseCache.add(protocol.getHeader().getRequestId(),future);
             channelFuture.addListener(arg -> {
                 if (channelFuture.isSuccess()){
                     log.info("ip:{}, 端口：{} 请求成功。。。。",ip,port);
@@ -73,12 +85,9 @@ public class NettyClient implements INettyClient{
                     loopGroup.shutdownGracefully();
                 }
             });
-            MessageProtocol protocol = new MessageProtocol();
-            NettyRequest request = new NettyRequest();
-            request.setName("test");
-            request.setMsg(msg);
-            protocol.setBody(request);
             channelFuture.channel().writeAndFlush(protocol);
+            //通过异步获取结果
+            return future.get();
         } catch (Exception e) {
             log.error(e.getMessage());
         }

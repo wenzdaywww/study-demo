@@ -11,9 +11,9 @@ import java.io.Serializable;
  * <p>@Date 2022/10/17 17:42 </p>
  */
 @Data
-public class NettyResponse implements Serializable {
-    /** 响应结果 **/
-    private Object data;
+public class NettyResponse<T> implements Serializable {
     /** 响应信息 **/
     private String msg;
+    /** 响应结果 **/
+    private T data;
 }

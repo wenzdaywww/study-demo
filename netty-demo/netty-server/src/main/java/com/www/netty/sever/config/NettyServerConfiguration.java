@@ -1,6 +1,7 @@
 package com.www.netty.sever.config;
 
 import com.www.netty.sever.core.NettyServer;
+import com.www.netty.sever.core.RpcServerProvider;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -28,5 +29,15 @@ public class NettyServerConfiguration {
     @ConditionalOnMissingBean
     public NettyServer nettyServer(@Autowired NettyServerProperies nettyServerProperies){
         return new NettyServer(nettyServerProperies);
+    }
+    /**
+     * <p>@Description RPC服务提供方处理 </p>
+     * <p>@Author www </p>
+     * <p>@Date 2022/10/21 15:44  </p>
+     * @return com.www.netty.sever.core.RpcServerProvider
+     */
+    @Bean
+    public RpcServerProvider rpcServerProvider(){
+        return new RpcServerProvider();
     }
 }

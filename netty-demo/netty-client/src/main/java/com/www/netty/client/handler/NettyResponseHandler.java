@@ -1,5 +1,6 @@
 package com.www.netty.client.handler;
 
+import com.www.netty.client.store.RpcResponseCache;
 import com.www.netty.core.dto.NettyResponse;
 import com.www.netty.core.protocol.MessageProtocol;
 import io.netty.channel.ChannelHandlerContext;
@@ -24,6 +25,8 @@ public class NettyResponseHandler extends SimpleChannelInboundHandler<MessagePro
      */
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, MessageProtocol<NettyResponse> protocol) throws Exception {
-        log.info("客户端收到的数据：{}",protocol.getBody());
+        log.info("客户端收到的数据：{}",protocol);
+        //将返回结果保存到异步对象中
+        RpcResponseCache.setResponse(protocol.getHeader().getRequestId(),protocol);
     }
 }
