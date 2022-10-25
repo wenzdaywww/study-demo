@@ -5,7 +5,7 @@ import lombok.experimental.Accessors;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * <p>@Description  </p>
+ * <p>@Description netty服务端配置属性 </p>
  * <p>@Version 1.0 </p>
  * <p>@Author www </p>
  * <p>@Date 2022/10/18 11:37 </p>

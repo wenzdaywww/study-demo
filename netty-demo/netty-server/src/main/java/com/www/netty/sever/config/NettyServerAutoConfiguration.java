@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * <p>@Description netty服务端配置 </p>
+ * <p>@Description netty服务端自动配置 </p>
  * <p>@Version 1.0 </p>
  * <p>@Author www </p>
  * <p>@Date 2022/10/14 15:56 </p>
@@ -18,7 +18,7 @@ import org.springframework.context.annotation.Configuration;
 @Slf4j
 @Configuration
 @EnableConfigurationProperties(value = NettyServerProperies.class)
-public class NettyServerConfiguration {
+public class NettyServerAutoConfiguration {
     /**
      * <p>@Description 构建一个netty服务端 </p>
      * <p>@Author www </p>

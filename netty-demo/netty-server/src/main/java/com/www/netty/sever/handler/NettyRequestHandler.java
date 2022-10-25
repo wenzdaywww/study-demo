@@ -38,7 +38,7 @@ public class NettyRequestHandler extends SimpleChannelInboundHandler<MessageProt
     @Override
     public void handlerAdded(ChannelHandlerContext ctx) throws Exception {
         Channel channel = ctx.channel();
-        log.info("添加客户端{}" , channel.remoteAddress());
+        log.info("=====> 添加客户端{}" , channel.remoteAddress());
     }
     /**
      * <p>@Description 客户端连接激活处理 </p>
@@ -50,7 +50,7 @@ public class NettyRequestHandler extends SimpleChannelInboundHandler<MessageProt
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         Channel channel = ctx.channel();
-        log.info("连接客户端{}" , channel.remoteAddress());
+        log.info("=====> 连接客户端{}" , channel.remoteAddress());
     }
     /**
      * <p>@Description 读取客户端发送的消息处理 </p>
@@ -63,10 +63,11 @@ public class NettyRequestHandler extends SimpleChannelInboundHandler<MessageProt
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, MessageProtocol<NettyRequest> protocol) throws Exception {
         threadPool.submit(() -> {
-            log.info("收到客户端的消息：{}" , protocol);
+            log.info("=====> 收到客户端的消息：{}" , protocol);
             MessageProtocol<NettyResponse<Object>> responseProt = new MessageProtocol<>();
-            MessageHeader header = MessageHeader.build();
+            MessageHeader header = MessageHeader.build(null);
             header.setMsgType(MessageEnum.TYPE_RSP.getCode());
+            header.setSerialization(protocol.getHeader().getSerialization());
             header.setRequestId(protocol.getHeader().getRequestId());
             header.setMsgLen(protocol.getHeader().getMsgLen());
             NettyResponse<Object> response = new NettyResponse<>();
@@ -95,7 +96,7 @@ public class NettyRequestHandler extends SimpleChannelInboundHandler<MessageProt
                 return method.invoke(bean,request.getParam());
             }
         } catch (Exception e) {
-            log.error("通过反射调用方法获取结果失败，失败原因：{}",e.getMessage());
+            log.error("=====> 通过反射调用方法获取结果失败，失败原因：{}",e.getMessage());
         }
         return null;
     }
@@ -109,6 +110,6 @@ public class NettyRequestHandler extends SimpleChannelInboundHandler<MessageProt
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
         Channel channel = ctx.channel();
-        log.info("断开客户端{}" , channel.remoteAddress());
+        log.info("=====> 断开客户端{}" , channel.remoteAddress());
     }
 }

@@ -7,8 +7,6 @@ package com.www.netty.core.protocol;
  * <p>@Date 2022/10/21 11:16 </p>
  */
 public enum MessageEnum {
-    /** 序列化算法：JDK算法 **/
-    SERIALIZATION_JDK((byte)1),
     /** 报文类型：请求报文 **/
     TYPE_REQ((byte)1),
     /** 报文类型：响应报文 **/

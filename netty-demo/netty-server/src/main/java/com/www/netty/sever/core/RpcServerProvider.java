@@ -7,7 +7,7 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 
 /**
- * <p>@Description RPC服务提供方处理 </p>
+ * <p>@Description RPC服务提供方bean实例化后处理 </p>
  * <p>@Version 1.0 </p>
  * <p>@Author www </p>
  * <p>@Date 2022/10/21 15:01 </p>

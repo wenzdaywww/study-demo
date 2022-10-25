@@ -58,11 +58,11 @@ public class MessageHeader implements Serializable {
      * <p>@Date 2022/10/21 14:21  </p>
      * @return com.www.netty.core.protocol.MessageHeader
      */
-    public static MessageHeader build(){
+    public static MessageHeader build(String serializationName){
         MessageHeader header = new MessageHeader();
         header.setMagic(MessageConstants.MAGIC);
         header.setVersion(MessageConstants.VERSION);
-        header.setSerialization(MessageEnum.SERIALIZATION_JDK.getCode());
+        header.setSerialization(SerializationEnum.parseByName(serializationName).getCode());
         header.setStatus(MessageEnum.STATUS_SUC.getCode());
         return header;
     }

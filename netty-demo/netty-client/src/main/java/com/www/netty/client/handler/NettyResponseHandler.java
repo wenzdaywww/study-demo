@@ -25,7 +25,7 @@ public class NettyResponseHandler extends SimpleChannelInboundHandler<MessagePro
      */
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, MessageProtocol<NettyResponse> protocol) throws Exception {
-        log.info("客户端收到的数据：{}",protocol);
+        log.info("=====> 客户端收到的数据：{}",protocol);
         //将返回结果保存到异步对象中
         RpcResponseCache.setResponse(protocol.getHeader().getRequestId(),protocol);
     }

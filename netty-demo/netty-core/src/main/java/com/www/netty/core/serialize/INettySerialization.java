@@ -20,7 +20,8 @@ public interface INettySerialization {
      * <p>@Author www </p>
      * <p>@Date 2022/10/21 9:50  </p>
      * @param data
+     * @param clz
      * @return T
      */
-    <T> T deserialize(byte[] data);
+    <T> T deserialize(byte[] data, Class<T> clz);
 }

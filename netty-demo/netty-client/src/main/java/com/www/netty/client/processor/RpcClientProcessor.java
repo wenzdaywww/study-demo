@@ -1,9 +1,11 @@
 package com.www.netty.client.processor;
 
 import com.www.netty.client.annotation.RpcAutowired;
+import com.www.netty.client.config.NettyClientProperties;
 import com.www.netty.client.core.INettyClient;
 import com.www.netty.client.proxy.ClientInvocationHandler;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
@@ -24,9 +26,11 @@ import java.lang.reflect.Proxy;
 public class RpcClientProcessor implements BeanFactoryPostProcessor, ApplicationContextAware {
     private ApplicationContext applicationContext;
     private INettyClient nettyClient;
+    private NettyClientProperties nettyClientProperties;
 
-    public RpcClientProcessor(INettyClient nettyClient){
+    public RpcClientProcessor(INettyClient nettyClient,NettyClientProperties nettyClientProperties){
         this.nettyClient = nettyClient;
+        this.nettyClientProperties = nettyClientProperties;
     }
     /**
      * <p>@Description bean实例化前处理 </p>
@@ -49,7 +53,7 @@ public class RpcClientProcessor implements BeanFactoryPostProcessor, Application
                         field.setAccessible(true);
                         // 修改为代理对象
                         ReflectionUtils.setField(field, bean, Proxy.newProxyInstance(field.getType().getClassLoader(),new Class[]{field.getType()},
-                                new ClientInvocationHandler(nettyClient,field.getType(),rpcAutowired.version())));
+                                new ClientInvocationHandler(nettyClientProperties,nettyClient,field.getType(),rpcAutowired.version())));
                     }
                 });
             }

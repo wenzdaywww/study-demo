@@ -6,11 +6,7 @@ import com.www.netty.client.store.RpcFuture;
 import com.www.netty.client.store.RpcResponseCache;
 import com.www.netty.core.coder.NettyDecoder;
 import com.www.netty.core.coder.NettyEncoder;
-import com.www.netty.core.dto.NettyRequest;
 import com.www.netty.core.dto.NettyResponse;
-import com.www.netty.core.protocol.MessageConstants;
-import com.www.netty.core.protocol.MessageEnum;
-import com.www.netty.core.protocol.MessageHeader;
 import com.www.netty.core.protocol.MessageProtocol;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
@@ -20,8 +16,6 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import lombok.extern.slf4j.Slf4j;
-
-import java.util.UUID;
 
 /**
  * <p>@Description netty客户端实现类 </p>
@@ -55,7 +49,7 @@ public class NettyClient implements INettyClient {
                                     .addLast(new NettyResponseHandler());//添加处理器
                         }
                     });
-            log.info("客户端准备就绪。。。");
+            log.info("=====> 客户端准备就绪。。。");
         } catch (Exception e) {
             log.error(e.getMessage());
         }
@@ -78,9 +72,9 @@ public class NettyClient implements INettyClient {
             RpcResponseCache.add(protocol.getHeader().getRequestId(),future);
             channelFuture.addListener(arg -> {
                 if (channelFuture.isSuccess()){
-                    log.info("ip:{}, 端口：{} 请求成功。。。。",ip,port);
+                    log.info("=====> ip:{}, 端口：{} 请求成功。。。。",ip,port);
                 }else {
-                    log.info("ip:{}, 端口：{} 请求失败。。。。",ip,port);
+                    log.info("=====> ip:{}, 端口：{} 请求失败。。。。",ip,port);
                     channelFuture.cause().printStackTrace();
                     loopGroup.shutdownGracefully();
                 }

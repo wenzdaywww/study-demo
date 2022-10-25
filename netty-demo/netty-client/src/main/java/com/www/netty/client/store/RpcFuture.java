@@ -20,12 +20,23 @@ public class RpcFuture<T> implements Future<T> {
      * 使用 CountDownLatch 等待线程
      */
     private CountDownLatch countDownLatch = new CountDownLatch(1);
-
+    /**
+     * <p>@Description 取消 </p>
+     * <p>@Author www </p>
+     * <p>@Date 2022/10/25 11:00  </p>
+     * @param mayInterruptIfRunning
+     * @return boolean
+     */
     @Override
     public boolean cancel(boolean mayInterruptIfRunning) {
         return false;
     }
-
+    /**
+     * <p>@Description 是否取消 </p>
+     * <p>@Author www </p>
+     * <p>@Date 2022/10/25 11:00  </p>
+     * @return boolean
+     */
     @Override
     public boolean isCancelled() {
         return false;

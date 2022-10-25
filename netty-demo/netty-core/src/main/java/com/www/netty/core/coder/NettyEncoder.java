@@ -4,6 +4,7 @@ import com.www.netty.core.dto.NettyRequest;
 import com.www.netty.core.protocol.MessageEnum;
 import com.www.netty.core.protocol.MessageHeader;
 import com.www.netty.core.protocol.MessageProtocol;
+import com.www.netty.core.protocol.SerializationEnum;
 import com.www.netty.core.serialize.INettySerialization;
 import com.www.netty.core.serialize.SerializationFactory;
 import io.netty.buffer.ByteBuf;
@@ -45,8 +46,9 @@ public class NettyEncoder extends MessageToByteEncoder<MessageProtocol<NettyRequ
         byteBuf.writeByte(header.getStatus());
         //消息ID
         byteBuf.writeCharSequence(header.getRequestId(), Charset.forName("UTF-8"));
+        //TODO 2022/10/25 序列化问题待处理
         //数据长度
-        nettySerialization = SerializationFactory.getInstance(MessageEnum.SERIALIZATION_JDK);
+        nettySerialization = SerializationFactory.getInstance(SerializationEnum.parseByType(header.getSerialization()));
         byte[] data = nettySerialization.serialize(messageProtocol.getBody());
         byteBuf.writeInt(data.length);
         //数据内容

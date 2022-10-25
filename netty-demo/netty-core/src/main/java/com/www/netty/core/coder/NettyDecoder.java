@@ -6,6 +6,7 @@ import com.www.netty.core.protocol.MessageConstants;
 import com.www.netty.core.protocol.MessageEnum;
 import com.www.netty.core.protocol.MessageHeader;
 import com.www.netty.core.protocol.MessageProtocol;
+import com.www.netty.core.protocol.SerializationEnum;
 import com.www.netty.core.serialize.INettySerialization;
 import com.www.netty.core.serialize.SerializationFactory;
 import io.netty.buffer.ByteBuf;
@@ -71,12 +72,13 @@ public class NettyDecoder extends ByteToMessageDecoder{
         //数据内容
         byte[] data = new byte[msgLen];
         byteBuf.readBytes(data);
-        nettySerialization = SerializationFactory.getInstance(MessageEnum.SERIALIZATION_JDK);
+        //TODO 2022/10/25 序列化问题待处理
+        nettySerialization = SerializationFactory.getInstance(SerializationEnum.parseByType(header.getSerialization()));
         if (msgType == MessageEnum.TYPE_REQ.getCode()){
-            NettyRequest request = nettySerialization.deserialize(data);
+            NettyRequest request = nettySerialization.deserialize(data,NettyRequest.class);
             protocol.setBody(request);
         }else {
-            NettyResponse response = nettySerialization.deserialize(data);
+            NettyResponse response = nettySerialization.deserialize(data,NettyResponse.class);
             protocol.setBody(response);
         }
         list.add(protocol);

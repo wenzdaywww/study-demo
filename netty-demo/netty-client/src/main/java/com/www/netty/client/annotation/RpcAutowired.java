@@ -15,7 +15,7 @@ import java.lang.annotation.Target;
  * <p>@Author www </p>
  * <p>@Date 2022/10/21 14:54 </p>
  */
-@Target({ElementType.TYPE})
+@Target({ElementType.CONSTRUCTOR, ElementType.METHOD, ElementType.PARAMETER, ElementType.FIELD, ElementType.ANNOTATION_TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Autowired

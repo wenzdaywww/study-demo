@@ -41,10 +41,11 @@ public class JDKSerialization implements INettySerialization {
      * <p>@Author www </p>
      * <p>@Date 2022/10/21 9:50  </p>
      * @param data
+     * @param clz
      * @return T
      */
     @Override
-    public <T> T deserialize(byte[] data) {
+    public <T> T deserialize(byte[] data, Class<T> clz) {
         ByteArrayInputStream byteIn;
         ObjectInputStream objIn;
         T obj = null;

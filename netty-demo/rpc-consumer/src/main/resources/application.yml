@@ -1,0 +1,11 @@
+server:
+  port: 8090
+  servlet:
+    context-path: /
+com:
+  www:
+    netty:
+      client:
+        server-ip: 127.0.0.1
+        port: 6668
+        serial: jdk

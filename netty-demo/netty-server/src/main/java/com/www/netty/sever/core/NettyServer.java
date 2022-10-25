@@ -66,7 +66,7 @@ public class NettyServer {
                                     .addLast(new NettyRequestHandler());
                         }
                     });
-            log.info("netty服务器准备中。。。");
+            log.info("=====> netty服务器准备中。。。");
             //启动服务器，绑定端口
             ChannelFuture future = bootstrap.bind(nettyServerProperies.getPort()).sync();
             //注册监听器
@@ -74,9 +74,9 @@ public class NettyServer {
                 @Override
                 public void operationComplete(ChannelFuture channelFuture) throws Exception {
                     if (channelFuture.isSuccess()){
-                        log.info("netty服务器监听端口{}成功！！！",nettyServerProperies.getPort());
+                        log.info("=====> netty服务器监听端口{}成功！！！",nettyServerProperies.getPort());
                     }else {
-                        log.info("netty服务器监听端口{}失败！！！",nettyServerProperies.getPort());
+                        log.info("=====> netty服务器监听端口{}失败！！！",nettyServerProperies.getPort());
                     }
                 }
             });

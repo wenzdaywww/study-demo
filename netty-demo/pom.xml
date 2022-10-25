@@ -15,6 +15,9 @@
         <module>netty-server</module>
         <module>netty-client</module>
         <module>netty-core</module>
+        <module>rpc-provider</module>
+        <module>rpc-consumer</module>
+        <module>rpc-provider-api</module>
     </modules>
 
 

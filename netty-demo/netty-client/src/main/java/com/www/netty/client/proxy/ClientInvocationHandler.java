@@ -1,5 +1,6 @@
 package com.www.netty.client.proxy;
 
+import com.www.netty.client.config.NettyClientProperties;
 import com.www.netty.client.core.INettyClient;
 import com.www.netty.core.dto.NettyRequest;
 import com.www.netty.core.dto.NettyResponse;
@@ -18,6 +19,7 @@ import java.util.UUID;
  * <p>@Date 2022/10/21 16:08 </p>
  */
 public class ClientInvocationHandler implements InvocationHandler {
+    private NettyClientProperties nettyClientProperties;
     private INettyClient nettyClient;
     private Class<?> calzz;
     private String version;
@@ -27,7 +29,8 @@ public class ClientInvocationHandler implements InvocationHandler {
      * <p>@Date 2022/10/21 16:27  </p>
      * @return
      */
-    public ClientInvocationHandler(INettyClient nettyClient,Class<?> calzz,String version){
+    public ClientInvocationHandler(NettyClientProperties nettyClientProperties,INettyClient nettyClient,Class<?> calzz,String version){
+        this.nettyClientProperties = nettyClientProperties;
         this.nettyClient = nettyClient;
         this.calzz = calzz;
         this.version = version;
@@ -44,7 +47,7 @@ public class ClientInvocationHandler implements InvocationHandler {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         MessageProtocol protocol = new MessageProtocol();
-        MessageHeader header = MessageHeader.build();
+        MessageHeader header = MessageHeader.build(nettyClientProperties.getSerial());
         header.setMsgType(MessageEnum.TYPE_REQ.getCode());
         header.setRequestId(UUID.randomUUID().toString().replaceAll("-",""));
         protocol.setHeader(header);
@@ -57,7 +60,7 @@ public class ClientInvocationHandler implements InvocationHandler {
         request.setParam(args);
         protocol.setBody(request);
         //通过netty调用
-        MessageProtocol<NettyResponse> response = (MessageProtocol<NettyResponse>)nettyClient.sendRequest("127.0.0.1",6668,protocol);
+        MessageProtocol<NettyResponse> response = (MessageProtocol<NettyResponse>)nettyClient.sendRequest(nettyClientProperties.getServerIp(),nettyClientProperties.getPort(),protocol);
         if (response == null){
             throw new RuntimeException("RPC调用失败。");
         }
