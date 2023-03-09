@@ -1,6 +1,9 @@
-package com.www.netty.sever.config;
+package com.www.netty.sever.core;
 
-import com.www.netty.sever.handler.NettyServerHandler;
+import com.www.netty.core.coder.NettyDecoder;
+import com.www.netty.core.coder.NettyEncoder;
+import com.www.netty.sever.config.NettyServerProperies;
+import com.www.netty.sever.handler.NettyRequestHandler;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
@@ -11,24 +14,33 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.Configuration;
 
 /**
- * <p>@Description netty服务端配置 </p>
+ * <p>@Description netty服务端 </p>
  * <p>@Version 1.0 </p>
  * <p>@Author www </p>
- * <p>@Date 2022/10/14 15:56 </p>
+ * <p>@Date 2022/10/17 17:08 </p>
  */
 @Slf4j
-@Configuration
-public class NettyServerConfiguration {
+public class NettyServer {
+    private NettyServerProperies nettyServerProperies;
     /**
      * <p>@Description 构造方法 </p>
      * <p>@Author www </p>
      * <p>@Date 2022/10/14 17:21  </p>
      * @return
      */
-    public NettyServerConfiguration(){
+    public NettyServer(NettyServerProperies nettyServerProperies){
+        this.nettyServerProperies = nettyServerProperies;
+        startServer();
+    }
+    /**
+     * <p>@Description 启动netty服务端 </p>
+     * <p>@Author www </p>
+     * <p>@Date 2022/10/18 9:06  </p>
+     * @return void
+     */
+    public void startServer(){
         /*
          * bossGroup只是处理连接请求，workerGroup是和客户端业务处理
          * 两个都是无线循环
@@ -48,21 +60,23 @@ public class NettyServerConfiguration {
                     .childHandler(new ChannelInitializer<SocketChannel>() { //workerGroup的处理器
                         @Override
                         protected void initChannel(SocketChannel socketChannel) throws Exception {
-                            System.out.println("客户端socketChannel hashCode = " + socketChannel.hashCode());
-                            socketChannel.pipeline().addLast(new NettyServerHandler());
+                            socketChannel.pipeline()
+                                    .addLast(new NettyDecoder())
+                                    .addLast(new NettyEncoder())
+                                    .addLast(new NettyRequestHandler());
                         }
                     });
-            log.info("服务器准备中。。。");
+            log.info("=====> netty服务器准备中。。。");
             //启动服务器，绑定端口
-            ChannelFuture future = bootstrap.bind(6668).sync();
+            ChannelFuture future = bootstrap.bind(nettyServerProperies.getPort()).sync();
             //注册监听器
             future.addListener(new ChannelFutureListener() {
                 @Override
                 public void operationComplete(ChannelFuture channelFuture) throws Exception {
                     if (channelFuture.isSuccess()){
-                        log.info("监听端口6668成功！！！");
+                        log.info("=====> netty服务器监听端口{}成功！！！",nettyServerProperies.getPort());
                     }else {
-                        log.info("监听端口6668失败！！！");
+                        log.info("=====> netty服务器监听端口{}失败！！！",nettyServerProperies.getPort());
                     }
                 }
             });

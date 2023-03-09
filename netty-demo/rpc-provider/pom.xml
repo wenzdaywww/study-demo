@@ -12,22 +12,27 @@
     </parent>
 
     <groupId>com.www</groupId>
-    <artifactId>netty-server</artifactId>
+    <artifactId>rpc-provider</artifactId>
     <version>1.0.0</version>
-    <name>netty-server</name>
-    <description>netty服务端</description>
+    <name>rpc-provider</name>
+    <description>rpc服务提供方</description>
 
     <dependencies>
         <!-- springboot框架web项目起步依赖 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <scope>provided</scope>
         </dependency>
-        <!-- netty-core依赖 -->
+        <!-- netty依赖 -->
         <dependency>
             <groupId>com.www</groupId>
-            <artifactId>netty-core</artifactId>
+            <artifactId>netty-server</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <!-- rpc提供方接口 -->
+        <dependency>
+            <groupId>com.www</groupId>
+            <artifactId>rpc-provider-api</artifactId>
             <version>1.0.0</version>
         </dependency>
     </dependencies>
